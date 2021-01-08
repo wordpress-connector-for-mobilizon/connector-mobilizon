@@ -1,0 +1,46 @@
+{
+  "name": "connector-mobilizon",
+  "version": "0.1.0",
+  "description": "Display mobilizon events in WordPress.",
+  "private": true,
+  "scripts": {
+    "build-dev": "gulp dev",
+    "build-prod": "ava && gulp prod",
+    "test": "ava"
+  },
+  "author": {
+    "name": "Daniel Waxweiler",
+    "url": "https://www.danielwaxweiler.net/"
+  },
+  "license": "Apache-2.0",
+  "dependencies": {
+    "graphql": "^15.4.0",
+    "graphql-request": "^3.4.0",
+    "luxon": "^1.25.0"
+  },
+  "devDependencies": {
+    "ava": "^3.15.0",
+    "del": "^6.0.0",
+    "esm": "^3.2.25",
+    "gulp": "^4.0.2",
+    "gulp-replace": "^1.0.0",
+    "jsdom": "^16.4.0",
+    "webpack": "^5.11.1",
+    "webpack-cli": "^4.3.1",
+    "webpack-stream": "^6.1.1"
+  },
+  "ava": {
+    "files": [
+      "./source/**/*test.js"
+    ],
+    "require": [
+      "esm"
+    ]
+  },
+  "additionalDetails": {
+    "niceName": "Connector for Mobilizon",
+    "phpMinimumVersion": 5.4,
+    "wordpressMinimumVersion": 5.6,
+    "wordpressTestedUpToVersion": 5.6
+  }
+}

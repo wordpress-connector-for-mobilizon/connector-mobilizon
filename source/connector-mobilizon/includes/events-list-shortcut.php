@@ -1,0 +1,36 @@
+<?php
+namespace MobilizonConnector;
+
+// Exit if this file is called directly.
+if (!defined('ABSPATH')) {
+  exit;
+}
+
+class EventsListShortcut {
+  
+  public static function init() {
+    add_shortcode(NAME . '-events-list', 'MobilizonConnector\EventsListShortcut::inflate');
+  }
+
+  public static function inflate($atts = [], $content = null) {
+    // Normalize attribute keys, lowercase.
+    $atts = array_change_key_case((array) $atts, CASE_LOWER);
+ 
+    // Override default attributes with user attributes.
+    $atts_with_overriden_defaults = shortcode_atts(
+      array(
+        'events-count' => DEFAULT_EVENTS_COUNT,
+      ), $atts
+    );
+
+    $classNamePrefix = NAME;
+    $eventsCount = $atts_with_overriden_defaults['events-count'];
+    $url = Settings::getUrl();
+    $textDomain = TEXT_DOMAIN;
+
+    ob_start();
+    require dirname(__DIR__) . '/view/events-list.php';
+    $output = ob_get_clean();
+    return $output;
+  }
+}
