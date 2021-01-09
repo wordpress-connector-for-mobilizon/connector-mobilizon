@@ -11,12 +11,11 @@ License: <wordpress-license>
 
 == Description ==
 
-<wordpress-nice-name> allows you to display the upcoming events of one Mobilizon instance.
-[Mobilizon](https://joinmobilizon.org/) is an event listening tool.
+<wordpress-nice-name> allows you to display the upcoming events of [Mobilizon](https://joinmobilizon.org/), which is a federated event listing platform.
 
 You can display the upcoming events using a widget and everywhere else using a shortcut.
 
-Shortcut format with limiting the number of events to show to 3: `[<wordpress-name>-events-list events-count=3]`
+Shortcut format with limiting the number of events to show to 3 for example: `[<wordpress-name>-events-list events-count=3]`
 
 == Screenshots ==
 1. Events list

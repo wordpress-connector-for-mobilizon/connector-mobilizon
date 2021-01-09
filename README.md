@@ -1,4 +1,4 @@
-# Connector Mobilizon
+# Connector for Mobilizon
 
 ## Development
 
