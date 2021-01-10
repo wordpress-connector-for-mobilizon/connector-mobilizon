@@ -17,6 +17,8 @@ You can display the upcoming events using a widget and everywhere else using a s
 
 Shortcut format with limiting the number of events to show to 3 for example: `[<wordpress-name>-events-list events-count=3]`
 
+The source code is available on [Github](https://github.com/dwaxweiler/connector-mobilizon).
+
 ## Screenshots
 1. Events list
 2. General settings

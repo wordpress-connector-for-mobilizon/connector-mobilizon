@@ -2,6 +2,7 @@
 Added
 - Add `changelog.txt`
 - Add changelog maintenance steps to `README.md`
+- Add link to Github repository to `readme.txt`
 Changed
 - Use same Markdown style in `README.md` as in other documents
 Deprecated
