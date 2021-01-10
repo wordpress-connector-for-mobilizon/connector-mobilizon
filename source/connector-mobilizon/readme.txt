@@ -1,4 +1,4 @@
-=== <wordpress-nice-name> ===
+# <wordpress-nice-name>
 Contributors: dwaxweiler
 Tags: mobilizon, events
 Stable tag: <wordpress-version>
@@ -9,7 +9,7 @@ License: <wordpress-license>
 
 <wordpress-description>
 
-== Description ==
+## Description
 
 <wordpress-nice-name> allows you to display the upcoming events of [Mobilizon](https://joinmobilizon.org/), which is a federated event listing platform.
 
@@ -17,13 +17,13 @@ You can display the upcoming events using a widget and everywhere else using a s
 
 Shortcut format with limiting the number of events to show to 3 for example: `[<wordpress-name>-events-list events-count=3]`
 
-== Screenshots ==
+## Screenshots
 1. Events list
 2. General settings
 3. Widget creation
 4. Shortcut creation
 
-== Changelog ==
+## Changelog
 
-= 0.1.0 =
-* initial release
+### [0.1.0] - 2021-01-09
+initial release

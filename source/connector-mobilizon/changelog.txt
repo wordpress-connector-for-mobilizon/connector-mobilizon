@@ -1,0 +1,13 @@
+### [Unreleased]
+Added
+- Add `changelog.txt`
+- Add changelog maintenance steps to `README.md`
+Changed
+- Use same Markdown style in `README.md` as in other documents
+Deprecated
+Removed
+Fixed
+Security
+
+### [0.1.0] - 2021-01-09
+initial release
