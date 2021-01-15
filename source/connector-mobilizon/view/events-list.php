@@ -5,7 +5,8 @@ if (!defined('ABSPATH')) {
 }
 ?>
 <ul class="<?php echo esc_attr($classNamePrefix); ?>_events-list"
+  data-url="<?php echo esc_attr($url); ?>"
   data-maximum="<?php echo esc_attr($eventsCount); ?>"
-  data-url="<?php echo esc_attr($url); ?>">
+  data-group-name="<?php echo esc_attr($groupName); ?>">
   <li style="display: none;"><?php echo esc_html_e('The events could not be loaded!', $textDomain); ?></li>
 </ul>

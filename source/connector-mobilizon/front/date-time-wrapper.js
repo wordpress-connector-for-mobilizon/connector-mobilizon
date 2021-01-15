@@ -21,4 +21,8 @@ export class DateTimeWrapper {
       this.dateTime.month === other.dateTime.month &&
       this.dateTime.year === other.dateTime.year
   }
+
+  static getCurrentDatetimeAsString() {
+    return DateTime.local().toString();
+  }
 }

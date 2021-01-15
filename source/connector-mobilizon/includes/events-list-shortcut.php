@@ -20,11 +20,13 @@ class EventsListShortcut {
     $atts_with_overriden_defaults = shortcode_atts(
       array(
         'events-count' => DEFAULT_EVENTS_COUNT,
+        'group-name' => '',
       ), $atts
     );
 
     $classNamePrefix = NAME;
     $eventsCount = $atts_with_overriden_defaults['events-count'];
+    $groupName = $atts_with_overriden_defaults['group-name'];
     $url = Settings::getUrl();
     $textDomain = TEXT_DOMAIN;
 
