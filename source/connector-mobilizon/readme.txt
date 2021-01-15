@@ -28,6 +28,10 @@ The source code is available on [Github](https://github.com/dwaxweiler/connector
 
 ## Changelog
 
+### [0.2.1] - 2021-01-15
+Changed
+- Add missing backtick to `readme.txt`
+
 ### [0.2.0] - 2021-01-15
 Added
 - `changelog.txt`
