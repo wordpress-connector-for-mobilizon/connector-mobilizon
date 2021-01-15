@@ -28,5 +28,14 @@ The source code is available on [Github](https://github.com/dwaxweiler/connector
 
 ## Changelog
 
+### [0.2.0] - 2021-01-15
+Added
+- `changelog.txt`
+- Changelog maintenance steps to `README.md`
+- Link to Github repository in `readme.txt`
+- Option to show events of a specific group by indicating its name
+Changed
+- Use same Markdown style in `README.md` as in other documents
+
 ### [0.1.0] - 2021-01-09
 initial release
