@@ -1,10 +1,10 @@
 <?php
 /**
- * Plugin Name: 	    <wordpress-nice-name>
- * Author: 				    <wordpress-author-name>
- * Author URI:		    <wordpress-author-url>
- * Description: 	    <wordpress-description>
- * Version:				    <wordpress-version>
+ * Plugin Name:       <wordpress-nice-name>
+ * Author:            <wordpress-author-name>
+ * Author URI:        <wordpress-author-url>
+ * Description:       <wordpress-description>
+ * Version:           <wordpress-version>
  * Requires at least: <wordpress-minimum-version>
  * Requires PHP:      <wordpress-php-minimum-version>
  * License:           <wordpress-license>
