@@ -28,6 +28,12 @@ The source code is available on [Github](https://github.com/dwaxweiler/connector
 
 ## Changelog
 
+### [0.2.2] - 2021-03-10
+#### Changed
+- Confirm compatibility with WordPress 5.7
+- Update graphql dependency
+- Update dev dependencies jsdom, webpack, webpack-cli, webpack-stream
+
 ### [0.2.1] - 2021-01-15
 #### Fixed
 - Add missing backtick to `readme.txt`
