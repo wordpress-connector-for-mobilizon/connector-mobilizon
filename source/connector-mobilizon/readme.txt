@@ -29,16 +29,16 @@ The source code is available on [Github](https://github.com/dwaxweiler/connector
 ## Changelog
 
 ### [0.2.1] - 2021-01-15
-Fixed
+#### Fixed
 - Add missing backtick to `readme.txt`
 
 ### [0.2.0] - 2021-01-15
-Added
+#### Added
 - `changelog.txt`
 - Changelog maintenance steps to `README.md`
 - Link to Github repository in `readme.txt`
 - Option to show events of a specific group by indicating its name
-Changed
+#### Changed
 - Use same Markdown style in `README.md` as in other documents
 
 ### [0.1.0] - 2021-01-09
