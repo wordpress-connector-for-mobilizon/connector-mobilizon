@@ -41,6 +41,6 @@
     "niceName": "Connector for Mobilizon",
     "phpMinimumVersion": 5.4,
     "wordpressMinimumVersion": 5.6,
-    "wordpressTestedUpToVersion": 5.6
+    "wordpressTestedUpToVersion": 5.7
   }
 }

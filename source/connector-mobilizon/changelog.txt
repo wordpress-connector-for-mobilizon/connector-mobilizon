@@ -1,6 +1,7 @@
 ### [Unreleased]
 #### Added
 #### Changed
+- Confirm compatibility with WordPress 5.7
 - Update graphql dependency
 - Update dev dependencies jsdom, webpack, webpack-cli, webpack-stream
 #### Deprecated
