@@ -17,7 +17,10 @@
 3. Build: `npm run build-prod`
 4. Determine minimum PHP version for code and update package.json if needed: `./vendor/bin/phpcompatinfo analyser:run ./source`
 5. Make sure screenshots are up-to-date.
-6. Copy the built plugin into `/trunk` of SVN. Also creatte a new tag of the new version. Check the version number occurences in both folders. Commit everything together.
+6. Copy the built plugin into `/trunk` of SVN.
+7. Create a new tag of the new version: `svn cp trunk tags/<version>`
+8. Check the version number occurences in both folders.
+9. Commit everything together: `svn ci -m "release version <version>"`
 
 ### Other commands
 - Run tests: `npm test`
