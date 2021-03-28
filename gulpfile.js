@@ -52,6 +52,7 @@ function injectMetadata() {
     .pipe(replace('<wordpress-author-name>', PACKAGE.author.name))
     .pipe(replace('<wordpress-author-url>', PACKAGE.author.url))
     .pipe(replace('<wordpress-description>', PACKAGE.description))
+    .pipe(replace('<wordpress-donation-link>', PACKAGE.funding.url))
     .pipe(replace('<wordpress-license>', PACKAGE.license))
     .pipe(replace('<wordpress-minimum-version>', PACKAGE.additionalDetails.wordpressMinimumVersion))
     .pipe(replace('<wordpress-name>', PACKAGE.name))

@@ -1,5 +1,6 @@
 # <wordpress-nice-name>
 Contributors: dwaxweiler
+Donate link: <wordpress-donation-link>
 Tags: mobilizon, events
 Stable tag: <wordpress-version>
 Requires at least: <wordpress-minimum-version>

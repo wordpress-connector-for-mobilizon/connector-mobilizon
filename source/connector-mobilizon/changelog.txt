@@ -1,5 +1,6 @@
 ### [Unreleased]
 #### Added
+- Donation link to WordPress Plugin Directory sidebar and to `package.json`
 #### Changed
 - Update luxon dependency
 - Update dev dependencies jsdom, webpack, webpack-cli

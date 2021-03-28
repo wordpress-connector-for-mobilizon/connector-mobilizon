@@ -12,6 +12,10 @@
     "name": "Daniel Waxweiler",
     "url": "https://www.danielwaxweiler.net/"
   },
+  "funding": {
+    "type" : "individual",
+    "url": "https://paypal.me/dwaxweiler"
+  },
   "license": "Apache-2.0",
   "dependencies": {
     "graphql": "^15.5.0",
