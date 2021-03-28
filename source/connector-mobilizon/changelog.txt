@@ -1,6 +1,8 @@
 ### [Unreleased]
 #### Added
 #### Changed
+- Update luxon dependency
+- Update dev dependencies jsdom, webpack, webpack-cli
 #### Deprecated
 #### Removed
 #### Fixed
