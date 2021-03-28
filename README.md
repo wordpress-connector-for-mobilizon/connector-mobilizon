@@ -25,6 +25,7 @@ More details can be found in the [WordPress Plugin Directory](https://wordpress.
 7. Create a new tag of the new version: `svn cp trunk tags/<version>`
 8. Check the version number occurences in both folders.
 9. Commit everything together: `svn ci -m "release version <version>"`
+10. Tag the new version in `git` too.
 
 ### Other commands
 - Run tests: `npm test`
