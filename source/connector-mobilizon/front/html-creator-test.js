@@ -1,7 +1,7 @@
-import test from 'ava';
-import { JSDOM } from 'jsdom';
+import test from 'ava'
+import { JSDOM } from 'jsdom'
 
-import * as HtmlCreator from './html-creator';
+import * as HtmlCreator from './html-creator'
 
 test.beforeEach(() => {
   global.document = new JSDOM().window.document

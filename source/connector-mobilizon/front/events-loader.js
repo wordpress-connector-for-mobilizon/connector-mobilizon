@@ -1,8 +1,8 @@
-import { DateTimeWrapper } from './date-time-wrapper';
+import { DateTimeWrapper } from './date-time-wrapper'
 import * as GraphqlWrapper from './graphql-wrapper'
 import * as HtmlCreator from './html-creator'
 
-const NAME = '<wordpress-name>';
+const NAME = '<wordpress-name>'
 
 function displayEvents(data, list) {
   const maxEventsCount = list.getAttribute('data-maximum')
@@ -11,7 +11,7 @@ function displayEvents(data, list) {
   for (let i = 0; i < eventsCount; i++) {
     const li = document.createElement('li')
     
-    const a = HtmlCreator.createAnchorElement({ text: events[i].title, url: events[i].url });
+    const a = HtmlCreator.createAnchorElement({ text: events[i].title, url: events[i].url })
     li.appendChild(a)
 
     const br = document.createElement('br')
@@ -26,7 +26,7 @@ function displayEvents(data, list) {
         dateText += endsOn.getShortDate() + ' '
     }
     dateText += endsOn.get24Time()
-    const textnode = document.createTextNode(dateText);
+    const textnode = document.createTextNode(dateText)
     li.appendChild(textnode)
 
     list.appendChild(li)
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const eventLists = document.getElementsByClassName(NAME + '_events-list')
   for (let list of eventLists) {
     const url = list.getAttribute('data-url') + '/api'
-    const limit = list.getAttribute('data-maximum')
+    const limit = parseInt(list.getAttribute('data-maximum'))
     const groupName = list.getAttribute('data-group-name')
     if (groupName) {
       GraphqlWrapper.getUpcomingEventsByGroupName({ url, limit, groupName })

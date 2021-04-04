@@ -1,4 +1,4 @@
-import { DateTime } from 'luxon';
+import { DateTime } from 'luxon'
 
 export class DateTimeWrapper {
 
@@ -23,6 +23,6 @@ export class DateTimeWrapper {
   }
 
   static getCurrentDatetimeAsString() {
-    return DateTime.local().toString();
+    return DateTime.local().toString()
   }
 }
