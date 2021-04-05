@@ -17,12 +17,12 @@ export function getUpcomingEvents({ url, limit }) {
       }
     }
   `
-  const dataInCache = SessionCache.get({ url, query, variables: { limit }})
+  const dataInCache = SessionCache.get(sessionStorage, { url, query, variables: { limit }})
   if (dataInCache !== null)
     return Promise.resolve(dataInCache)
   return request(url, query, { limit })
     .then((data) => {
-      SessionCache.add({ url, query, variables: { limit }}, data)
+      SessionCache.add(sessionStorage, { url, query, variables: { limit }}, data)
       return Promise.resolve(data)
     })
 }
@@ -45,12 +45,12 @@ export function getUpcomingEventsByGroupName({ url, limit, groupName }) {
     }
   `
   const afterDatetime = DateTimeWrapper.getCurrentDatetimeAsString()
-  const dataInCache = SessionCache.get({ url, query, variables: { afterDatetime, groupName, limit }})
+  const dataInCache = SessionCache.get(sessionStorage, { url, query, variables: { afterDatetime, groupName, limit }})
   if (dataInCache !== null)
     return Promise.resolve(dataInCache)
   return request(url, query, { afterDatetime, groupName, limit })
     .then((data) => {
-      SessionCache.add({ url, query, variables: { afterDatetime, groupName, limit }}, data)
+      SessionCache.add(sessionStorage, { url, query, variables: { afterDatetime, groupName, limit }}, data)
       return Promise.resolve(data)
     })
 }

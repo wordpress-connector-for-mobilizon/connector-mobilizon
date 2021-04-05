@@ -7,7 +7,7 @@ test.beforeEach(() => {
   global.document = new JSDOM().window.document
 })
 
-test('createAnchorElement() usual parameters', t => {
+test('#createAnchorElement usual parameters', t => {
   const a = HtmlCreator.createAnchorElement({ text: 'a', url: 'b' })
   t.is(a.tagName, 'A')
   t.is(a.innerHTML, 'a')
