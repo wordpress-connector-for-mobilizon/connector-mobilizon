@@ -32,7 +32,7 @@ function bundleFrontend() {
       },
     }))
     .pipe(dest(FOLDER_BUILD));
-  }
+}
 
 function copyBackend() {
   return src([

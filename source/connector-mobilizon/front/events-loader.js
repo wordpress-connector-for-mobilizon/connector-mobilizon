@@ -23,7 +23,7 @@ function displayEvents(data, list) {
     dateText += ' ' + beginsOn.get24Time()
     dateText += ' - '
     if (!beginsOn.equalsDate(endsOn)) {
-        dateText += endsOn.getShortDate() + ' '
+      dateText += endsOn.getShortDate() + ' '
     }
     dateText += endsOn.get24Time()
     const textnode = document.createTextNode(dateText)

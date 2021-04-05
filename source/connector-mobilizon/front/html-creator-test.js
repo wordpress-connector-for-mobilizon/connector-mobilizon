@@ -11,5 +11,5 @@ test('createAnchorElement() usual parameters', t => {
   const a = HtmlCreator.createAnchorElement({ text: 'a', url: 'b' })
   t.is(a.tagName, 'A')
   t.is(a.innerHTML, 'a')
-	t.is(a.getAttribute('href'), 'b')
+  t.is(a.getAttribute('href'), 'b')
 })

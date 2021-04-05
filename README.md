@@ -28,5 +28,6 @@ More details can be found in the [WordPress Plugin Directory](https://wordpress.
 10. Tag the new version in `git` too.
 
 ### Other commands
+- Run ESLint: `npm run eslint`
 - Run tests: `npm test`
 - Delete build folder: `gulp clean`
