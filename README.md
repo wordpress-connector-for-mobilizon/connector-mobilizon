@@ -1,6 +1,6 @@
 # Connector for Mobilizon
 
-Connector for Mobilizon allows you to display the upcoming events of [Mobilizon](https://joinmobilizon.org/), which is a federated event listing platform.
+Connector for Mobilizon allows you to display the upcoming events of [Mobilizon](https://joinmobilizon.org/), which is a federated event listing platform, on your WordPress website.
 
 More details can be found in the [WordPress Plugin Directory](https://wordpress.org/plugins/connector-mobilizon/).
 

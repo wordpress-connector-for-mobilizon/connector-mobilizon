@@ -12,7 +12,7 @@ License: <wordpress-license>
 
 ## Description
 
-<wordpress-nice-name> allows you to display the upcoming events of [Mobilizon](https://joinmobilizon.org/), which is a federated event listing platform.
+<wordpress-nice-name> allows you to display the upcoming events of [Mobilizon](https://joinmobilizon.org/), which is a federated event listing platform, on your WordPress website.
 
 You can display the upcoming events using a widget and everywhere else using a shortcut.
 
