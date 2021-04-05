@@ -1,15 +1,19 @@
 ### [Unreleased]
 #### Added
-- Donation link to WordPress Plugin Directory sidebar and to `package.json`
-- Cache requests for 2 minutes
-- ESLint static code analysis
 #### Changed
-- Update luxon dependency
-- Update dev dependencies jsdom, webpack, webpack-cli
 #### Deprecated
 #### Removed
 #### Fixed
 #### Security
+
+### [0.3.0] - 2021-04-05
+#### Added
+- Donation link to WordPress Plugin Directory sidebar and to `package.json`
+- Cache requests for 2 minutes
+- Set up ESLint static code analysis
+#### Changed
+- Update luxon dependency
+- Update dev dependencies jsdom, webpack, webpack-cli
 
 ### [0.2.2] - 2021-03-10
 #### Changed

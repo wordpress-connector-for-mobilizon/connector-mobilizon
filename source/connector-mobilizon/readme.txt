@@ -19,6 +19,8 @@ You can display the upcoming events using a widget and everywhere else using a s
 Shortcut format with limiting the number of events to show to 3 for example: `[<wordpress-name>-events-list events-count=3]`
 Optionally, you can only show the events of a specific group by indicatings its name: `[<wordpress-name>-events-list events-count=3 group-name="mygroup"]`
 
+The requests' responses are cached for 2 minutes.
+
 The source code is available on [Github](https://github.com/dwaxweiler/connector-mobilizon).
 
 ## Screenshots
@@ -28,6 +30,15 @@ The source code is available on [Github](https://github.com/dwaxweiler/connector
 4. Shortcut creation
 
 ## Changelog
+
+### [0.3.0] - 2021-04-05
+#### Added
+- Donation link to WordPress Plugin Directory sidebar and to `package.json`
+- Cache requests for 2 minutes
+- Set up ESLint static code analysis
+#### Changed
+- Update luxon dependency
+- Update dev dependencies jsdom, webpack, webpack-cli
 
 ### [0.2.2] - 2021-03-10
 #### Changed
