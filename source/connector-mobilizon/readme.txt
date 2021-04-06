@@ -19,7 +19,7 @@ You can display the upcoming events using a widget and everywhere else using a s
 Shortcut format with limiting the number of events to show to 3 for example: `[<wordpress-name>-events-list events-count=3]`
 Optionally, you can only show the events of a specific group by indicatings its name: `[<wordpress-name>-events-list events-count=3 group-name="mygroup"]`
 
-The requests' responses are cached for 2 minutes.
+The requests' responses are cached for 2 minutes in the browser's `sessionStorage`.
 
 The source code is available on [Github](https://github.com/dwaxweiler/connector-mobilizon).
 
