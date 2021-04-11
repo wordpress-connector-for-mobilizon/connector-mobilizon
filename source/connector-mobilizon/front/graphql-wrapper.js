@@ -11,7 +11,11 @@ export function getUpcomingEvents({ url, limit }) {
           title,
           url,
           beginsOn,
-          endsOn
+          endsOn,
+          physicalAddress {
+            description,
+            locality
+          }
         },
         total
       }
@@ -37,7 +41,11 @@ export function getUpcomingEventsByGroupName({ url, limit, groupName }) {
             title,
             url,
             beginsOn,
-            endsOn
+            endsOn,
+            physicalAddress {
+              description,
+              locality
+            }
           },
           total
         }

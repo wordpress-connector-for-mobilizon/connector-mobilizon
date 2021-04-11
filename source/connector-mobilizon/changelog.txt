@@ -1,5 +1,6 @@
 ### [Unreleased]
 #### Added
+- Show events' location if set: `description` and `locality` fields
 #### Changed
 #### Deprecated
 #### Removed

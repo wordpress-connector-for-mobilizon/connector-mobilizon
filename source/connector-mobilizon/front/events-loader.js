@@ -29,6 +29,26 @@ function displayEvents(data, list) {
     const textnode = document.createTextNode(dateText)
     li.appendChild(textnode)
 
+    if (events[i].physicalAddress) {
+      let location = ''
+      if (events[i].physicalAddress.description) {
+        location += events[i].physicalAddress.description
+      }
+      if (location && events[i].physicalAddress.locality) {
+        location += ', '
+      }
+      if (events[i].physicalAddress.locality) {
+        location += events[i].physicalAddress.locality
+      }
+      if (location) {
+        const brBeforeLocation = document.createElement('br')
+        li.appendChild(brBeforeLocation)
+
+        const textnodeLocation = document.createTextNode(location)
+        li.appendChild(textnodeLocation)
+      }
+    }
+
     list.appendChild(li)
   }
 }
