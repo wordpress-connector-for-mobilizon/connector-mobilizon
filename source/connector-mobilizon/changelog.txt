@@ -2,6 +2,7 @@
 #### Added
 - Show events' location if set: `description` and `locality` fields
 #### Changed
+- Update dev dependencies eslint, jsdom, webpack
 #### Deprecated
 #### Removed
 #### Fixed
