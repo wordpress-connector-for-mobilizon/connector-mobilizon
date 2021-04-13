@@ -1,4 +1,4 @@
-import DateTimeWrapper from './date-time-wrapper'
+import Formatter from './formatter'
 import * as GraphqlWrapper from './graphql-wrapper'
 import { createAnchorElement } from './html-creator'
 
@@ -17,29 +17,15 @@ function displayEvents(data, list) {
     const br = document.createElement('br')
     li.appendChild(br)
 
-    const beginsOn = new DateTimeWrapper(events[i].beginsOn)
-    const endsOn = new DateTimeWrapper(events[i].endsOn)
-    let dateText = beginsOn.getShortDate()
-    dateText += ' ' + beginsOn.get24Time()
-    dateText += ' - '
-    if (!beginsOn.equalsDate(endsOn)) {
-      dateText += endsOn.getShortDate() + ' '
-    }
-    dateText += endsOn.get24Time()
-    const textnode = document.createTextNode(dateText)
+    const date = Formatter.formatDate({ start: events[i].beginsOn, end: events[i].endsOn })
+    const textnode = document.createTextNode(date)
     li.appendChild(textnode)
 
     if (events[i].physicalAddress) {
-      let location = ''
-      if (events[i].physicalAddress.description) {
-        location += events[i].physicalAddress.description
-      }
-      if (location && events[i].physicalAddress.locality) {
-        location += ', '
-      }
-      if (events[i].physicalAddress.locality) {
-        location += events[i].physicalAddress.locality
-      }
+      const location = Formatter.formatLocation({
+        description: events[i].physicalAddress.description,
+        locality: events[i].physicalAddress.locality
+      })
       if (location) {
         const brBeforeLocation = document.createElement('br')
         li.appendChild(brBeforeLocation)
