@@ -6,7 +6,7 @@
   "scripts": {
     "build-dev": "gulp dev",
     "build-prod": "ava && gulp prod",
-    "coverage": "c8 --reporter=html --reporter=text ava",
+    "coverage": "c8 --all --reporter=html --reporter=text --include=source/**/*.js ava",
     "eslint": "npx eslint source/**/*.js",
     "test": "ava"
   },
