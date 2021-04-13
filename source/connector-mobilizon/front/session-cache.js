@@ -2,7 +2,7 @@ import hash from './object-hash-wrapper'
 
 const MAX_AGE_IN_MS = 120000
 
-export class SessionCache {
+export default class SessionCache {
 
   static add(storage, parameters, data) {
     const key = hash(parameters)

@@ -1,6 +1,6 @@
 import { DateTime } from 'luxon'
 
-export class DateTimeWrapper {
+export default class DateTimeWrapper {
 
   constructor(text) {
     this.dateTime = DateTime.fromISO(text)

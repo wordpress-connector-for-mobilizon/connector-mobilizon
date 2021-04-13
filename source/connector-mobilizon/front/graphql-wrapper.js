@@ -1,6 +1,6 @@
-import { SessionCache } from './session-cache'
+import SessionCache from './session-cache'
 import { request } from 'graphql-request'
-import { DateTimeWrapper } from './date-time-wrapper'
+import DateTimeWrapper from './date-time-wrapper'
 
 export function getUpcomingEvents({ url, limit }) {
   const query = `
