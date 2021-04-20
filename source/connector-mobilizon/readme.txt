@@ -31,6 +31,13 @@ The source code is available on [Github](https://github.com/dwaxweiler/connector
 
 ## Changelog
 
+### [0.4.0] - 2021-04-20
+#### Added
+- Show events' location if set: `description` and `locality` fields
+- Plugin icon
+#### Changed
+- Update dev dependencies eslint, jsdom, webpack
+
 ### [0.3.0] - 2021-04-05
 #### Added
 - Donation link to WordPress Plugin Directory sidebar and to `package.json`
