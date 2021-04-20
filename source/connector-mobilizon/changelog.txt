@@ -1,6 +1,7 @@
 ### [Unreleased]
 #### Added
 - Show events' location if set: `description` and `locality` fields
+- Plugin icon
 #### Changed
 - Update dev dependencies eslint, jsdom, webpack
 #### Deprecated
