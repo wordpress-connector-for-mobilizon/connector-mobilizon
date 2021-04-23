@@ -14,12 +14,16 @@ License: <wordpress-license>
 
 <wordpress-nice-name> allows you to display the upcoming events of [Mobilizon](https://joinmobilizon.org/), which is a federated event listing platform, on your WordPress website.
 
-You can display the upcoming events using a widget and everywhere else using a shortcut.
+Features
+- Display events as widget and as shortcut
+- Display events' title, date and location if available
+- Configure number of events to show per widget and per shortcut
+- Optionally filter events by a specific group per widget and per shortcut
+- Set the URL of the Mobilizon instance globally in the settings
+- Cache requests' responses for 2 minutes in the browser's `sessionStorage`
 
 Shortcut format with limiting the number of events to show to 3 for example: `[<wordpress-name>-events-list events-count=3]`
 Optionally, you can only show the events of a specific group by indicatings its name: `[<wordpress-name>-events-list events-count=3 group-name="mygroup"]`
-
-The requests' responses are cached for 2 minutes in the browser's `sessionStorage`.
 
 The source code is available on [Github](https://github.com/dwaxweiler/connector-mobilizon).
 
