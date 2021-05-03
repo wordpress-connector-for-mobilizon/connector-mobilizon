@@ -11,7 +11,7 @@ function displayEvents(data, list) {
   for (let i = 0; i < eventsCount; i++) {
     const li = document.createElement('li')
     
-    const a = createAnchorElement({ text: events[i].title, url: events[i].url })
+    const a = createAnchorElement({ document, text: events[i].title, url: events[i].url })
     li.appendChild(a)
 
     const br = document.createElement('br')
