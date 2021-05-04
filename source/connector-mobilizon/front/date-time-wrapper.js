@@ -1,4 +1,4 @@
-import { DateTime } from 'luxon'
+import { DateTime, Settings } from 'luxon'
 
 export default class DateTimeWrapper {
 
@@ -23,6 +23,10 @@ export default class DateTimeWrapper {
   }
 
   static getCurrentDatetimeAsString() {
-    return DateTime.local().toString()
+    return DateTime.now().toString()
+  }
+
+  static setDefaultLocale(locale) {
+    Settings.defaultLocale = locale
   }
 }
