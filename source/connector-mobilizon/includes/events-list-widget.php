@@ -27,6 +27,7 @@ class EventsListWidget extends \WP_Widget {
 
     $classNamePrefix = NAME;
     $eventsCount = $options['eventsCount'];
+    $locale = str_replace('_', '-', get_locale());
     $groupName = isset($options['groupName']) ? $options['groupName'] : '';
     $url = Settings::getUrl();
     $textDomain = TEXT_DOMAIN;

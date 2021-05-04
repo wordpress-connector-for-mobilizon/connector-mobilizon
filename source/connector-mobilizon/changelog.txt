@@ -1,5 +1,6 @@
 ### [Unreleased]
 #### Added
+- Localise dates based on the WordPress locale
 #### Changed
 - Clearly list features in `readme.txt` description
 #### Deprecated

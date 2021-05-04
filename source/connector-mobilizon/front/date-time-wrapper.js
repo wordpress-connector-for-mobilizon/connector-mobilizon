@@ -1,9 +1,9 @@
-import { DateTime, Settings } from 'luxon'
+import { DateTime } from 'luxon'
 
 export default class DateTimeWrapper {
 
-  constructor(text) {
-    this.dateTime = DateTime.fromISO(text)
+  constructor({ locale, text }) {
+    this.dateTime = DateTime.fromISO(text, { locale })
   }
 
   getShortDate() {
@@ -24,9 +24,5 @@ export default class DateTimeWrapper {
 
   static getCurrentDatetimeAsString() {
     return DateTime.now().toString()
-  }
-
-  static setDefaultLocale(locale) {
-    Settings.defaultLocale = locale
   }
 }
