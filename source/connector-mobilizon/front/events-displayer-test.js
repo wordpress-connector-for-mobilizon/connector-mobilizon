@@ -13,6 +13,7 @@ test.beforeEach(t => {
   t.context.list = document.createElement('ul')
   t.context.list.setAttribute('data-locale', 'en-GB')
   t.context.list.setAttribute('data-maximum', '2')
+  t.context.list.setAttribute('data-time-zone', 'utc')
   const listElement = document.createElement('li')
   listElement.setAttribute('style', 'display: none;')
   t.context.list.appendChild(listElement)

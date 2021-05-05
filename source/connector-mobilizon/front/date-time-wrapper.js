@@ -2,10 +2,7 @@ import { DateTime } from 'luxon'
 
 export default class DateTimeWrapper {
 
-  constructor({ locale, text, timeZone }) {
-    if (!timeZone) {
-      timeZone = 'utc'
-    }
+  constructor({ locale = 'en-GB', text, timeZone = 'utc' } = {}) {
     this.dateTime = DateTime.fromISO(text, { locale, zone: timeZone })
   }
 
