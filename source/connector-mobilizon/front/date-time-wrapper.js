@@ -2,8 +2,11 @@ import { DateTime } from 'luxon'
 
 export default class DateTimeWrapper {
 
-  constructor({ locale, text }) {
-    this.dateTime = DateTime.fromISO(text, { locale, setZone: true })
+  constructor({ locale, text, timeZone }) {
+    if (!timeZone) {
+      timeZone = 'utc'
+    }
+    this.dateTime = DateTime.fromISO(text, { locale, zone: timeZone })
   }
 
   getShortDate() {

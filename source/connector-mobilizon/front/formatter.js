@@ -2,9 +2,9 @@ import DateTimeWrapper from './date-time-wrapper'
 
 export default class Formatter {
   
-  static formatDate({ locale, start, end }) {
-    const startDateTime = new DateTimeWrapper({ locale, text: start })
-    const endDateTime = new DateTimeWrapper({ locale, text: end })
+  static formatDate({ locale, timeZone, start, end }) {
+    const startDateTime = new DateTimeWrapper({ locale, text: start, timeZone })
+    const endDateTime = new DateTimeWrapper({ locale, text: end, timeZone })
     let dateText = startDateTime.getShortDate()
     dateText += ' ' + startDateTime.get24Time()
     dateText += ' - '

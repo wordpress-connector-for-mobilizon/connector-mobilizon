@@ -4,6 +4,7 @@ import { createAnchorElement } from './html-creator'
 export function displayEvents({ data, document, list }) {
   const locale = list.getAttribute('data-locale')
   const maxEventsCount = list.getAttribute('data-maximum')
+  const timeZone = list.getAttribute('data-time-zone')
   const events = data.events ? data.events.elements : data.group.organizedEvents.elements
   const eventsCount = Math.min(maxEventsCount, events.length)
   for (let i = 0; i < eventsCount; i++) {
@@ -15,7 +16,7 @@ export function displayEvents({ data, document, list }) {
     const br = document.createElement('br')
     li.appendChild(br)
 
-    const date = Formatter.formatDate({ locale, start: events[i].beginsOn, end: events[i].endsOn })
+    const date = Formatter.formatDate({ locale, start: events[i].beginsOn, end: events[i].endsOn, timeZone })
     const textnode = document.createTextNode(date)
     li.appendChild(textnode)
 

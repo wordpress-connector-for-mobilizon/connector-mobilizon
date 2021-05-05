@@ -1,6 +1,6 @@
 ### [Unreleased]
 #### Added
-- Localise dates based on the WordPress locale
+- Localise dates based on the WordPress locale and time zone
 #### Changed
 - Clearly list features in `readme.txt` description
 #### Deprecated
