@@ -31,6 +31,5 @@ jobs:
         noexport: true
     - run: npm ci
     - run: npm run build-prod
-    - run: npm test
       env:
         NODE_ICU_DATA: ${{ steps.setup-icu.outputs.icu-data-dir }}
