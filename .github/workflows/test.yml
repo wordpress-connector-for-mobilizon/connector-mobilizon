@@ -25,11 +25,11 @@ jobs:
       uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
+    - run: npm ci
     - uses: sarisia/setup-icu@v1
       id: setup-icu
       with:
         noexport: true
-    - run: npm ci
     - run: npm run build-prod
       env:
         NODE_ICU_DATA: ${{ steps.setup-icu.outputs.icu-data-dir }}
