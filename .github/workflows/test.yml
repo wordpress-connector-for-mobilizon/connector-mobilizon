@@ -26,7 +26,6 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - uses: sarisia/setup-icu@v1
-    - uses: sarisia/action-uses-icu-function@v2
     - run: npm ci
     - run: npm run build-prod
     - run: npm test
