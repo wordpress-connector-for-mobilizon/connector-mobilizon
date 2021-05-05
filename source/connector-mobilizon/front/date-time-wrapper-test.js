@@ -8,7 +8,7 @@ test('#getShortDate usual date', t => {
 
 test('#get24Time usual time', t => {
   const d = new DateTimeWrapper({ locale: 'en-GB', text: '2020-12-24T16:45:00Z' })
-  t.is(d.get24Time(), '17:45') 
+  t.is(d.get24Time(), '16:45')
 })
 
 test('#equalsDate same date, different time', t => {

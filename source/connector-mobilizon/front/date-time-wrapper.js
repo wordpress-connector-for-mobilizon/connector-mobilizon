@@ -3,7 +3,7 @@ import { DateTime } from 'luxon'
 export default class DateTimeWrapper {
 
   constructor({ locale, text }) {
-    this.dateTime = DateTime.fromISO(text, { locale })
+    this.dateTime = DateTime.fromISO(text, { locale, setZone: true })
   }
 
   getShortDate() {

@@ -42,7 +42,7 @@ test('#displayEvents one event', t => {
   t.is(list.children[1].childNodes[0].getAttribute('href'), 'b')
   t.is(list.children[1].childNodes[0].childNodes[0].nodeValue, 'a')
   t.is(list.children[1].childNodes[1].tagName, 'BR')
-  t.is(list.children[1].childNodes[2].nodeValue, '15/04/2021 12:30 - 17:30')
+  t.is(list.children[1].childNodes[2].nodeValue, '15/04/2021 10:30 - 15:30')
   t.is(list.children[1].childNodes[3].tagName, 'BR')
   t.is(list.children[1].childNodes[4].nodeValue, 'c, d')
 })
