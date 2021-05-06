@@ -29,14 +29,14 @@ class Settings {
 
     add_settings_section(
       self::$SETTINGS_SECTION_NAME,
-      __('General Settings', TEXT_DOMAIN),
+      __('General Settings', 'connector-mobilizon'),
       '',
       self::$PAGE_NAME
     );
 
     add_settings_field(
       self::$SETTING_FIELD_NAME_URL,
-      __('URL', TEXT_DOMAIN),
+      __('URL', 'connector-mobilizon'),
       'MobilizonConnector\Settings::output_field_url',
       self::$PAGE_NAME,
       self::$SETTINGS_SECTION_NAME,
@@ -47,7 +47,6 @@ class Settings {
   }
 
   public static function output_field_url($args) {
-    $textDomain = TEXT_DOMAIN;
     $url = self::getUrl();
     require dirname(__DIR__) . '/view/settings/url-field.php';
   }
@@ -58,7 +57,7 @@ class Settings {
       add_settings_error(
         self::$OPTION_NAME_URL,
         'wordpress_mobilizon_field_url_error',
-        __('The URL is invalid.', TEXT_DOMAIN),
+        __('The URL is invalid.', 'connector-mobilizon'),
         'error'
       );
     }
@@ -70,7 +69,7 @@ class Settings {
 
   public static function register_settings_page() {
     add_options_page(
-      NICE_NAME . ' ' . __('Settings', TEXT_DOMAIN),
+      NICE_NAME . ' ' . __('Settings', 'connector-mobilizon'),
       NICE_NAME,
       'manage_options',
       NAME . '-settings',

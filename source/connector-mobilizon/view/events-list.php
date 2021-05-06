@@ -10,5 +10,5 @@ if (!defined('ABSPATH')) {
   data-maximum="<?php echo esc_attr($eventsCount); ?>"
   data-group-name="<?php echo esc_attr($groupName); ?>"
   data-time-zone="<?php echo esc_attr($timeZone); ?>">
-  <li style="display: none;"><?php echo esc_html_e('The events could not be loaded!', $textDomain); ?></li>
+  <li style="display: none;"><?php esc_html_e('The events could not be loaded!', 'connector-mobilizon'); ?></li>
 </ul>

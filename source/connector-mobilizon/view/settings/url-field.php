@@ -10,5 +10,5 @@ if (!defined('ABSPATH')) {
   type="url"
   value="<?php echo esc_attr($url); ?>">
 <p class="description">
-  <?php esc_html_e('The URL of the Mobilizon instance whose events you want to list, e.g. https://example.net', $textDomain); ?>
+  <?php esc_html_e('The URL of the Mobilizon instance whose events you want to list, e.g. https://example.net', 'connector-mobilizon'); ?>
 </p>

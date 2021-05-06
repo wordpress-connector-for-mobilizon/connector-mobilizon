@@ -29,7 +29,6 @@ class EventsListShortcut {
     $locale = str_replace('_', '-', get_locale());
     $groupName = $atts_with_overriden_defaults['group-name'];
     $url = Settings::getUrl();
-    $textDomain = TEXT_DOMAIN;
     $timeZone = get_option('timezone_string');
 
     ob_start();

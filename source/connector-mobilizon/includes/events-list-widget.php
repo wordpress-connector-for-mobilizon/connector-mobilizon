@@ -11,9 +11,9 @@ class EventsListWidget extends \WP_Widget {
   public function __construct() {
     parent::__construct(
       NAME . '-events-list',
-      NICE_NAME . ' ' . esc_html__('Events List', TEXT_DOMAIN),
+      NICE_NAME . ' ' . __('Events List', 'connector-mobilizon'),
       array(
-        'description' => __('A list of the upcoming events of the connected Mobilizon instance.', TEXT_DOMAIN),
+        'description' => __('A list of the upcoming events of the connected Mobilizon instance.', 'connector-mobilizon'),
       ),
     );
   }
@@ -30,7 +30,6 @@ class EventsListWidget extends \WP_Widget {
     $locale = str_replace('_', '-', get_locale());
     $groupName = isset($options['groupName']) ? $options['groupName'] : '';
     $url = Settings::getUrl();
-    $textDomain = TEXT_DOMAIN;
     $timeZone = get_option('timezone_string');
 
     require dirname(__DIR__) . '/view/events-list.php';
@@ -39,10 +38,9 @@ class EventsListWidget extends \WP_Widget {
   }
 
   public function form($options) {
-    $title = !empty($options['title']) ? $options['title'] : esc_html__('Events', TEXT_DOMAIN);
+    $title = !empty($options['title']) ? $options['title'] : __('Events', 'connector-mobilizon');
     $eventsCount = !empty($options['eventsCount']) ? $options['eventsCount'] : DEFAULT_EVENTS_COUNT;
     $groupName = !empty($options['groupName']) ? $options['groupName'] : '';
-    $textDomain = TEXT_DOMAIN;
     
     require dirname(__DIR__) . '/view/events-list-widget/form.php';
   }
