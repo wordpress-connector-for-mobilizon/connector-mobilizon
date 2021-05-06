@@ -35,6 +35,15 @@ The source code is available on [Github](https://github.com/dwaxweiler/connector
 
 ## Changelog
 
+### [0.5.0] - 2021-05-06
+#### Added
+- Localise dates based on the WordPress locale and time zone
+#### Changed
+- Clearly list features in `readme.txt` description
+- Update dev dependencies c8, eslint, gulp-replace, webpack
+#### Fixed
+- Improve translatability
+
 ### [0.4.0] - 2021-04-20
 #### Added
 - Show events' location if set: `description` and `locality` fields
