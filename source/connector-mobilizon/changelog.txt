@@ -3,6 +3,7 @@
 - Localise dates based on the WordPress locale and time zone
 #### Changed
 - Clearly list features in `readme.txt` description
+- Update dev dependencies c8, eslint, gulp-replace, webpack
 #### Deprecated
 #### Removed
 #### Fixed
