@@ -1,7 +1,7 @@
 {
   "name": "connector-mobilizon",
   "version": "0.5.0",
-  "description": "Display mobilizon events in WordPress.",
+  "description": "Display Mobilizon events in WordPress.",
   "private": true,
   "scripts": {
     "build-dev": "gulp dev",
