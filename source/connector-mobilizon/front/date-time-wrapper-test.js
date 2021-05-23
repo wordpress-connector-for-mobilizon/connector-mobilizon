@@ -51,3 +51,8 @@ test('#getCurrentDatetimeAsString correct format', t => {
   t.is(d[19], '.')
   t.is(d[d.length-3], ':')
 })
+
+test('#getShortOffsetName usual time', t => {
+  const d = new DateTimeWrapper({ text: '2020-12-24T16:45:00Z' })
+  t.is(d.getShortOffsetName(), 'UTC')
+})

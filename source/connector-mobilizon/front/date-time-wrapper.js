@@ -10,6 +10,10 @@ export default class DateTimeWrapper {
     return this.dateTime.toLocaleString(DateTime.DATE_SHORT)
   }
 
+  getShortOffsetName() {
+    return this.dateTime.offsetNameShort
+  }
+
   get24Time() {
     return this.dateTime.toLocaleString(DateTime.TIME_24_SIMPLE)
   }

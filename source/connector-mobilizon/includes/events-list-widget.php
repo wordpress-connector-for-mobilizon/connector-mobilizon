@@ -31,6 +31,7 @@ class EventsListWidget extends \WP_Widget {
     $groupName = isset($options['groupName']) ? $options['groupName'] : '';
     $url = Settings::getUrl();
     $timeZone = get_option('timezone_string');
+    $isShortOffsetNameShown = Settings::isShortOffsetNameShown();
 
     require dirname(__DIR__) . '/view/events-list.php';
 

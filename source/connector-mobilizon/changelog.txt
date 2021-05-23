@@ -1,5 +1,6 @@
 ### [Unreleased]
 #### Added
+- Optionally display the current offset as short name after the time via the general plugin settings
 #### Changed
 #### Deprecated
 #### Removed

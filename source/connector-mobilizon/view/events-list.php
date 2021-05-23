@@ -9,6 +9,7 @@ if (!defined('ABSPATH')) {
   data-locale="<?php echo esc_attr($locale); ?>"
   data-maximum="<?php echo esc_attr($eventsCount); ?>"
   data-group-name="<?php echo esc_attr($groupName); ?>"
-  data-time-zone="<?php echo esc_attr($timeZone); ?>">
+  data-time-zone="<?php echo esc_attr($timeZone); ?>"
+  <?php echo $isShortOffsetNameShown ? 'data-is-short-offset-name-shown' : ''; ?>>
   <li style="display: none;"><?php esc_html_e('The events could not be loaded!', 'connector-mobilizon'); ?></li>
 </ul>

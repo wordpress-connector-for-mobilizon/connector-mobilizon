@@ -30,6 +30,7 @@ class EventsListShortcut {
     $groupName = $atts_with_overriden_defaults['group-name'];
     $url = Settings::getUrl();
     $timeZone = get_option('timezone_string');
+    $isShortOffsetNameShown = Settings::isShortOffsetNameShown();
 
     ob_start();
     require dirname(__DIR__) . '/view/events-list.php';
