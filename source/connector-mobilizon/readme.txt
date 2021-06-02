@@ -16,11 +16,12 @@ License: <wordpress-license>
 
 Features
 - Display events as widget and as shortcut
-- Display events' title, date and location if available
+- Display events' title, date, and location if available
+- Cache requests' responses for 2 minutes in the browser's `sessionStorage`
 - Configure number of events to show per widget and per shortcut
 - Optionally filter events by a specific group per widget and per shortcut
-- Set the URL of the Mobilizon instance globally in the settings
-- Cache requests' responses for 2 minutes in the browser's `sessionStorage`
+- Set the URL of the Mobilizon instance in the settings
+- Toggle adding named offset in brackets after the time in the settings
 
 Shortcut format with limiting the number of events to show to 3 for example: `[<wordpress-name>-events-list events-count=3]`
 Optionally, you can only show the events of a specific group by indicatings its name: `[<wordpress-name>-events-list events-count=3 group-name="mygroup"]`
