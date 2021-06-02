@@ -36,6 +36,14 @@ The source code is available on [Github](https://github.com/dwaxweiler/connector
 
 ## Changelog
 
+### [0.6.0] - 2021-06-02
+#### Added
+- Optionally display the current offset as short name after the time via the general plugin settings
+#### Changed
+- Update dependencies
+#### Fixed
+- Capitalise Mobilizon name in description
+
 ### [0.5.0] - 2021-05-06
 #### Added
 - Localise dates based on the WordPress locale and time zone
