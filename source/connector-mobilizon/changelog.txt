@@ -1,6 +1,8 @@
 ### [Unreleased]
 #### Added
 #### Changed
+- Confirm compatibility with WordPress 5.8
+- Update dependencies
 #### Deprecated
 #### Removed
 #### Fixed
