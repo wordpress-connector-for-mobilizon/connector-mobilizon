@@ -36,6 +36,11 @@ The source code is available on [Github](https://github.com/dwaxweiler/connector
 
 ## Changelog
 
+### [0.6.1] - 2021-07-13
+#### Changed
+- Confirm compatibility with WordPress 5.8
+- Update dependencies
+
 ### [0.6.0] - 2021-06-02
 #### Added
 - Optionally display the current offset as short name after the time via the general plugin settings
