@@ -1,6 +1,7 @@
 ### [Unreleased]
 #### Added
 #### Changed
+- Update dependencies
 #### Deprecated
 #### Removed
 #### Fixed
