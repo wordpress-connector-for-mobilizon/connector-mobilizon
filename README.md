@@ -24,7 +24,7 @@ More details can be found in the [WordPress Plugin Directory](https://wordpress.
 6. Make sure screenshots are up-to-date.
 7. Copy the built plugin into `/trunk` of SVN.
 8. Create a new tag of the new version: `svn cp trunk tags/<version>`
-9. Check the version number occurences in both folders.
+9. Check the version number occurrences in both folders.
 10. Commit everything together to the release SVN: `svn ci -m "release version <version>"`
 11. Commit the new version in git with the same message.
 12. Tag the new version: `git tag v<version>`
