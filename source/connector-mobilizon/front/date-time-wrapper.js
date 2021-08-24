@@ -3,6 +3,12 @@ import { DateTime } from 'luxon'
 export default class DateTimeWrapper {
 
   constructor({ locale = 'en-GB', text, timeZone = 'utc' } = {}) {
+    if (!timeZone) {
+      timeZone = 'utc'
+    }
+    if (timeZone.includes(':') && timeZone.substring(0, 3).toUpperCase() !== 'UTC') {
+      timeZone = 'UTC' + timeZone
+    }
     this.dateTime = DateTime.fromISO(text, { locale, zone: timeZone })
   }
 

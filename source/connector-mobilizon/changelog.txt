@@ -5,6 +5,7 @@
 #### Deprecated
 #### Removed
 #### Fixed
+- Fix empty WordPress timezone_string option resulting in Invalid DateTime
 #### Security
 
 ### [0.6.1] - 2021-07-13

@@ -6,6 +6,26 @@ test('#getShortDate usual date', t => {
   t.is(d.getShortDate(), '24/12/2020')
 })
 
+test('#getShortDate usual date with timezone string', t => {
+  const d = new DateTimeWrapper({ text: '2020-12-24T16:45:00Z', timeZone: 'Europe/Rome' })
+  t.is(d.getShortDate(), '24/12/2020')
+})
+
+test('#getShortDate usual date with fixed offset', t => {
+  const d = new DateTimeWrapper({ text: '2020-12-24T16:45:00Z', timeZone: 'UTC+02:00' })
+  t.is(d.getShortDate(), '24/12/2020')
+})
+
+test('#getShortDate usual date with fixed offset without UTC prefix', t => {
+  const d = new DateTimeWrapper({ text: '2020-12-24T16:45:00Z', timeZone: '+02:00' })
+  t.is(d.getShortDate(), '24/12/2020')
+})
+
+test('#getShortDate usual date with empty time zone', t => {
+  const d = new DateTimeWrapper({ text: '2020-12-24T16:45:00Z', timeZone: '' })
+  t.is(d.getShortDate(), '24/12/2020')
+})
+
 test('#get24Time usual time', t => {
   const d = new DateTimeWrapper({ text: '2020-12-24T16:45:00Z' })
   t.is(d.get24Time(), '16:45')
