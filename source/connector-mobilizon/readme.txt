@@ -36,6 +36,12 @@ The source code is available on [Github](https://github.com/dwaxweiler/connector
 
 ## Changelog
 
+### [0.6.2] - 2021-08-24
+#### Changed
+- Update dependencies
+#### Fixed
+- Fix empty WordPress timezone_string option resulting in Invalid DateTime
+
 ### [0.6.1] - 2021-07-13
 #### Changed
 - Confirm compatibility with WordPress 5.8
