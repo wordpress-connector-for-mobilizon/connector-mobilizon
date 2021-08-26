@@ -9,7 +9,7 @@ More details can be found in the [WordPress Plugin Directory](https://wordpress.
 ### Setup
 1. Make sure `npm` and `composer` are installed.
 2. Run: `npm install`
-3. Run: `php composer.phar install`
+3. Run: `composer install`
 
 ### Development build
 1. Build: `npm run build-dev`
@@ -35,3 +35,5 @@ More details can be found in the [WordPress Plugin Directory](https://wordpress.
 - Run JavaScript code coverage with tests: `npm run coverage`
 - Run tests: `npm test`
 - Delete build folder: `gulp clean`
+- Update PHP dependencies: `composer update`
+- Check for direct PHP dependency updates: `composer outdated --direct`
