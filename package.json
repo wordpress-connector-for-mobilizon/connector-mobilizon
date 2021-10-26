@@ -20,8 +20,8 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "graphql": "^15.5.1",
-    "graphql-request": "^3.5.0",
+    "graphql": "^15.6.1",
+    "graphql-request": "^3.6.1",
     "luxon": "^2.0.2",
     "object-hash": "^2.2.0"
   },
