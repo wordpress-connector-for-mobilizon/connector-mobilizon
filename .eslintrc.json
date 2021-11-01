@@ -5,7 +5,8 @@
   },
   "extends": [
     "eslint:recommended",
-    "plugin:ava/recommended"
+    "plugin:ava/recommended",
+    "plugin:@wordpress/eslint-plugin/recommended"
   ],
   "parserOptions": {
     "ecmaVersion": 11,
@@ -22,9 +23,20 @@
       "error",
       2
     ],
+    "no-console": [
+      "error", {
+        "allow": ["error"]
+      }
+    ],
+    "prettier/prettier": [
+      "off"
+    ],
     "quotes": [
       "error",
       "single"
+    ],
+    "react/jsx-key": [
+      "off"
     ],
     "semi": [
       "error",

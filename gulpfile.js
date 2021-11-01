@@ -18,18 +18,38 @@ function clean(cb) {
 }
 
 const eventsLoaderOutputPath = PACKAGE.name + '/front/events-loader';
+const blockEventsLoaderOutputPath = PACKAGE.name + '/front/block-events-loader';
 const eventsLoaderInputPath = FOLDER_SOURCE + '/' + PACKAGE.name + '/front/events-loader.js';
+const blockEventsLoaderInputPath = FOLDER_SOURCE + '/' + PACKAGE.name + '/front/block-events-loader.js';
 
 function bundleFrontend() {
-  return src(FOLDER_SOURCE + '/' + PACKAGE.name + '/front/events-loader.js')
+  return src([
+    FOLDER_SOURCE + '/' + PACKAGE.name + '/front/events-loader.js',
+    FOLDER_SOURCE + '/' + PACKAGE.name + '/front/block-events-loader.js',
+  ])
     .pipe(webpack({
       mode,
       entry: {
         [eventsLoaderOutputPath]: eventsLoaderInputPath,
+        [blockEventsLoaderOutputPath]: blockEventsLoaderInputPath,
       },
       output: {
         filename: '[name].js',
       },
+      module: {
+        rules: [
+          {
+            test: /\.m?js$/,
+            exclude: /(node_modules)/,
+            use: {
+              loader: 'babel-loader',
+              options: {
+                presets: ['@babel/preset-env', '@babel/preset-react']
+              }
+            }
+          }
+        ]
+      }
     }))
     .pipe(dest(FOLDER_BUILD));
 }
@@ -45,6 +65,7 @@ function copyBackend() {
 function injectMetadata() {
   return src([
     FOLDER_BUILD + '/' + eventsLoaderOutputPath + '.js',
+    FOLDER_BUILD + '/' + blockEventsLoaderOutputPath + '.js',
     FOLDER_BUILD + '/' + PACKAGE.name + '/' + PACKAGE.name + '.php',
     FOLDER_BUILD + '/' + PACKAGE.name + '/includes/constants.php',
     FOLDER_BUILD + '/' + PACKAGE.name + '/readme.txt'

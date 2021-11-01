@@ -40,3 +40,16 @@ function mobilizon_connector_register_events_list_widget() {
   register_widget('MobilizonConnector\EventsListWidget');
 }
 add_action('widgets_init', 'mobilizon_connector_register_events_list_widget');
+
+function mobilizon_connector_initialize_blocks() {
+  wp_register_script(MobilizonConnector\NAME . '-block-starter', plugins_url('front/block-events-loader.js', __FILE__ ), [
+      'wp-blocks',
+      'wp-components',
+      'wp-editor',
+      'wp-i18n'
+    ]);
+  register_block_type(MobilizonConnector\NAME . '/events-list', [
+    'editor_script' => MobilizonConnector\NAME . '-block-starter'
+  ]);
+}
+add_action('init', 'mobilizon_connector_initialize_blocks');
