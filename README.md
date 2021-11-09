@@ -34,6 +34,6 @@ More details can be found in the [WordPress Plugin Directory](https://wordpress.
 - Run ESLint: `npm run eslint`
 - Run JavaScript code coverage with tests: `npm run coverage`
 - Run tests: `npm test`
-- Delete build folder: `gulp clean`
+- Delete build folder: `npm run clean`
 - Update PHP dependencies: `composer update`
 - Check for direct PHP dependency updates: `composer outdated --direct`

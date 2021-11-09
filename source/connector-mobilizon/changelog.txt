@@ -2,6 +2,7 @@
 #### Added
 #### Changed
 - Update dependencies
+- Simplify build process
 #### Deprecated
 #### Removed
 #### Fixed

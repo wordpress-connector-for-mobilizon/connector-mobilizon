@@ -15,7 +15,8 @@
     "ava"
   ],
   "ignorePatterns": [
-    "gulpfile.js"
+    "gulpfile.js",
+    "webpack.config.js"
   ],
   "rules": {
     "indent": [
