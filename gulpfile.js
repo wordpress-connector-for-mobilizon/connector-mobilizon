@@ -1,30 +1,49 @@
-const { dest, src } = require('gulp');
+/* eslint-disable no-undef */
+const { dest, src } = require('gulp')
 
-const replace = require('gulp-replace');
+const replace = require('gulp-replace')
 
-const PACKAGE = require('./package.json');
+const PACKAGE = require('./package.json')
 
-const FOLDER_BUILD = './build';
+const FOLDER_BUILD = './build'
 
 function injectMetadata() {
-  return src([
-    FOLDER_BUILD + '/' + PACKAGE.name + '/front/events-loader.js',
-    FOLDER_BUILD + '/' + PACKAGE.name + '/' + PACKAGE.name + '.php',
-    FOLDER_BUILD + '/' + PACKAGE.name + '/includes/constants.php',
-    FOLDER_BUILD + '/' + PACKAGE.name + '/readme.txt'
-  ], { base: './' })
+  return src(
+    [
+      FOLDER_BUILD + '/' + PACKAGE.name + '/front/events-loader.js',
+      FOLDER_BUILD + '/' + PACKAGE.name + '/' + PACKAGE.name + '.php',
+      FOLDER_BUILD + '/' + PACKAGE.name + '/includes/constants.php',
+      FOLDER_BUILD + '/' + PACKAGE.name + '/readme.txt',
+    ],
+    { base: './' }
+  )
     .pipe(replace('<wordpress-author-name>', PACKAGE.author.name))
     .pipe(replace('<wordpress-author-url>', PACKAGE.author.url))
     .pipe(replace('<wordpress-description>', PACKAGE.description))
     .pipe(replace('<wordpress-donation-link>', PACKAGE.funding.url))
     .pipe(replace('<wordpress-license>', PACKAGE.license))
-    .pipe(replace('<wordpress-minimum-version>', PACKAGE.additionalDetails.wordpressMinimumVersion))
+    .pipe(
+      replace(
+        '<wordpress-minimum-version>',
+        PACKAGE.additionalDetails.wordpressMinimumVersion
+      )
+    )
     .pipe(replace('<wordpress-name>', PACKAGE.name))
     .pipe(replace('<wordpress-nice-name>', PACKAGE.additionalDetails.niceName))
-    .pipe(replace('<wordpress-php-minimum-version>', PACKAGE.additionalDetails.phpMinimumVersion))
-    .pipe(replace('<wordpress-tested-up-to-version>', PACKAGE.additionalDetails.wordpressTestedUpToVersion))
+    .pipe(
+      replace(
+        '<wordpress-php-minimum-version>',
+        PACKAGE.additionalDetails.phpMinimumVersion
+      )
+    )
+    .pipe(
+      replace(
+        '<wordpress-tested-up-to-version>',
+        PACKAGE.additionalDetails.wordpressTestedUpToVersion
+      )
+    )
     .pipe(replace('<wordpress-version>', PACKAGE.version))
-    .pipe(dest('.'));
+    .pipe(dest('.'))
 }
 
-exports.inject = injectMetadata;
+exports.inject = injectMetadata

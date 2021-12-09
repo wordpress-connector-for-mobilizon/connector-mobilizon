@@ -7,15 +7,18 @@ More details can be found in the [WordPress Plugin Directory](https://wordpress.
 ## Development
 
 ### Setup
+
 1. Make sure `npm` and `composer` are installed.
 2. Run: `npm install`
 3. Run: `composer install`
 
 ### Development build
+
 1. Build: `npm run build-dev`
 2. Make sure to keep `changelog.txt` up-to-date.
 
 ### Release procedure
+
 1. Make sure `changelog.txt` is up-to-date. Use a new version number and copy over the new section into `readme.txt`.
 2. Update `package.json` with the same version number.
 3. Update the `package-lock.json`: `npm i --package-lock-only`
@@ -31,9 +34,11 @@ More details can be found in the [WordPress Plugin Directory](https://wordpress.
 13. Push the new tag to the repository: `git push --tags`
 
 ### Other commands
+
 - Run ESLint: `npm run eslint`
 - Run JavaScript code coverage with tests: `npm run coverage`
 - Run tests: `npm test`
 - Delete build folder: `npm run clean`
 - Update PHP dependencies: `composer update`
 - Check for direct PHP dependency updates: `composer outdated --direct`
+- Format code with prettier: `npm run format`

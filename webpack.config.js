@@ -1,10 +1,11 @@
-const path = require('path');
+/* eslint-disable no-undef */
+const path = require('path')
 
-const CopyPlugin = require('copy-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin')
 
-const PACKAGE = require('./package.json');
+const PACKAGE = require('./package.json')
 
-const FOLDER_SOURCE = './source';
+const FOLDER_SOURCE = './source'
 
 module.exports = {
   entry: FOLDER_SOURCE + '/' + PACKAGE.name + '/front/events-loader.js',
@@ -28,4 +29,4 @@ module.exports = {
       ],
     }),
   ],
-};
+}

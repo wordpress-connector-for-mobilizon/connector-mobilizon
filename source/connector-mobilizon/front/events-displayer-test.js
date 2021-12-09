@@ -9,7 +9,7 @@ test.before(() => {
   document = new JSDOM().window.document
 })
 
-test.beforeEach(t => {
+test.beforeEach((t) => {
   t.context.list = document.createElement('ul')
   t.context.list.setAttribute('data-locale', 'en-GB')
   t.context.list.setAttribute('data-maximum', '2')
@@ -22,7 +22,7 @@ test.beforeEach(t => {
   t.context.list.appendChild(listElement2)
 })
 
-test('#displayEvents one event', t => {
+test('#displayEvents one event', (t) => {
   const list = t.context.list
   const data = {
     events: {
@@ -34,11 +34,11 @@ test('#displayEvents one event', t => {
           endsOn: '2021-04-15T15:30:00Z',
           physicalAddress: {
             description: 'c',
-            locality: 'd'
-          }
-        }
-      ]
-    }
+            locality: 'd',
+          },
+        },
+      ],
+    },
   }
   displayEvents({ data, document, list })
   t.is(list.children.length, 3)
@@ -51,29 +51,29 @@ test('#displayEvents one event', t => {
   t.is(list.children[2].childNodes[4].nodeValue, 'c, d')
 })
 
-test('#displayErrorMessage no children added', t => {
+test('#displayErrorMessage no children added', (t) => {
   const list = t.context.list
   displayErrorMessage({ data: '', list })
   t.is(list.children.length, 2)
 })
 
-test('#displayErrorMessage error message display', t => {
+test('#displayErrorMessage error message display', (t) => {
   const list = t.context.list
   displayErrorMessage({ data: '', list })
   t.is(list.children[0].style.display, 'block')
   t.is(list.children[1].style.display, 'none')
 })
 
-test('#displayErrorMessage group not found error message display', t => {
+test('#displayErrorMessage group not found error message display', (t) => {
   const list = t.context.list
   const data = {
     response: {
       errors: [
         {
-          code: 'group_not_found'
-        }
-      ]
-    }
+          code: 'group_not_found',
+        },
+      ],
+    },
   }
   displayErrorMessage({ data, list })
   t.is(list.children[0].style.display, 'none')
