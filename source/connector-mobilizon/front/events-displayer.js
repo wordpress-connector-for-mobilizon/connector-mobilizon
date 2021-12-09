@@ -47,5 +47,13 @@ export function displayEvents({ data, document, list }) {
 
 export function displayErrorMessage({ data, list }) {
   console.error(data)
-  list.children[0].style.display = 'block'
+  if (Object.prototype.hasOwnProperty.call(data, 'response') &&
+    Object.prototype.hasOwnProperty.call(data.response, 'errors') &&
+    data.response.errors.length > 0 &&
+    Object.prototype.hasOwnProperty.call(data.response.errors[0], 'code') &&
+    data.response.errors[0].code === 'group_not_found') {
+    list.children[1].style.display = 'block'
+  } else {
+    list.children[0].style.display = 'block'
+  }
 }

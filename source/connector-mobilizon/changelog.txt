@@ -1,5 +1,6 @@
 ### [Unreleased]
 #### Added
+- Add specific error message for the case the group is not found
 #### Changed
 - Set minimum PHP version to oldest officially supported 7.4
 - Update dependencies
