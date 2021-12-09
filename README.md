@@ -23,15 +23,14 @@ More details can be found in the [WordPress Plugin Directory](https://wordpress.
 2. Update `package.json` with the same version number.
 3. Update the `package-lock.json`: `npm i --package-lock-only`
 4. Build: `npm run build-prod`
-5. Determine minimum PHP version for code and update package.json if needed: `./vendor/bin/phpcompatinfo analyser:run ./source`
-6. Make sure screenshots are up-to-date.
-7. Copy the built plugin into `/trunk` of SVN.
-8. Create a new tag of the new version: `svn cp trunk tags/<version>`
-9. Check the version number occurrences in both folders.
-10. Commit everything together to the release SVN: `svn ci -m "release version <version>"`
-11. Commit the new version in git with the same message.
-12. Tag the new version: `git tag v<version>`
-13. Push the new tag to the repository: `git push --tags`
+5. Make sure screenshots are up-to-date.
+6. Copy the built plugin into `/trunk` of SVN.
+7. Create a new tag of the new version: `svn cp trunk tags/<version>`
+8. Check the version number occurrences in both folders.
+9. Commit everything together to the release SVN: `svn ci -m "release version <version>"`
+10. Commit the new version in git with the same message.
+11. Tag the new version: `git tag v<version>`
+12. Push the new tag to the repository: `git push --tags`
 
 ### Other commands
 
