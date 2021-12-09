@@ -66,7 +66,16 @@ test('#displayErrorMessage error message display', t => {
 
 test('#displayErrorMessage group not found error message display', t => {
   const list = t.context.list
-  displayErrorMessage({ data: 'group_not_found', list })
+  const data = {
+    response: {
+      errors: [
+        {
+          code: 'group_not_found'
+        }
+      ]
+    }
+  }
+  displayErrorMessage({ data, list })
   t.is(list.children[0].style.display, 'none')
   t.is(list.children[1].style.display, 'block')
 })
