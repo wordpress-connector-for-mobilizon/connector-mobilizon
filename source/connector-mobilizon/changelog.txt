@@ -1,7 +1,7 @@
 ### [Unreleased]
 #### Added
 #### Changed
-- Set minimum PHP version to oldest officially supported 7.3
+- Set minimum PHP version to oldest officially supported 7.4
 - Update dependencies
 - Simplify build process
 #### Deprecated
