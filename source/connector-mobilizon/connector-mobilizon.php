@@ -20,36 +20,61 @@ if (!defined('ABSPATH')) {
   exit;
 }
 
-function mobilizon_connector_activate() {
-	MobilizonConnector\Settings::setDefaultOptions();
-}
-register_activation_hook(__FILE__, 'mobilizon_connector_activate');
+final class Mobilizon_Connector {
 
-function mobilizon_connector_initialize() {
-  MobilizonConnector\Settings::init();
-  MobilizonConnector\EventsListShortcut::init();
-}
-add_action('init', 'mobilizon_connector_initialize');
+  private function __construct() {
+    add_action('init', [$this, 'register_blocks']);
+    add_action('init', [$this, 'register_settings']);
+    add_action('init', [$this, 'register_shortcut']);
+    add_action('widgets_init', [$this, 'register_widget']);
+    add_action('wp_enqueue_scripts', [$this, 'register_scripts']);
+    register_activation_hook(__FILE__, [$this, 'enable_activation']);
+  }
 
-function mobilizon_connector_load_scripts() {
-  wp_enqueue_script(MobilizonConnector\NAME . '-js', plugins_url('front/events-loader.js', __FILE__ ));
-}
-add_action('wp_enqueue_scripts', 'mobilizon_connector_load_scripts');
+  public static function init() {
+    // Create singleton instance.
+    static $instance = false;
+    if(!$instance) {
+        $instance = new self();
+    }
+    return $instance;
+  }
 
-function mobilizon_connector_register_events_list_widget() {
-  register_widget('MobilizonConnector\EventsListWidget');
-}
-add_action('widgets_init', 'mobilizon_connector_register_events_list_widget');
+  public function enable_activation() {
+    MobilizonConnector\Settings::setDefaultOptions();
+  }
 
-function mobilizon_connector_initialize_blocks() {
-  wp_register_script(MobilizonConnector\NAME . '-block-starter', plugins_url('front/block-events-loader.js', __FILE__ ), [
-      'wp-blocks',
-      'wp-components',
-      'wp-editor',
-      'wp-i18n'
+  public function register_blocks() {
+    wp_register_script(MobilizonConnector\NAME . '-block-starter', plugins_url('front/block-events-loader.js', __FILE__ ), [
+        'wp-blocks',
+        'wp-components',
+        'wp-editor',
+        'wp-i18n'
+      ]);
+    register_block_type(MobilizonConnector\NAME . '/events-list', [
+      'editor_script' => MobilizonConnector\NAME . '-block-starter'
     ]);
-  register_block_type(MobilizonConnector\NAME . '/events-list', [
-    'editor_script' => MobilizonConnector\NAME . '-block-starter'
-  ]);
+  }
+
+  public function register_settings() {
+    MobilizonConnector\Settings::init();
+  }
+
+  public function register_scripts() {
+    wp_enqueue_script(MobilizonConnector\NAME . '-js', plugins_url('front/events-loader.js', __FILE__ ));
+  }
+
+  public function register_shortcut() {
+    MobilizonConnector\EventsListShortcut::init();
+  }
+
+  public function register_widget() {
+    register_widget('MobilizonConnector\EventsListWidget');
+  }
 }
-add_action('init', 'mobilizon_connector_initialize_blocks');
+
+function mobilizon_connector_run_plugin() {
+  return Mobilizon_Connector::init();
+}
+
+mobilizon_connector_run_plugin();

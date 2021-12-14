@@ -5,7 +5,7 @@ const NAME = '<wordpress-name>'
 
 document.addEventListener('DOMContentLoaded', () => {
   const eventLists = document.getElementsByClassName(NAME + '_events-list')
-  for (let list of eventLists) {
+  for (const list of eventLists) {
     const url = list.getAttribute('data-url') + '/api'
     const limit = parseInt(list.getAttribute('data-maximum'))
     const groupName = list.getAttribute('data-group-name')

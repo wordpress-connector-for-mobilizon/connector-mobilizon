@@ -2,7 +2,6 @@ import test from 'ava'
 import SessionCache from './session-cache'
 
 const fakeStorage = {
-
   elements: {},
 
   clear() {
@@ -17,18 +16,18 @@ const fakeStorage = {
 
   setItem(key, value) {
     this.elements[key] = value
-  }
+  },
 }
 
 test.afterEach(() => {
   fakeStorage.clear()
 })
 
-test('#add & #get', t => {
+test('#add & #get', (t) => {
   SessionCache.add(fakeStorage, { a: 'b' }, { c: 'd' })
   t.deepEqual(SessionCache.get(fakeStorage, { a: 'b' }), { c: 'd' })
 })
 
-test('#get no entry', t => {
+test('#get no entry', (t) => {
   t.is(SessionCache.get(fakeStorage, { a: 'bb' }), null)
 })

@@ -12,4 +12,5 @@ if (!defined('ABSPATH')) {
   data-time-zone="<?php echo esc_attr($timeZone); ?>"
   <?php echo $isShortOffsetNameShown ? 'data-is-short-offset-name-shown' : ''; ?>>
   <li style="display: none;"><?php esc_html_e('The events could not be loaded!', 'connector-mobilizon'); ?></li>
+  <li style="display: none;"><?php esc_html_e('The group could not be found!', 'connector-mobilizon'); ?></li>
 </ul>

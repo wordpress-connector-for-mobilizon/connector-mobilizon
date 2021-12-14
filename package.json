@@ -4,10 +4,13 @@
   "description": "Display Mobilizon events in WordPress.",
   "private": true,
   "scripts": {
-    "build-dev": "gulp dev",
-    "build-prod": "ava && gulp prod",
+    "build-dev": "webpack --mode=development && gulp inject",
+    "build-prod": "ava && webpack --mode=production && gulp inject",
+    "clean": "rimraf -- build",
     "coverage": "c8 --all --reporter=html --reporter=text --include=source/**/*.js ava",
     "eslint": "npx eslint source/**/*.js",
+    "format": "npx prettier --write .",
+    "prepare": "husky install",
     "test": "ava"
   },
   "author": {
@@ -20,28 +23,35 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "graphql": "^15.6.1",
-    "graphql-request": "^3.6.1",
-    "luxon": "^2.0.2",
+    "graphql": "^16.1.0",
+    "graphql-request": "^3.7.0",
+    "luxon": "^2.1.1",
     "object-hash": "^2.2.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.16.5",
+    "@babel/eslint-parser": "^7.16.5",
     "@babel/preset-env": "^7.15.8",
-    "@babel/preset-react": "^7.14.5",
+    "@babel/preset-react": "^7.16.5",
     "@wordpress/eslint-plugin": "^9.2.0",
     "ava": "^3.15.0",
     "babel-loader": "^8.2.3",
     "c8": "^7.10.0",
-    "del": "^6.0.0",
+    "copy-webpack-plugin": "^10.0.0",
     "eslint": "^7.32.0",
     "eslint-plugin-ava": "^13.1.0",
+    "eslint-plugin-jsx": "^0.1.0",
+    "eslint-plugin-react": "^7.27.1",
     "esm": "^3.2.25",
     "gulp": "^4.0.2",
     "gulp-replace": "^1.1.3",
-    "jsdom": "^18.0.0",
-    "webpack": "^5.60.0",
-    "webpack-cli": "^4.9.1",
-    "webpack-stream": "^7.0.0"
+    "husky": "^7.0.4",
+    "jsdom": "^19.0.0",
+    "lint-staged": "^12.1.2",
+    "prettier": "2.5.1",
+    "rimraf": "^3.0.2",
+    "webpack": "^5.65.0",
+    "webpack-cli": "^4.9.1"
   },
   "ava": {
     "files": [
@@ -53,8 +63,12 @@
   },
   "additionalDetails": {
     "niceName": "Connector for Mobilizon",
-    "phpMinimumVersion": 7.3,
+    "phpMinimumVersion": 7.4,
     "wordpressMinimumVersion": 5.6,
     "wordpressTestedUpToVersion": 5.8
+  },
+  "lint-staged": {
+    "source/**/*.js": "eslint",
+    "**/*": "prettier --write --ignore-unknown"
   }
 }

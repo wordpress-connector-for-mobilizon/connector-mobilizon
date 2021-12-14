@@ -3,6 +3,7 @@
     "browser": true,
     "es2020": true
   },
+  "parser": "@babel/eslint-parser",
   "extends": [
     "eslint:recommended",
     "plugin:ava/recommended",
@@ -10,13 +11,15 @@
   ],
   "parserOptions": {
     "ecmaVersion": 11,
-    "sourceType": "module"
+    "requireConfigFile": false,
+    "sourceType": "module",
+    "babelOptions": {
+      "presets": ["@babel/preset-react"]
+    }
   },
   "plugins": [
-    "ava"
-  ],
-  "ignorePatterns": [
-    "gulpfile.js"
+    "ava",
+    "jsx"
   ],
   "rules": {
     "indent": [

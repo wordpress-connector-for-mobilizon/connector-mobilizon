@@ -1,7 +1,11 @@
 ### [Unreleased]
 #### Added
+- Add specific error message for the case the group is not found
+- Add code formatter prettier
 #### Changed
+- Set minimum PHP version to oldest officially supported 7.4
 - Update dependencies
+- Simplify build process
 #### Deprecated
 #### Removed
 #### Fixed

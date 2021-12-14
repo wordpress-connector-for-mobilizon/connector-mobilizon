@@ -1,12 +1,14 @@
 import { DateTime } from 'luxon'
 
 export default class DateTimeWrapper {
-
   constructor({ locale = 'en-GB', text, timeZone = 'utc' } = {}) {
     if (!timeZone) {
       timeZone = 'utc'
     }
-    if (timeZone.includes(':') && timeZone.substring(0, 3).toUpperCase() !== 'UTC') {
+    if (
+      timeZone.includes(':') &&
+      timeZone.substring(0, 3).toUpperCase() !== 'UTC'
+    ) {
       timeZone = 'UTC' + timeZone
     }
     this.dateTime = DateTime.fromISO(text, { locale, zone: timeZone })
@@ -25,11 +27,13 @@ export default class DateTimeWrapper {
   }
 
   equalsDate(other) {
-    return this.dateTime &&
+    return (
+      this.dateTime &&
       other.dateTime &&
       this.dateTime.day === other.dateTime.day &&
       this.dateTime.month === other.dateTime.month &&
       this.dateTime.year === other.dateTime.year
+    )
   }
 
   static getCurrentDatetimeAsString() {
