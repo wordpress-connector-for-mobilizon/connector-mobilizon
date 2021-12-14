@@ -3,20 +3,16 @@ const path = require('path')
 
 const CopyPlugin = require('copy-webpack-plugin')
 
-const PACKAGE = require('./package.json')
-
 const FOLDER_SOURCE = './source'
 
 module.exports = {
   entry: {
-    'block-events-loader':
-      FOLDER_SOURCE + '/' + PACKAGE.name + '/front/block-events-loader.js',
-    'events-loader':
-      FOLDER_SOURCE + '/' + PACKAGE.name + '/front/events-loader.js',
+    'block-events-loader': FOLDER_SOURCE + '/front/block-events-loader.js',
+    'events-loader': FOLDER_SOURCE + '/front/events-loader.js',
   },
   output: {
     filename: '[name].js',
-    path: path.resolve(__dirname, 'build/' + PACKAGE.name + '/front'),
+    path: path.resolve(__dirname, 'build/front'),
   },
   module: {
     rules: [
@@ -33,12 +29,12 @@ module.exports = {
     new CopyPlugin({
       patterns: [
         {
-          context: FOLDER_SOURCE + '/' + PACKAGE.name,
+          context: FOLDER_SOURCE,
           from: '**/*.php',
           to: '../',
         },
         {
-          context: FOLDER_SOURCE + '/' + PACKAGE.name,
+          context: FOLDER_SOURCE,
           from: '**/*.txt',
           to: '../',
         },
