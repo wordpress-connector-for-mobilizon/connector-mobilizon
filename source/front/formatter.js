@@ -7,21 +7,24 @@ export default class Formatter {
       text: start,
       timeZone,
     })
-    const endDateTime = new DateTimeWrapper({ locale, text: end, timeZone })
     let dateText = startDateTime.getShortDate()
     dateText += ' ' + startDateTime.get24Time()
-    if (!startDateTime.equalsDate(endDateTime)) {
-      if (isShortOffsetNameShown) {
-        dateText += ' (' + startDateTime.getShortOffsetName() + ')'
-      }
-      dateText += ' - '
-      dateText += endDateTime.getShortDate() + ' '
-    } else {
-      dateText += ' - '
+    if (!end && isShortOffsetNameShown) {
+      dateText += ' (' + startDateTime.getShortOffsetName() + ')'
     }
-    dateText += endDateTime.get24Time()
-    if (isShortOffsetNameShown) {
-      dateText += ' (' + endDateTime.getShortOffsetName() + ')'
+
+    if (end) {
+      const endDateTime = new DateTimeWrapper({ locale, text: end, timeZone })
+      if (!startDateTime.equalsDate(endDateTime)) {
+        dateText += ' - '
+        dateText += endDateTime.getShortDate() + ' '
+      } else {
+        dateText += ' - '
+      }
+      dateText += endDateTime.get24Time()
+      if (isShortOffsetNameShown) {
+        dateText += ' (' + endDateTime.getShortOffsetName() + ')'
+      }
     }
     return dateText
   }

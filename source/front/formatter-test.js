@@ -32,7 +32,24 @@ test('#formatDate two dates with short offset name', (t) => {
     end: '2021-04-16T15:30:00Z',
     isShortOffsetNameShown: true,
   })
-  t.is(date, '15/04/2021 10:30 (UTC) - 16/04/2021 15:30 (UTC)')
+  t.is(date, '15/04/2021 10:30 - 16/04/2021 15:30 (UTC)')
+})
+
+test('#formatDate second date is null', (t) => {
+  const date = Formatter.formatDate({
+    start: '2021-04-15T10:30:00Z',
+    end: null,
+  })
+  t.is(date, '15/04/2021 10:30')
+})
+
+test('#formatDate second date is null with short offset name', (t) => {
+  const date = Formatter.formatDate({
+    start: '2021-04-15T10:30:00Z',
+    end: null,
+    isShortOffsetNameShown: true,
+  })
+  t.is(date, '15/04/2021 10:30 (UTC)')
 })
 
 test('#formatLocation both parameters', (t) => {

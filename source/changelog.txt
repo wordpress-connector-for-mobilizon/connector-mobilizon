@@ -9,6 +9,7 @@
 #### Deprecated
 #### Removed
 #### Fixed
+- Fix Invalid DateTime on event end time being null
 #### Security
 
 ### [0.6.2] - 2021-08-24
