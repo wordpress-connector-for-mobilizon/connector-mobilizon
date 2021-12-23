@@ -3,7 +3,6 @@
 - Add specific error message for the case the group is not found
 - Add code formatter prettier
 #### Changed
-- Set minimum PHP version to oldest officially supported 7.4
 - Update dependencies
 - Simplify build process
 #### Deprecated
@@ -11,6 +10,7 @@
 #### Fixed
 - Fix Invalid DateTime on event end time being null
 #### Security
+- Set minimum PHP version to oldest stable 7.4
 
 ### [0.6.2] - 2021-08-24
 #### Changed
