@@ -23,9 +23,9 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "graphql": "^16.1.0",
+    "graphql": "^16.2.0",
     "graphql-request": "^3.7.0",
-    "luxon": "^2.1.1",
+    "luxon": "^2.2.0",
     "object-hash": "^2.2.0"
   },
   "devDependencies": {
