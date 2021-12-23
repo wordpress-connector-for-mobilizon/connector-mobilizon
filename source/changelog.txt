@@ -1,12 +1,18 @@
 ### [Unreleased]
 #### Added
+#### Changed
+#### Deprecated
+#### Removed
+#### Fixed
+#### Security
+
+### [0.7.0] - 2021-12-23
+#### Added
 - Add specific error message for the case the group is not found
 - Add code formatter prettier
 #### Changed
 - Update dependencies
 - Simplify build process
-#### Deprecated
-#### Removed
 #### Fixed
 - Fix Invalid DateTime on event end time being null
 #### Security

@@ -36,6 +36,18 @@ The source code is available on [Github](https://github.com/dwaxweiler/connector
 
 ## Changelog
 
+### [0.7.0] - 2021-12-23
+#### Added
+- Add specific error message for the case the group is not found
+- Add code formatter prettier
+#### Changed
+- Update dependencies
+- Simplify build process
+#### Fixed
+- Fix Invalid DateTime on event end time being null
+#### Security
+- Set minimum PHP version to oldest stable 7.4
+
 ### [0.6.2] - 2021-08-24
 #### Changed
 - Update dependencies
