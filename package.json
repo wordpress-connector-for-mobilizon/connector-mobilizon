@@ -57,7 +57,7 @@
     "niceName": "Connector for Mobilizon",
     "phpMinimumVersion": 7.4,
     "wordpressMinimumVersion": 5.6,
-    "wordpressTestedUpToVersion": 5.8
+    "wordpressTestedUpToVersion": 5.9
   },
   "lint-staged": {
     "source/**/*.js": "eslint",
