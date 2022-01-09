@@ -1,5 +1,5 @@
 import test from 'ava'
-import SessionCache from './session-cache'
+import SessionCache from './session-cache.js'
 
 const fakeStorage = {
   elements: {},

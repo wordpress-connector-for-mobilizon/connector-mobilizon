@@ -1,7 +1,7 @@
 import test from 'ava'
 import { JSDOM } from 'jsdom'
 
-import { createAnchorElement } from './html-creator'
+import { createAnchorElement } from './html-creator.js'
 
 let document
 

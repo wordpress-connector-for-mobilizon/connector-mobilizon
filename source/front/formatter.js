@@ -1,4 +1,4 @@
-import DateTimeWrapper from './date-time-wrapper'
+import DateTimeWrapper from './date-time-wrapper.js'
 
 export default class Formatter {
   static formatDate({ locale, timeZone, start, end, isShortOffsetNameShown }) {

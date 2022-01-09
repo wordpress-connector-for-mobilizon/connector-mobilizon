@@ -1,4 +1,4 @@
-import hash from './object-hash-wrapper'
+import hash from './object-hash-wrapper.js'
 
 const MAX_AGE_IN_MS = 120000
 

@@ -1,5 +1,5 @@
 import test from 'ava'
-import Formatter from './formatter'
+import Formatter from './formatter.js'
 
 test('#formatDate one date', (t) => {
   const date = Formatter.formatDate({
