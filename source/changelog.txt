@@ -1,5 +1,6 @@
 ### [Unreleased]
 #### Added
+- Add support for older browsers using babel
 #### Changed
 - Confirm compatibility with WordPress 5.9
 - Update dependencies
