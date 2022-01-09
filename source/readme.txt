@@ -36,6 +36,16 @@ The source code is available on [Github](https://github.com/dwaxweiler/connector
 
 ## Changelog
 
+### [0.8.0] - 2022-01-09
+#### Added
+- Add support for older browsers using babel
+#### Changed
+- Confirm compatibility with WordPress 5.9
+- Update dependencies
+#### Fixed
+- Use ES modules correctly
+- Trim events' location
+
 ### [0.7.0] - 2021-12-23
 #### Added
 - Add specific error message for the case the group is not found
