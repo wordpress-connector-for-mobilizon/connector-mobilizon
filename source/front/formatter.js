@@ -31,8 +31,8 @@ export default class Formatter {
 
   static formatLocation({ description, locality }) {
     let location = ''
-    if (description) {
-      location += description
+    if (description && description.trim()) {
+      location += description.trim()
     }
     if (location && locality) {
       location += ', '

@@ -53,16 +53,21 @@ test('#formatDate second date is null with short offset name', (t) => {
 })
 
 test('#formatLocation both parameters', (t) => {
-  const date = Formatter.formatLocation({ description: 'a', locality: 'b' })
-  t.is(date, 'a, b')
+  const location = Formatter.formatLocation({ description: 'a', locality: 'b' })
+  t.is(location, 'a, b')
 })
 
 test('#formatLocation description only', (t) => {
-  const date = Formatter.formatLocation({ description: 'a' })
-  t.is(date, 'a')
+  const location = Formatter.formatLocation({ description: 'a' })
+  t.is(location, 'a')
+})
+
+test('#formatLocation description with space only', (t) => {
+  const location = Formatter.formatLocation({ description: ' ' })
+  t.is(location, '')
 })
 
 test('#formatLocation locality only', (t) => {
-  const date = Formatter.formatLocation({ locality: 'a' })
-  t.is(date, 'a')
+  const location = Formatter.formatLocation({ locality: 'a' })
+  t.is(location, 'a')
 })

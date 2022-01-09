@@ -8,6 +8,7 @@
 #### Removed
 #### Fixed
 - Use ES modules correctly
+- Trim events' location
 #### Security
 
 ### [0.7.0] - 2021-12-23
