@@ -2,9 +2,11 @@
 #### Added
 #### Changed
 - Confirm compatibility with WordPress 5.9
+- Update dependencies
 #### Deprecated
 #### Removed
 #### Fixed
+- Use ES modules correctly
 #### Security
 
 ### [0.7.0] - 2021-12-23
