@@ -24,10 +24,10 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "graphql": "^16.2.0",
-    "graphql-request": "^3.7.0",
-    "luxon": "^2.3.0",
-    "object-hash": "^2.2.0"
+    "graphql": "16.3.0",
+    "graphql-request": "4.1.0",
+    "luxon": "2.3.1",
+    "object-hash": "3.0.0"
   },
   "devDependencies": {
     "@babel/core": "7.17.8",
