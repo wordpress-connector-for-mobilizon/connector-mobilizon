@@ -3,6 +3,7 @@
 - Improve explanation of group name filter
 #### Changed
 - Update dependencies
+- Confirm compatibility with WordPress 6.0
 #### Deprecated
 #### Removed
 #### Fixed
