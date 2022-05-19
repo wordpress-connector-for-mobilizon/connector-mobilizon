@@ -24,7 +24,9 @@ Features
 - Toggle adding named offset in brackets after the time in the settings
 
 Shortcut format with limiting the number of events to show to 3 for example: `[<wordpress-name>-events-list events-count=3]`
+
 Optionally, you can only show the events of a specific group by indicatings its name: `[<wordpress-name>-events-list events-count=3 group-name="mygroup"]`
+You have to use their username, e.g. `@nosliensvivants`, and append the name of their instance if they use a different one, e.g. `@yaam_berlin@mobilize.berlin`.
 
 The source code is available on [Github](https://github.com/dwaxweiler/connector-mobilizon).
 
