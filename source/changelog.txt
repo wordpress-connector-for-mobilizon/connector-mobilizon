@@ -1,14 +1,19 @@
 ### [Unreleased]
 #### Added
+#### Changed
+#### Deprecated
+#### Removed
+#### Fixed
+#### Security
+
+### [0.9.0] - 2020-05-19
+#### Added
 - Improve explanation of group name filter
 #### Changed
 - Update dependencies
 - Confirm compatibility with WordPress 6.0
-#### Deprecated
-#### Removed
 #### Fixed
 - Fix displaying error message for the case the group is not found
-#### Security
 
 ### [0.8.0] - 2022-01-09
 #### Added
