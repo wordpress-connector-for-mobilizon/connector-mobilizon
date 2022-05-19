@@ -38,6 +38,19 @@ The source code is available on [Github](https://github.com/dwaxweiler/connector
 
 ## Changelog
 
+### [0.9.1] - 2020-05-19
+#### Fixed
+- Fix WordPress compatibility version number
+
+### [0.9.0] - 2020-05-19
+#### Added
+- Improve explanation of group name filter
+#### Changed
+- Update dependencies
+- Confirm compatibility with WordPress 6.0
+#### Fixed
+- Fix displaying error message for the case the group is not found
+
 ### [0.8.0] - 2022-01-09
 #### Added
 - Add support for older browsers using babel
