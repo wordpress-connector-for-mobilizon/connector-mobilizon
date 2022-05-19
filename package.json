@@ -1,6 +1,6 @@
 {
   "name": "connector-mobilizon",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "Display Mobilizon events in WordPress.",
   "private": true,
   "type": "module",
