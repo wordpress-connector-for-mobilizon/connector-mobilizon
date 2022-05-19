@@ -4,6 +4,7 @@
 #### Deprecated
 #### Removed
 #### Fixed
+- Fix WordPress compatibility version number
 #### Security
 
 ### [0.9.0] - 2020-05-19
