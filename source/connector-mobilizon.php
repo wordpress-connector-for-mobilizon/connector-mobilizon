@@ -12,6 +12,9 @@
 
 require_once __DIR__ . '/includes/constants.php';
 require_once __DIR__ . '/includes/settings.php';
+require_once __DIR__ . '/includes/date-time-wrapper.php';
+require_once __DIR__ . '/includes/formatter.php';
+require_once __DIR__ . '/includes/graphql-client.php';
 require_once __DIR__ . '/includes/events-list-shortcut.php';
 require_once __DIR__ . '/includes/events-list-widget.php';
 
