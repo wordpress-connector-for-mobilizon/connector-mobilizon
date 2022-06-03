@@ -1,5 +1,5 @@
-import { displayEvents, displayErrorMessage } from './events-displayer'
-import * as GraphqlWrapper from './graphql-wrapper'
+import { displayEvents, displayErrorMessage } from './events-displayer.js'
+import * as GraphqlWrapper from './graphql-wrapper.js'
 
 const NAME = '<wordpress-name>'
 

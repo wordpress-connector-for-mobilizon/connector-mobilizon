@@ -1,6 +1,6 @@
-import SessionCache from './session-cache'
+import SessionCache from './session-cache.js'
 import { request } from 'graphql-request'
-import DateTimeWrapper from './date-time-wrapper'
+import DateTimeWrapper from './date-time-wrapper.js'
 
 export function getUpcomingEvents({ url, limit }) {
   const query = `
@@ -37,7 +37,7 @@ export function getUpcomingEvents({ url, limit }) {
 
 export function getUpcomingEventsByGroupName({ url, limit, groupName }) {
   const query = `
-    query ($afterDatetime: DateTime, $groupName: String, $limit: Int) {
+    query ($afterDatetime: DateTime, $groupName: String!, $limit: Int) {
       group(preferredUsername: $groupName) {
         organizedEvents(afterDatetime: $afterDatetime, limit: $limit) {
           elements {

@@ -1,4 +1,4 @@
-import DateTimeWrapper from './date-time-wrapper'
+import DateTimeWrapper from './date-time-wrapper.js'
 
 export default class Formatter {
   static formatDate({ locale, timeZone, start, end, isShortOffsetNameShown }) {
@@ -7,29 +7,32 @@ export default class Formatter {
       text: start,
       timeZone,
     })
-    const endDateTime = new DateTimeWrapper({ locale, text: end, timeZone })
     let dateText = startDateTime.getShortDate()
     dateText += ' ' + startDateTime.get24Time()
-    if (!startDateTime.equalsDate(endDateTime)) {
-      if (isShortOffsetNameShown) {
-        dateText += ' (' + startDateTime.getShortOffsetName() + ')'
-      }
-      dateText += ' - '
-      dateText += endDateTime.getShortDate() + ' '
-    } else {
-      dateText += ' - '
+    if (!end && isShortOffsetNameShown) {
+      dateText += ' (' + startDateTime.getShortOffsetName() + ')'
     }
-    dateText += endDateTime.get24Time()
-    if (isShortOffsetNameShown) {
-      dateText += ' (' + endDateTime.getShortOffsetName() + ')'
+
+    if (end) {
+      const endDateTime = new DateTimeWrapper({ locale, text: end, timeZone })
+      if (!startDateTime.equalsDate(endDateTime)) {
+        dateText += ' - '
+        dateText += endDateTime.getShortDate() + ' '
+      } else {
+        dateText += ' - '
+      }
+      dateText += endDateTime.get24Time()
+      if (isShortOffsetNameShown) {
+        dateText += ' (' + endDateTime.getShortOffsetName() + ')'
+      }
     }
     return dateText
   }
 
   static formatLocation({ description, locality }) {
     let location = ''
-    if (description) {
-      location += description
+    if (description && description.trim()) {
+      location += description.trim()
     }
     if (location && locality) {
       location += ', '

@@ -24,7 +24,9 @@ Features
 - Toggle adding named offset in brackets after the time in the settings
 
 Shortcut format with limiting the number of events to show to 3 for example: `[<wordpress-name>-events-list events-count=3]`
+
 Optionally, you can only show the events of a specific group by indicatings its name: `[<wordpress-name>-events-list events-count=3 group-name="mygroup"]`
+You have to use their username, e.g. `@nosliensvivants`, and append the name of their instance if they use a different one, e.g. `@yaam_berlin@mobilize.berlin`.
 
 The source code is available on [Github](https://github.com/dwaxweiler/connector-mobilizon).
 
@@ -35,6 +37,41 @@ The source code is available on [Github](https://github.com/dwaxweiler/connector
 4. Shortcut creation
 
 ## Changelog
+
+### [0.9.1] - 2020-05-19
+#### Fixed
+- Fix WordPress compatibility version number
+
+### [0.9.0] - 2020-05-19
+#### Added
+- Improve explanation of group name filter
+#### Changed
+- Update dependencies
+- Confirm compatibility with WordPress 6.0
+#### Fixed
+- Fix displaying error message for the case the group is not found
+
+### [0.8.0] - 2022-01-09
+#### Added
+- Add support for older browsers using babel
+#### Changed
+- Confirm compatibility with WordPress 5.9
+- Update dependencies
+#### Fixed
+- Use ES modules correctly
+- Trim events' location
+
+### [0.7.0] - 2021-12-23
+#### Added
+- Add specific error message for the case the group is not found
+- Add code formatter prettier
+#### Changed
+- Update dependencies
+- Simplify build process
+#### Fixed
+- Fix Invalid DateTime on event end time being null
+#### Security
+- Set minimum PHP version to oldest stable 7.4
 
 ### [0.6.2] - 2021-08-24
 #### Changed

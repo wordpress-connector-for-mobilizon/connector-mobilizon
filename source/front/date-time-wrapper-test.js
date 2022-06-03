@@ -1,5 +1,5 @@
 import test from 'ava'
-import DateTimeWrapper from './date-time-wrapper'
+import DateTimeWrapper from './date-time-wrapper.js'
 
 test('#getShortDate usual date', (t) => {
   const d = new DateTimeWrapper({ text: '2020-12-24T16:45:00Z' })

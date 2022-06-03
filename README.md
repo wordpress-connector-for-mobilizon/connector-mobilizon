@@ -4,6 +4,8 @@ Connector for Mobilizon allows you to display the upcoming events of [Mobilizon]
 
 More details can be found in the [WordPress Plugin Directory](https://wordpress.org/plugins/connector-mobilizon/).
 
+The current changelog can be under [source/changelog.txt](source/changelog.txt).
+
 ## Development
 
 ### Setup

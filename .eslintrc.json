@@ -22,6 +22,9 @@
     "jsx"
   ],
   "rules": {
+    "import/no-unresolved": [
+      "off"
+    ],
     "indent": [
       "error",
       2

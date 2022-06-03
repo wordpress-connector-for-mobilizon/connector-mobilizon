@@ -1,5 +1,5 @@
-import Formatter from './formatter'
-import { createAnchorElement } from './html-creator'
+import Formatter from './formatter.js'
+import { createAnchorElement } from './html-creator.js'
 
 export function displayEvents({ data, document, list }) {
   const locale = list.getAttribute('data-locale')

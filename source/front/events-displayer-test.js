@@ -1,7 +1,7 @@
 import test from 'ava'
 import { JSDOM } from 'jsdom'
 
-import { displayEvents, displayErrorMessage } from './events-displayer'
+import { displayEvents, displayErrorMessage } from './events-displayer.js'
 
 let document
 
