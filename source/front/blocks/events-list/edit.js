@@ -1,15 +1,44 @@
-const { InspectorControls } = wp.blockEditor
+/* eslint-disable @wordpress/i18n-ellipsis */
+import { loadEventList } from '../../events-loader.js'
+
+const { InspectorControls, useBlockProps } = wp.blockEditor
 const { PanelBody } = wp.components
+const { useEffect } = wp.element
 const { __ } = wp.i18n
 
+const NAME = '<wordpress-name>'
+
+let timer
+
 export default ({ attributes, setAttributes }) => {
+  const blockProps = useBlockProps({
+    className: NAME + '_events-list',
+    'data-maximum': attributes.eventsCount,
+    'data-group-name': attributes.groupName,
+  })
+  function reloadEventList() {
+    if (timer) {
+      clearTimeout(timer)
+    }
+    timer = setTimeout(() => {
+      const container = document.getElementById(blockProps.id)
+      if (container) {
+        loadEventList(container)
+      }
+    }, 500)
+  }
+  useEffect(() => {
+    reloadEventList()
+  }, [])
   function updateEventsCount(event) {
     let newValue = Number(event.target.value)
     if (newValue < 1) newValue = 1
     setAttributes({ eventsCount: newValue })
+    reloadEventList()
   }
   function updateGroupName(event) {
     setAttributes({ groupName: event.target.value })
+    reloadEventList()
   }
   return [
     <InspectorControls>
@@ -42,12 +71,17 @@ export default ({ attributes, setAttributes }) => {
         />
       </PanelBody>
     </InspectorControls>,
-    <ul>
-      {[...Array(attributes.eventsCount)].map((_, i) => (
-        <li className="busterCards" key={i}>
-          {__('Event', '<wordpress-name>')} {i}
-        </li>
-      ))}
-    </ul>,
+    <div {...blockProps}>
+      <div className="general-error" style={{ display: 'none' }}>
+        {__('The events could not be loaded!', '<wordpress-name>')}
+      </div>
+      <div className="group-not-found" style={{ display: 'none' }}>
+        {__('The group could not be found!', '<wordpress-name>')}
+      </div>
+      <div className="loading-indicator" style={{ display: 'none' }}>
+        {__('Loading...', '<wordpress-name>')}
+      </div>
+      <ul style={{ 'list-style-type': 'none', 'padding-left': 0 }}></ul>
+    </div>,
   ]
 }

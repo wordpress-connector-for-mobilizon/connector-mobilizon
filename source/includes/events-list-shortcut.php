@@ -26,11 +26,7 @@ class EventsListShortcut {
 
     $classNamePrefix = NAME;
     $eventsCount = $atts_with_overriden_defaults['events-count'];
-    $locale = str_replace('_', '-', get_locale());
     $groupName = $atts_with_overriden_defaults['group-name'];
-    $url = Settings::getUrl();
-    $timeZone = wp_timezone_string();
-    $isShortOffsetNameShown = Settings::isShortOffsetNameShown();
 
     ob_start();
     require dirname(__DIR__) . '/view/events-list.php';

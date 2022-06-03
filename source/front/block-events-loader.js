@@ -1,1 +1,1 @@
-import './blocks/events-list'
+import './blocks/events-list/index.js'

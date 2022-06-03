@@ -12,6 +12,7 @@
 
 require_once __DIR__ . '/includes/constants.php';
 require_once __DIR__ . '/includes/settings.php';
+require_once __DIR__ . '/includes/events-list-block.php';
 require_once __DIR__ . '/includes/events-list-shortcut.php';
 require_once __DIR__ . '/includes/events-list-widget.php';
 
@@ -24,7 +25,7 @@ final class Mobilizon_Connector {
 
   private function __construct() {
     add_action('init', [$this, 'register_blocks']);
-    add_action('init', [$this, 'register_settings']);
+    add_action('init', [$this, 'register_settings'], 1); // required for register_blocks
     add_action('init', [$this, 'register_shortcut']);
     add_action('widgets_init', [$this, 'register_widget']);
     add_action('wp_enqueue_scripts', [$this, 'register_scripts']);
@@ -44,16 +45,19 @@ final class Mobilizon_Connector {
     MobilizonConnector\Settings::setDefaultOptions();
   }
 
+  private function load_settings_globally_before_script($scriptName) {
+    $settings = array(
+      'isShortOffsetNameShown' => MobilizonConnector\Settings::isShortOffsetNameShown(),
+      'locale' => str_replace('_', '-', get_locale()),
+      'timeZone' => wp_timezone_string(),
+      'url' => MobilizonConnector\Settings::getUrl()
+    );
+    wp_add_inline_script($scriptName, 'var MOBILIZON_CONNECTOR = ' . json_encode($settings), 'before');
+  }
+
   public function register_blocks() {
-    wp_register_script(MobilizonConnector\NAME . '-block-starter', plugins_url('front/block-events-loader.js', __FILE__ ), [
-        'wp-blocks',
-        'wp-components',
-        'wp-editor',
-        'wp-i18n'
-      ]);
-    register_block_type(MobilizonConnector\NAME . '/events-list', [
-      'editor_script' => MobilizonConnector\NAME . '-block-starter'
-    ]);
+    $scriptName = MobilizonConnector\EventsListBlock::initAndReturnScriptName();
+    $this->load_settings_globally_before_script($scriptName);
   }
 
   public function register_settings() {
@@ -61,7 +65,9 @@ final class Mobilizon_Connector {
   }
 
   public function register_scripts() {
-    wp_enqueue_script(MobilizonConnector\NAME . '-js', plugins_url('front/events-loader.js', __FILE__ ));
+    $name = MobilizonConnector\NAME . '-js';
+    wp_enqueue_script($name, plugins_url('front/events-loader.js', __FILE__ ));
+    $this->load_settings_globally_before_script($name);
   }
 
   public function register_shortcut() {

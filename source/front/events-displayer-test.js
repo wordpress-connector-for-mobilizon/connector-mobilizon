@@ -1,29 +1,45 @@
 import test from 'ava'
-import { JSDOM } from 'jsdom'
+import browserEnv from 'browser-env'
 
-import { displayEvents, displayErrorMessage } from './events-displayer.js'
-
-let document
+import {
+  displayEvents,
+  displayErrorMessage,
+  hideErrorMessages,
+  showLoadingIndicator,
+} from './events-displayer.js'
 
 test.before(() => {
-  document = new JSDOM().window.document
+  browserEnv()
+  window.MOBILIZON_CONNECTOR = {
+    locale: 'en-GB',
+    timeZone: 'utc',
+  }
 })
 
 test.beforeEach((t) => {
-  t.context.list = document.createElement('ul')
-  t.context.list.setAttribute('data-locale', 'en-GB')
-  t.context.list.setAttribute('data-maximum', '2')
-  t.context.list.setAttribute('data-time-zone', 'utc')
-  const listElement = document.createElement('li')
-  listElement.setAttribute('style', 'display: none;')
-  t.context.list.appendChild(listElement)
-  const listElement2 = document.createElement('li')
-  listElement2.setAttribute('style', 'display: none;')
-  t.context.list.appendChild(listElement2)
+  t.context.container = document.createElement('div')
+  t.context.container.setAttribute('data-maximum', '2')
+
+  const errorMessageGeneral = document.createElement('div')
+  errorMessageGeneral.setAttribute('class', 'general-error')
+  errorMessageGeneral.setAttribute('style', 'display: none;')
+  t.context.container.appendChild(errorMessageGeneral)
+
+  const errorMessageGroupNotFound = document.createElement('div')
+  errorMessageGroupNotFound.setAttribute('class', 'group-not-found')
+  errorMessageGroupNotFound.setAttribute('style', 'display: none;')
+  t.context.container.appendChild(errorMessageGroupNotFound)
+
+  const loadingIndicator = document.createElement('div')
+  loadingIndicator.setAttribute('class', 'loading-indicator')
+  loadingIndicator.setAttribute('style', 'display: none;')
+  t.context.container.appendChild(loadingIndicator)
+
+  const list = document.createElement('ul')
+  t.context.container.appendChild(list)
 })
 
 test('#displayEvents one event', (t) => {
-  const list = t.context.list
   const data = {
     events: {
       elements: [
@@ -40,32 +56,35 @@ test('#displayEvents one event', (t) => {
       ],
     },
   }
-  displayEvents({ data, document, list })
-  t.is(list.children.length, 3)
-  t.is(list.children[2].childNodes[0].tagName, 'A')
-  t.is(list.children[2].childNodes[0].getAttribute('href'), 'b')
-  t.is(list.children[2].childNodes[0].childNodes[0].nodeValue, 'a')
-  t.is(list.children[2].childNodes[1].tagName, 'BR')
-  t.is(list.children[2].childNodes[2].nodeValue, '15/04/2021 10:30 - 15:30')
-  t.is(list.children[2].childNodes[3].tagName, 'BR')
-  t.is(list.children[2].childNodes[4].nodeValue, 'c, d')
+  const container = t.context.container
+  displayEvents({ data, document, container })
+  const list = container.querySelector('ul')
+  t.is(list.children[0].childNodes[0].tagName, 'A')
+  t.is(list.children[0].childNodes[0].getAttribute('href'), 'b')
+  t.is(list.children[0].childNodes[0].childNodes[0].nodeValue, 'a')
+  t.is(list.children[0].childNodes[1].tagName, 'BR')
+  t.is(list.children[0].childNodes[2].nodeValue, '15/04/2021 10:30 - 15:30')
+  t.is(list.children[0].childNodes[3].tagName, 'BR')
+  t.is(list.children[0].childNodes[4].nodeValue, 'c, d')
 })
 
-test('#displayErrorMessage no children added', (t) => {
-  const list = t.context.list
-  displayErrorMessage({ data: '', list })
-  t.is(list.children.length, 2)
+test('#displayErrorMessage no list entries shown', (t) => {
+  const container = t.context.container
+  displayErrorMessage({ data: '', container })
+  const list = container.querySelector('ul')
+  t.is(list.children.length, 0)
 })
 
-test('#displayErrorMessage error message display', (t) => {
-  const list = t.context.list
-  displayErrorMessage({ data: '', list })
-  t.is(list.children[0].style.display, 'block')
-  t.is(list.children[1].style.display, 'none')
+test('#displayErrorMessage general error message display', (t) => {
+  const container = t.context.container
+  displayErrorMessage({ data: '', container })
+  t.is(container.querySelector('.general-error').style.display, 'block')
+  t.is(container.querySelector('.group-not-found').style.display, 'none')
+  t.is(container.querySelector('.loading-indicator').style.display, 'none')
 })
 
 test('#displayErrorMessage group not found error message display', (t) => {
-  const list = t.context.list
+  const container = t.context.container
   const data = {
     response: {
       errors: [
@@ -75,7 +94,29 @@ test('#displayErrorMessage group not found error message display', (t) => {
       ],
     },
   }
-  displayErrorMessage({ data, list })
-  t.is(list.children[0].style.display, 'none')
-  t.is(list.children[1].style.display, 'block')
+  displayErrorMessage({ data, container })
+  t.is(container.querySelector('.general-error').style.display, 'none')
+  t.is(container.querySelector('.group-not-found').style.display, 'block')
+  t.is(container.querySelector('.loading-indicator').style.display, 'none')
+})
+
+test('#showLoadingIndicator remove events', (t) => {
+  const container = t.context.container
+  const loadingIndicator = container.querySelector('.loading-indicator')
+  t.is(loadingIndicator.style.display, 'none')
+  showLoadingIndicator(container)
+  t.is(loadingIndicator.style.display, 'block')
+})
+
+test('#hideErrorMessages remove events', (t) => {
+  const container = t.context.container
+  const generalErrorMessage = container.querySelector('.general-error')
+  const groupNotFoundErrorMessage = container.querySelector('.group-not-found')
+  generalErrorMessage.style.display = 'block'
+  groupNotFoundErrorMessage.style.display = 'block'
+  t.is(generalErrorMessage.style.display, 'block')
+  t.is(groupNotFoundErrorMessage.style.display, 'block')
+  hideErrorMessages(container)
+  t.is(generalErrorMessage.style.display, 'none')
+  t.is(groupNotFoundErrorMessage.style.display, 'none')
 })
