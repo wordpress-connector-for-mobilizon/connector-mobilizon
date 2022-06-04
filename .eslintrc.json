@@ -3,6 +3,9 @@
     "browser": true,
     "es2020": true
   },
+  "globals": {
+    "SETTINGS": "readonly"
+  },
   "parser": "@babel/eslint-parser",
   "extends": [
     "eslint:recommended",

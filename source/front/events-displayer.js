@@ -2,12 +2,11 @@ import Formatter from './formatter.js'
 import { createAnchorElement } from './html-creator.js'
 
 export function displayEvents({ data, document, list }) {
-  const locale = list.getAttribute('data-locale')
+  const isShortOffsetNameShown = SETTINGS.isShortOffsetNameShown
+  const locale = SETTINGS.locale
   const maxEventsCount = list.getAttribute('data-maximum')
-  const timeZone = list.getAttribute('data-time-zone')
-  const isShortOffsetNameShown = list.hasAttribute(
-    'data-is-short-offset-name-shown'
-  )
+  const timeZone = SETTINGS.timeZone
+
   const events = data.events
     ? data.events.elements
     : data.group.organizedEvents.elements

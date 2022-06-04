@@ -27,11 +27,7 @@ class EventsListWidget extends \WP_Widget {
 
     $classNamePrefix = NAME;
     $eventsCount = $options['eventsCount'];
-    $locale = str_replace('_', '-', get_locale());
     $groupName = isset($options['groupName']) ? $options['groupName'] : '';
-    $url = Settings::getUrl();
-    $timeZone = wp_timezone_string();
-    $isShortOffsetNameShown = Settings::isShortOffsetNameShown();
 
     require dirname(__DIR__) . '/view/events-list.php';
 

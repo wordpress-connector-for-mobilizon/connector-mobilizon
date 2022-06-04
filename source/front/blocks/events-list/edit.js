@@ -1,15 +1,28 @@
+import { loadEventLists } from '../../events-loader.js'
+
 const { InspectorControls } = wp.blockEditor
+const { useEffect } = wp.element
 const { PanelBody } = wp.components
 const { __ } = wp.i18n
 
+const NAME = '<wordpress-name>'
+
 export default ({ attributes, setAttributes }) => {
+  useEffect(() => {
+    reloadEventLists()
+  }, [])
+  function reloadEventLists() {
+    loadEventLists()
+  }
   function updateEventsCount(event) {
     let newValue = Number(event.target.value)
     if (newValue < 1) newValue = 1
     setAttributes({ eventsCount: newValue })
+    reloadEventLists()
   }
   function updateGroupName(event) {
     setAttributes({ groupName: event.target.value })
+    reloadEventLists()
   }
   return [
     <InspectorControls>
@@ -42,12 +55,17 @@ export default ({ attributes, setAttributes }) => {
         />
       </PanelBody>
     </InspectorControls>,
-    <ul>
-      {[...Array(attributes.eventsCount)].map((_, i) => (
-        <li className="busterCards" key={i}>
-          {__('Event', '<wordpress-name>')} {i}
-        </li>
-      ))}
+    <ul
+      className={NAME + '_events-list'}
+      data-maximum={attributes.eventsCount}
+      data-group-name={attributes.groupName}
+    >
+      <li style={{ display: 'none' }}>
+        {__('The events could not be loaded!', '<wordpress-name>')}
+      </li>
+      <li style={{ display: 'none' }}>
+        {__('The group could not be found!', '<wordpress-name>')}
+      </li>
     </ul>,
   ]
 }
