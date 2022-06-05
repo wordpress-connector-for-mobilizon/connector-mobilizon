@@ -1,16 +1,24 @@
 import Formatter from './formatter.js'
 import { createAnchorElement } from './html-creator.js'
 
-export function displayEvents({ data, document, list }) {
+function removeLoadingMessageOrPreviousEvents(container) {
+  const list = container.querySelector('ul')
+  list.replaceChildren()
+}
+
+export function displayEvents({ data, document, container }) {
+  removeLoadingMessageOrPreviousEvents(container)
+
   const isShortOffsetNameShown = SETTINGS.isShortOffsetNameShown
   const locale = SETTINGS.locale
-  const maxEventsCount = list.getAttribute('data-maximum')
+  const maxEventsCount = container.getAttribute('data-maximum')
   const timeZone = SETTINGS.timeZone
 
   const events = data.events
     ? data.events.elements
     : data.group.organizedEvents.elements
   const eventsCount = Math.min(maxEventsCount, events.length)
+  const list = container.querySelector('ul')
   for (let i = 0; i < eventsCount; i++) {
     const li = document.createElement('li')
 
@@ -52,7 +60,8 @@ export function displayEvents({ data, document, list }) {
   }
 }
 
-export function displayErrorMessage({ data, list }) {
+export function displayErrorMessage({ data, container }) {
+  removeLoadingMessageOrPreviousEvents(container)
   console.error(data)
   if (
     Object.prototype.hasOwnProperty.call(data, 'response') &&
@@ -61,8 +70,8 @@ export function displayErrorMessage({ data, list }) {
     Object.prototype.hasOwnProperty.call(data.response.errors[0], 'code') &&
     data.response.errors[0].code === 'group_not_found'
   ) {
-    list.children[1].style.display = 'block'
+    container.children[1].style.display = 'block'
   } else {
-    list.children[0].style.display = 'block'
+    container.children[0].style.display = 'block'
   }
 }
