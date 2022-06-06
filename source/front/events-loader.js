@@ -6,14 +6,14 @@ const URL_SUFFIX = '/api'
 
 document.addEventListener('DOMContentLoaded', loadEventLists)
 
-export function loadEventLists() {
+function loadEventLists() {
   const eventLists = document.getElementsByClassName(NAME + '_events-list')
   for (const list of eventLists) {
     loadEventList(list)
   }
 }
 
-function loadEventList(container) {
+export function loadEventList(container) {
   const url = SETTINGS.url + URL_SUFFIX
   const limit = parseInt(container.getAttribute('data-maximum'))
   const groupName = container.getAttribute('data-group-name')

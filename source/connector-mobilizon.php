@@ -63,6 +63,7 @@ final class Mobilizon_Connector {
         'wp-i18n'
       ]);
     register_block_type(MobilizonConnector\NAME . '/events-list', [
+      'api_version' => 2,
       'editor_script' => $name
     ]);
     $this->load_settings_globally_before_script($name);

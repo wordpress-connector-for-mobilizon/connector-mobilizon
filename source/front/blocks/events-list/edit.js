@@ -1,7 +1,7 @@
 /* eslint-disable @wordpress/i18n-ellipsis */
-import { loadEventLists } from '../../events-loader.js'
+import { loadEventList } from '../../events-loader.js'
 
-const { InspectorControls } = wp.blockEditor
+const { InspectorControls, useBlockProps } = wp.blockEditor
 const { useEffect } = wp.element
 const { PanelBody } = wp.components
 const { __ } = wp.i18n
@@ -9,11 +9,15 @@ const { __ } = wp.i18n
 const NAME = '<wordpress-name>'
 
 export default ({ attributes, setAttributes }) => {
+  const blockProps = useBlockProps()
   useEffect(() => {
     reloadEventLists()
   }, [])
   function reloadEventLists() {
-    loadEventLists()
+    const container = document.getElementById(blockProps.id)
+    if (container) {
+      loadEventList(container)
+    }
   }
   function updateEventsCount(event) {
     let newValue = Number(event.target.value)
@@ -60,6 +64,7 @@ export default ({ attributes, setAttributes }) => {
       className={NAME + '_events-list'}
       data-maximum={attributes.eventsCount}
       data-group-name={attributes.groupName}
+      {...blockProps}
     >
       <div style={{ display: 'none' }}>
         {__('The events could not be loaded!', '<wordpress-name>')}
