@@ -12,6 +12,7 @@
 
 require_once __DIR__ . '/includes/constants.php';
 require_once __DIR__ . '/includes/settings.php';
+require_once __DIR__ . '/includes/events-list-block.php';
 require_once __DIR__ . '/includes/events-list-shortcut.php';
 require_once __DIR__ . '/includes/events-list-widget.php';
 
@@ -64,7 +65,8 @@ final class Mobilizon_Connector {
       ]);
     register_block_type(MobilizonConnector\NAME . '/events-list', [
       'api_version' => 2,
-      'editor_script' => $name
+      'editor_script' => $name,
+      'render_callback' => 'MobilizonConnector\EventsListBlock::render',
     ]);
     $this->load_settings_globally_before_script($name);
   }

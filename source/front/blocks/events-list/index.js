@@ -1,5 +1,4 @@
 import edit from './edit.js'
-import save from './save.js'
 
 const { registerBlockType } = wp.blocks
 const { __ } = wp.i18n
@@ -28,5 +27,4 @@ registerBlockType(NAME + '/events-list', {
     html: false,
   },
   edit,
-  save,
 })
