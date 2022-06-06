@@ -45,7 +45,7 @@ final class Mobilizon_Connector {
     MobilizonConnector\Settings::setDefaultOptions();
   }
 
-  public function load_settings_globally_before_script($scriptName) {
+  private function load_settings_globally_before_script($scriptName) {
     $settings = array(
       'isShortOffsetNameShown' => MobilizonConnector\Settings::isShortOffsetNameShown(),
       'locale' => str_replace('_', '-', get_locale()),
@@ -56,19 +56,8 @@ final class Mobilizon_Connector {
   }
 
   public function register_blocks() {
-    $name = MobilizonConnector\NAME . '-block-starter';
-    wp_register_script($name, plugins_url('front/block-events-loader.js', __FILE__ ), [
-        'wp-blocks',
-        'wp-components',
-        'wp-editor',
-        'wp-i18n'
-      ]);
-    register_block_type(MobilizonConnector\NAME . '/events-list', [
-      'api_version' => 2,
-      'editor_script' => $name,
-      'render_callback' => 'MobilizonConnector\EventsListBlock::render',
-    ]);
-    $this->load_settings_globally_before_script($name);
+    $scriptName = MobilizonConnector\EventsListBlock::initAndReturnScriptName();
+    $this->load_settings_globally_before_script($scriptName);
   }
 
   public function register_settings() {
