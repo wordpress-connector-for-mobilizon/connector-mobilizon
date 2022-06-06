@@ -10,5 +10,5 @@ if (!defined('ABSPATH')) {
   <div class="general-error" style="display: none;"><?php esc_html_e('The events could not be loaded!', 'connector-mobilizon'); ?></div>
   <div class="group-not-found" style="display: none;"><?php esc_html_e('The group could not be found!', 'connector-mobilizon'); ?></div>
   <div class="loading-indicator" style="display: none;"><?php esc_html_e('Loading...', 'connector-mobilizon'); ?></div>
-  <ul></ul>
+  <ul style="list-style-type: none; padding-left: 0;"></ul>
 </div>

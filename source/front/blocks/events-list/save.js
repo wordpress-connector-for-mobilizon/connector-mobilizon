@@ -7,13 +7,11 @@ const NAME = '<wordpress-name>'
 export default ({ attributes }) => {
   const blockProps = useBlockProps.save({
     className: NAME + '_events-list',
+    'data-maximum': attributes.eventsCount,
+    'data-group-name': attributes.groupName,
   })
   return (
-    <div
-      data-maximum={attributes.eventsCount}
-      data-group-name={attributes.groupName}
-      {...blockProps}
-    >
+    <div {...blockProps}>
       <div className="general-error" style={{ display: 'none' }}>
         {__('The events could not be loaded!', '<wordpress-name>')}
       </div>
@@ -23,7 +21,7 @@ export default ({ attributes }) => {
       <div className="loading-indicator" style={{ display: 'none' }}>
         {__('Loading...', '<wordpress-name>')}
       </div>
-      <ul></ul>
+      <ul style={{ 'list-style-type': 'none', 'padding-left': 0 }}></ul>
     </div>
   )
 }
