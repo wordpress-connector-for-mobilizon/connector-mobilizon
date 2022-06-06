@@ -5,23 +5,25 @@ const { __ } = wp.i18n
 const NAME = '<wordpress-name>'
 
 export default ({ attributes }) => {
-  const blockProps = useBlockProps.save()
+  const blockProps = useBlockProps.save({
+    className: NAME + '_events-list',
+  })
   return (
     <div
-      className={NAME + '_events-list'}
       data-maximum={attributes.eventsCount}
       data-group-name={attributes.groupName}
       {...blockProps}
     >
-      <div style={{ display: 'none' }}>
+      <div className="general-error" style={{ display: 'none' }}>
         {__('The events could not be loaded!', '<wordpress-name>')}
       </div>
-      <div style={{ display: 'none' }}>
+      <div className="group-not-found" style={{ display: 'none' }}>
         {__('The group could not be found!', '<wordpress-name>')}
       </div>
-      <ul>
-        <li>{__('Loading...', '<wordpress-name>')}</li>
-      </ul>
+      <div className="loading-indicator" style={{ display: 'none' }}>
+        {__('Loading...', '<wordpress-name>')}
+      </div>
+      <ul></ul>
     </div>
   )
 }

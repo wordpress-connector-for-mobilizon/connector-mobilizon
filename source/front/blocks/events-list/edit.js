@@ -11,9 +11,9 @@ const NAME = '<wordpress-name>'
 export default ({ attributes, setAttributes }) => {
   const blockProps = useBlockProps()
   useEffect(() => {
-    reloadEventLists()
+    reloadEventList()
   }, [])
-  function reloadEventLists() {
+  function reloadEventList() {
     const container = document.getElementById(blockProps.id)
     if (container) {
       loadEventList(container)
@@ -23,11 +23,11 @@ export default ({ attributes, setAttributes }) => {
     let newValue = Number(event.target.value)
     if (newValue < 1) newValue = 1
     setAttributes({ eventsCount: newValue })
-    reloadEventLists()
+    reloadEventList()
   }
   function updateGroupName(event) {
     setAttributes({ groupName: event.target.value })
-    reloadEventLists()
+    reloadEventList()
   }
   return [
     <InspectorControls>
@@ -66,15 +66,16 @@ export default ({ attributes, setAttributes }) => {
       data-group-name={attributes.groupName}
       {...blockProps}
     >
-      <div style={{ display: 'none' }}>
+      <div className="general-error" style={{ display: 'none' }}>
         {__('The events could not be loaded!', '<wordpress-name>')}
       </div>
-      <div style={{ display: 'none' }}>
+      <div className="group-not-found" style={{ display: 'none' }}>
         {__('The group could not be found!', '<wordpress-name>')}
       </div>
-      <ul>
-        <li>{__('Loading...', '<wordpress-name>')}</li>
-      </ul>
+      <div className="loading-indicator" style={{ display: 'none' }}>
+        {__('Loading...', '<wordpress-name>')}
+      </div>
+      <ul></ul>
     </div>,
   ]
 }

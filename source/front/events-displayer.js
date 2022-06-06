@@ -1,13 +1,13 @@
 import Formatter from './formatter.js'
 import { createAnchorElement } from './html-creator.js'
 
-function removeLoadingMessageOrPreviousEvents(container) {
+export function clearEventsList(container) {
   const list = container.querySelector('ul')
   list.replaceChildren()
 }
 
 export function displayEvents({ data, document, container }) {
-  removeLoadingMessageOrPreviousEvents(container)
+  hideLoadingIndicator(container)
 
   const isShortOffsetNameShown = SETTINGS.isShortOffsetNameShown
   const locale = SETTINGS.locale
@@ -61,7 +61,7 @@ export function displayEvents({ data, document, container }) {
 }
 
 export function displayErrorMessage({ data, container }) {
-  removeLoadingMessageOrPreviousEvents(container)
+  hideLoadingIndicator(container)
   console.error(data)
   if (
     Object.prototype.hasOwnProperty.call(data, 'response') &&
@@ -70,8 +70,20 @@ export function displayErrorMessage({ data, container }) {
     Object.prototype.hasOwnProperty.call(data.response.errors[0], 'code') &&
     data.response.errors[0].code === 'group_not_found'
   ) {
-    container.children[1].style.display = 'block'
+    const message = container.querySelector('.group-not-found')
+    message.style.display = 'block'
   } else {
-    container.children[0].style.display = 'block'
+    const message = container.querySelector('.general-error')
+    message.style.display = 'block'
   }
+}
+
+export function showLoadingIndicator(container) {
+  const indicator = container.querySelector('.loading-indicator')
+  indicator.style.display = 'block'
+}
+
+function hideLoadingIndicator(container) {
+  const indicator = container.querySelector('.loading-indicator')
+  indicator.style.display = 'none'
 }

@@ -1,4 +1,9 @@
-import { displayEvents, displayErrorMessage } from './events-displayer.js'
+import {
+  clearEventsList,
+  displayEvents,
+  displayErrorMessage,
+  showLoadingIndicator,
+} from './events-displayer.js'
 import * as GraphqlWrapper from './graphql-wrapper.js'
 
 const NAME = '<wordpress-name>'
@@ -17,6 +22,8 @@ export function loadEventList(container) {
   const url = SETTINGS.url + URL_SUFFIX
   const limit = parseInt(container.getAttribute('data-maximum'))
   const groupName = container.getAttribute('data-group-name')
+  clearEventsList(container)
+  showLoadingIndicator(container)
   if (groupName) {
     GraphqlWrapper.getUpcomingEventsByGroupName({ url, limit, groupName })
       .then((data) => displayEvents({ data, document, container }))

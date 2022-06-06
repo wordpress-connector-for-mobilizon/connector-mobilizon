@@ -16,18 +16,24 @@ test.before(() => {
 
 test.beforeEach((t) => {
   t.context.container = document.createElement('div')
+  t.context.container.setAttribute('data-maximum', '2')
 
-  const errorMessageGroupNotFound = document.createElement('div')
-  errorMessageGroupNotFound.setAttribute('style', 'display: none;')
-  t.context.container.appendChild(errorMessageGroupNotFound)
   const errorMessageGeneral = document.createElement('div')
+  errorMessageGeneral.setAttribute('class', 'general-error')
   errorMessageGeneral.setAttribute('style', 'display: none;')
   t.context.container.appendChild(errorMessageGeneral)
 
+  const errorMessageGroupNotFound = document.createElement('div')
+  errorMessageGroupNotFound.setAttribute('class', 'group-not-found')
+  errorMessageGroupNotFound.setAttribute('style', 'display: none;')
+  t.context.container.appendChild(errorMessageGroupNotFound)
+
+  const loadingIndicator = document.createElement('div')
+  loadingIndicator.setAttribute('class', 'loading-indicator')
+  loadingIndicator.setAttribute('style', 'display: none;')
+  t.context.container.appendChild(loadingIndicator)
+
   const list = document.createElement('ul')
-  list.setAttribute('data-maximum', '2')
-  const loadingMessage = document.createElement('li')
-  list.appendChild(loadingMessage)
   t.context.container.appendChild(list)
 })
 
@@ -65,7 +71,7 @@ test.skip('#displayEvents one event', (t) => {
 
 test('#displayErrorMessage no list entries shown', (t) => {
   const container = t.context.container
-  const list = container.children[2]
+  const list = container.children[3]
   displayErrorMessage({ data: '', container })
   t.is(list.children.length, 0)
 })
@@ -75,6 +81,7 @@ test('#displayErrorMessage error message display', (t) => {
   displayErrorMessage({ data: '', container })
   t.is(container.children[0].style.display, 'block')
   t.is(container.children[1].style.display, 'none')
+  t.is(container.children[2].style.display, 'none')
 })
 
 test('#displayErrorMessage group not found error message display', (t) => {
@@ -91,4 +98,5 @@ test('#displayErrorMessage group not found error message display', (t) => {
   displayErrorMessage({ data, container })
   t.is(container.children[0].style.display, 'none')
   t.is(container.children[1].style.display, 'block')
+  t.is(container.children[2].style.display, 'none')
 })
