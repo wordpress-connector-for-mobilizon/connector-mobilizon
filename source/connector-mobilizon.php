@@ -51,7 +51,7 @@ final class Mobilizon_Connector {
       'timeZone' => wp_timezone_string(),
       'url' => MobilizonConnector\Settings::getUrl()
     );
-    wp_add_inline_script($scriptName, 'const SETTINGS = ' . json_encode($settings), 'before'); // TODO use different name
+    wp_add_inline_script($scriptName, 'const MOBILIZON_CONNECTOR = ' . json_encode($settings), 'before');
   }
 
   public function register_blocks() {

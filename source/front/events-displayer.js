@@ -9,10 +9,10 @@ export function clearEventsList(container) {
 export function displayEvents({ data, document, container }) {
   hideLoadingIndicator(container)
 
-  const isShortOffsetNameShown = SETTINGS.isShortOffsetNameShown
-  const locale = SETTINGS.locale
+  const isShortOffsetNameShown = MOBILIZON_CONNECTOR.isShortOffsetNameShown
+  const locale = MOBILIZON_CONNECTOR.locale
   const maxEventsCount = container.getAttribute('data-maximum')
-  const timeZone = SETTINGS.timeZone
+  const timeZone = MOBILIZON_CONNECTOR.timeZone
 
   const events = data.events
     ? data.events.elements

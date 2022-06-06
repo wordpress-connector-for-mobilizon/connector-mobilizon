@@ -8,7 +8,7 @@ let document
 test.before(() => {
   const window = new JSDOM().window
   document = window.document
-  window.SETTINGS = {
+  window.MOBILIZON_CONNECTOR = {
     locale: 'en-GB',
     timeZone: 'utc',
   }

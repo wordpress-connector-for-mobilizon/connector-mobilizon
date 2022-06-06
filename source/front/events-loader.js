@@ -19,7 +19,7 @@ function loadEventLists() {
 }
 
 export function loadEventList(container) {
-  const url = SETTINGS.url + URL_SUFFIX
+  const url = MOBILIZON_CONNECTOR.url + URL_SUFFIX
   const limit = parseInt(container.getAttribute('data-maximum'))
   const groupName = container.getAttribute('data-group-name')
   clearEventsList(container)
