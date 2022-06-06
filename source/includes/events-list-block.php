@@ -19,6 +19,22 @@ class EventsListBlock {
       ]);
     register_block_type(NAME . '/events-list', [
       'api_version' => 2,
+      'title' => __('Events List', 'connector-mobilizon'),
+      'description' =>  __('A list of the upcoming events of the connected Mobilizon instance.', 'connector-mobilizon'),
+      'category' => 'widgets',
+      'icon' => 'list-view',
+      'supports' => [
+        'html' => false
+      ],
+      'attributes' => [
+        'eventsCount' => [
+          'type' => 'number',
+          'default' => 3,
+        ],
+        'groupName' => [
+          'type' => 'string',
+        ],
+      ],
       'editor_script' => $scriptName,
       'render_callback' => 'MobilizonConnector\EventsListBlock::render',
     ]);

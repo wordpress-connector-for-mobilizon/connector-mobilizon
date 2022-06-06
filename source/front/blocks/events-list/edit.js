@@ -2,8 +2,8 @@
 import { loadEventList } from '../../events-loader.js'
 
 const { InspectorControls, useBlockProps } = wp.blockEditor
-const { useEffect } = wp.element
 const { PanelBody } = wp.components
+const { useEffect } = wp.element
 const { __ } = wp.i18n
 
 const NAME = '<wordpress-name>'
