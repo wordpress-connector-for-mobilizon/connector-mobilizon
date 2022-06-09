@@ -8,6 +8,8 @@ const { __ } = wp.i18n
 
 const NAME = '<wordpress-name>'
 
+let timer
+
 export default ({ attributes, setAttributes }) => {
   const blockProps = useBlockProps({
     className: NAME + '_events-list',
@@ -15,12 +17,15 @@ export default ({ attributes, setAttributes }) => {
     'data-group-name': attributes.groupName,
   })
   function reloadEventList() {
-    setTimeout(() => {
+    if (timer) {
+      clearTimeout(timer)
+    }
+    timer = setTimeout(() => {
       const container = document.getElementById(blockProps.id)
       if (container) {
         loadEventList(container)
       }
-    }, 0)
+    }, 500)
   }
   useEffect(() => {
     reloadEventList()
