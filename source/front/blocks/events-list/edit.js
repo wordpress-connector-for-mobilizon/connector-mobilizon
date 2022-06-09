@@ -14,15 +14,17 @@ export default ({ attributes, setAttributes }) => {
     'data-maximum': attributes.eventsCount,
     'data-group-name': attributes.groupName,
   })
+  function reloadEventList() {
+    setTimeout(() => {
+      const container = document.getElementById(blockProps.id)
+      if (container) {
+        loadEventList(container)
+      }
+    }, 0)
+  }
   useEffect(() => {
     reloadEventList()
   }, [])
-  function reloadEventList() {
-    const container = document.getElementById(blockProps.id)
-    if (container) {
-      loadEventList(container)
-    }
-  }
   function updateEventsCount(event) {
     let newValue = Number(event.target.value)
     if (newValue < 1) newValue = 1
