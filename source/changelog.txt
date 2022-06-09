@@ -4,6 +4,7 @@
 - Show loading indicator during request
 #### Changed
 - Set list style type to none and left padding to zero for all occurences
+- Move shortcut usage description into installation section in `readme.txt`
 #### Deprecated
 #### Removed
 #### Fixed
