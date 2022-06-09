@@ -1,6 +1,8 @@
 ### [Unreleased]
 #### Added
+- Add Gutenberg events list block
 #### Changed
+- Set list style type to none and left padding to zero for all occurences
 #### Deprecated
 #### Removed
 #### Fixed
