@@ -4,6 +4,7 @@ import browserEnv from 'browser-env'
 import {
   displayEvents,
   displayErrorMessage,
+  hideErrorMessages,
   showLoadingIndicator,
 } from './events-displayer.js'
 
@@ -105,4 +106,17 @@ test('#showLoadingIndicator remove events', (t) => {
   t.is(loadingIndicator.style.display, 'none')
   showLoadingIndicator(container)
   t.is(loadingIndicator.style.display, 'block')
+})
+
+test('#hideErrorMessages remove events', (t) => {
+  const container = t.context.container
+  const generalErrorMessage = container.querySelector('.general-error')
+  const groupNotFoundErrorMessage = container.querySelector('.group-not-found')
+  generalErrorMessage.style.display = 'block'
+  groupNotFoundErrorMessage.style.display = 'block'
+  t.is(generalErrorMessage.style.display, 'block')
+  t.is(groupNotFoundErrorMessage.style.display, 'block')
+  hideErrorMessages(container)
+  t.is(generalErrorMessage.style.display, 'none')
+  t.is(groupNotFoundErrorMessage.style.display, 'none')
 })

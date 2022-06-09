@@ -63,7 +63,6 @@ export function displayEvents({ data, document, container }) {
 
 export function displayErrorMessage({ data, container }) {
   hideLoadingIndicator(container)
-  console.error(data)
   if (
     Object.prototype.hasOwnProperty.call(data, 'response') &&
     Object.prototype.hasOwnProperty.call(data.response, 'errors') &&
@@ -76,6 +75,7 @@ export function displayErrorMessage({ data, container }) {
   } else {
     const message = container.querySelector('.general-error')
     message.style.display = 'block'
+    console.error(data)
   }
 }
 
@@ -87,4 +87,9 @@ export function showLoadingIndicator(container) {
 function hideLoadingIndicator(container) {
   const indicator = container.querySelector('.loading-indicator')
   indicator.style.display = 'none'
+}
+
+export function hideErrorMessages(container) {
+  container.querySelector('.group-not-found').style.display = 'none'
+  container.querySelector('.general-error').style.display = 'none'
 }

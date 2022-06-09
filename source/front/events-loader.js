@@ -2,6 +2,7 @@ import {
   clearEventsList,
   displayEvents,
   displayErrorMessage,
+  hideErrorMessages,
   showLoadingIndicator,
 } from './events-displayer.js'
 import * as GraphqlWrapper from './graphql-wrapper.js'
@@ -22,6 +23,7 @@ export function loadEventList(container) {
   const url = MOBILIZON_CONNECTOR.url + URL_SUFFIX
   const limit = parseInt(container.getAttribute('data-maximum'))
   const groupName = container.getAttribute('data-group-name')
+  hideErrorMessages(container)
   clearEventsList(container)
   showLoadingIndicator(container)
   if (groupName) {
