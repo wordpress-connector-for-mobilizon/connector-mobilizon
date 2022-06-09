@@ -1,13 +1,14 @@
 import test from 'ava'
-import { JSDOM } from 'jsdom'
+import browserEnv from 'browser-env'
 
-import { displayEvents, displayErrorMessage } from './events-displayer.js'
-
-let document
+import {
+  displayEvents,
+  displayErrorMessage,
+  showLoadingIndicator,
+} from './events-displayer.js'
 
 test.before(() => {
-  const window = new JSDOM().window
-  document = window.document
+  browserEnv()
   window.MOBILIZON_CONNECTOR = {
     locale: 'en-GB',
     timeZone: 'utc',
@@ -37,10 +38,7 @@ test.beforeEach((t) => {
   t.context.container.appendChild(list)
 })
 
-// TODO
-// eslint-disable-next-line ava/no-skip-test
-test.skip('#displayEvents one event', (t) => {
-  const container = t.context.container
+test('#displayEvents one event', (t) => {
   const data = {
     events: {
       elements: [
@@ -57,31 +55,31 @@ test.skip('#displayEvents one event', (t) => {
       ],
     },
   }
+  const container = t.context.container
   displayEvents({ data, document, container })
-  const list = container.children[2]
-  t.is(list.children.length, 3)
-  t.is(list.children[2].childNodes[0].tagName, 'A')
-  t.is(list.children[2].childNodes[0].getAttribute('href'), 'b')
-  t.is(list.children[2].childNodes[0].childNodes[0].nodeValue, 'a')
-  t.is(list.children[2].childNodes[1].tagName, 'BR')
-  t.is(list.children[2].childNodes[2].nodeValue, '15/04/2021 10:30 - 15:30')
-  t.is(list.children[2].childNodes[3].tagName, 'BR')
-  t.is(list.children[2].childNodes[4].nodeValue, 'c, d')
+  const list = container.querySelector('ul')
+  t.is(list.children[0].childNodes[0].tagName, 'A')
+  t.is(list.children[0].childNodes[0].getAttribute('href'), 'b')
+  t.is(list.children[0].childNodes[0].childNodes[0].nodeValue, 'a')
+  t.is(list.children[0].childNodes[1].tagName, 'BR')
+  t.is(list.children[0].childNodes[2].nodeValue, '15/04/2021 10:30 - 15:30')
+  t.is(list.children[0].childNodes[3].tagName, 'BR')
+  t.is(list.children[0].childNodes[4].nodeValue, 'c, d')
 })
 
 test('#displayErrorMessage no list entries shown', (t) => {
   const container = t.context.container
-  const list = container.children[3]
   displayErrorMessage({ data: '', container })
+  const list = container.querySelector('ul')
   t.is(list.children.length, 0)
 })
 
-test('#displayErrorMessage error message display', (t) => {
+test('#displayErrorMessage general error message display', (t) => {
   const container = t.context.container
   displayErrorMessage({ data: '', container })
-  t.is(container.children[0].style.display, 'block')
-  t.is(container.children[1].style.display, 'none')
-  t.is(container.children[2].style.display, 'none')
+  t.is(container.querySelector('.general-error').style.display, 'block')
+  t.is(container.querySelector('.group-not-found').style.display, 'none')
+  t.is(container.querySelector('.loading-indicator').style.display, 'none')
 })
 
 test('#displayErrorMessage group not found error message display', (t) => {
@@ -96,7 +94,15 @@ test('#displayErrorMessage group not found error message display', (t) => {
     },
   }
   displayErrorMessage({ data, container })
-  t.is(container.children[0].style.display, 'none')
-  t.is(container.children[1].style.display, 'block')
-  t.is(container.children[2].style.display, 'none')
+  t.is(container.querySelector('.general-error').style.display, 'none')
+  t.is(container.querySelector('.group-not-found').style.display, 'block')
+  t.is(container.querySelector('.loading-indicator').style.display, 'none')
+})
+
+test('#showLoadingIndicator remove events', (t) => {
+  const container = t.context.container
+  const loadingIndicator = container.querySelector('.loading-indicator')
+  t.is(loadingIndicator.style.display, 'none')
+  showLoadingIndicator(container)
+  t.is(loadingIndicator.style.display, 'block')
 })
