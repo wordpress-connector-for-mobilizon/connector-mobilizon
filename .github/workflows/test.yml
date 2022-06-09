@@ -24,5 +24,7 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
+      - name: Upgrade NPM
+        run: npm install -g npm
       - run: npm ci --omit=dev --ignore-scripts
       - run: npm run build-prod
