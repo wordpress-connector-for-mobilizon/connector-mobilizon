@@ -37,7 +37,6 @@
     "@wordpress/eslint-plugin": "12.4.0",
     "ava": "4.2.0",
     "babel-loader": "8.2.5",
-    "babel-register": "6.26.0",
     "browser-env": "3.3.0",
     "c8": "7.11.3",
     "copy-webpack-plugin": "11.0.0",
@@ -58,9 +57,6 @@
   "ava": {
     "files": [
       "./source/**/*test.js"
-    ],
-    "require": [
-      "babel-register"
     ]
   },
   "additionalDetails": {
