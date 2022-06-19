@@ -14,7 +14,6 @@ class EventsListBlock {
         'wp-block-editor',
         'wp-blocks',
         'wp-components',
-        'wp-editor',
         'wp-i18n'
       ]);
     register_block_type(NAME . '/events-list', [
