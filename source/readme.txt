@@ -37,8 +37,18 @@ You have to use their username, e.g. `@nosliensvivants`, and append the name of 
 2. General settings
 3. Widget creation
 4. Shortcut creation
+5. Gutenberg block in editor
 
 ## Changelog
+
+### [0.10.0]
+#### Added
+- Add Gutenberg events list block
+- Show loading indicator during request
+#### Changed
+- Set list style type to none and left padding to zero for all occurences
+- Move shortcut usage description into installation section in `readme.txt`
+- Update dependencies
 
 ### [0.9.1] - 2020-05-19
 #### Fixed

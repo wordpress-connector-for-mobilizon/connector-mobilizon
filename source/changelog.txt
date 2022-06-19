@@ -1,15 +1,19 @@
 ### [Unreleased]
 #### Added
+#### Changed
+#### Deprecated
+#### Removed
+#### Fixed
+#### Security
+
+### [0.10.0]
+#### Added
 - Add Gutenberg events list block
 - Show loading indicator during request
 #### Changed
 - Set list style type to none and left padding to zero for all occurences
 - Move shortcut usage description into installation section in `readme.txt`
 - Update dependencies
-#### Deprecated
-#### Removed
-#### Fixed
-#### Security
 
 ### [0.9.1] - 2020-05-19
 #### Fixed
