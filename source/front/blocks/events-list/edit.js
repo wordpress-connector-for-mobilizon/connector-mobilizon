@@ -45,7 +45,7 @@ export default ({ attributes, setAttributes }) => {
       <PanelBody title={__('Events List Settings', '<wordpress-name>')}>
         <label
           className="components-base-control__label"
-          htmlFor="<wordpress-name>_events-count"
+          htmlFor={NAME + '_events-count'}
         >
           {__('Number of events to show', '<wordpress-name>')}
         </label>
@@ -54,11 +54,11 @@ export default ({ attributes, setAttributes }) => {
           type="number"
           value={attributes.eventsCount}
           onChange={updateEventsCount}
-          id="<wordpress-name>_events-count"
+          id={NAME + '_events-count'}
         />
         <label
           className="components-base-control__label"
-          htmlFor="<wordpress-name>_group-name"
+          htmlFor={NAME + '_group-name'}
         >
           {__('Group name (optional)', '<wordpress-name>')}
         </label>
@@ -67,7 +67,7 @@ export default ({ attributes, setAttributes }) => {
           type="text"
           value={attributes.groupName}
           onChange={updateGroupName}
-          id="<wordpress-name>_group-name"
+          id={NAME + '_group-name'}
         />
       </PanelBody>
     </InspectorControls>,
