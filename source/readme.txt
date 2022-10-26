@@ -41,6 +41,11 @@ You have to use their username, e.g. `@nosliensvivants`, and append the name of 
 
 ## Changelog
 
+### [0.10.1]
+#### Changed
+- Confirm compatibility with WordPress 6.1
+- Update dependencies
+
 ### [0.10.0]
 #### Added
 - Add Gutenberg events list block
