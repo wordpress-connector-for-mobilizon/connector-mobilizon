@@ -2,6 +2,7 @@
 #### Added
 #### Changed
 - Confirm compatibility with WordPress 6.1
+- Update dependencies
 #### Deprecated
 #### Removed
 #### Fixed
