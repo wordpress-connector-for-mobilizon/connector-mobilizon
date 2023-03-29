@@ -41,6 +41,13 @@ You have to use their username, e.g. `@nosliensvivants`, and append the name of 
 
 ## Changelog
 
+### [0.11.0]
+#### Changed
+- Update dependencies
+- Confirm compatibility with WordPress 6.2
+#### Security
+- Set minimum PHP version to oldest stable 8.0
+
 ### [0.10.1]
 #### Changed
 - Confirm compatibility with WordPress 6.1

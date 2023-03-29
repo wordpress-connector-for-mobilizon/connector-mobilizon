@@ -1,11 +1,15 @@
 ### [Unreleased]
 #### Added
 #### Changed
-- Update dependencies
-- Confirm compatibility with WordPress 6.2
 #### Deprecated
 #### Removed
 #### Fixed
+#### Security
+
+### [0.11.0]
+#### Changed
+- Update dependencies
+- Confirm compatibility with WordPress 6.2
 #### Security
 - Set minimum PHP version to oldest stable 8.0
 
