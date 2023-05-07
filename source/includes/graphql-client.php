@@ -65,7 +65,8 @@ final class GraphQlClient {
     self::checkData($data);
 
     // SessionCache.add(sessionStorage, { url, query, variables: { limit } }, data)
-    return $data;
+    $events = $data['data']['events']['elements'];
+    return $events;
   }
 
   public static function get_upcoming_events_by_group_name(string $url, int $limit, string $groupName): array {
@@ -115,7 +116,8 @@ final class GraphQlClient {
     //     return Promise.resolve(data)
     //   }
     // )
-    return $data;
+    $events = $data['data']['group']['organizedEvents']['elements'];
+    return $events;
   }
 
   private static function checkData($data) {

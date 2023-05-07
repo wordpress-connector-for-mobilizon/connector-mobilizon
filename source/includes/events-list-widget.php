@@ -31,11 +31,10 @@ class EventsListWidget extends \WP_Widget {
 
     try {
       if ($groupName) {
-        $data = GraphQlClient::get_upcoming_events_by_group_name($url, (int) $eventsCount, $groupName);
+        $events = GraphQlClient::get_upcoming_events_by_group_name($url, (int) $eventsCount, $groupName);
       } else {
-        $data = GraphQlClient::get_upcoming_events($url, (int) $eventsCount);
+        $events = GraphQlClient::get_upcoming_events($url, (int) $eventsCount);
       }
-      $events = $data['data']['events']['elements'];
 
       $classNamePrefix = NAME;
       $locale = get_locale();
