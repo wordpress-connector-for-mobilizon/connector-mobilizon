@@ -29,9 +29,6 @@ class EventsListWidget extends \WP_Widget {
     $eventsCount = $options['eventsCount'];
     $locale = str_replace('_', '-', get_locale()); // TODO _ is okay too.
     $groupName = isset($options['groupName']) ? $options['groupName'] : '';
-    $url = Settings::getUrl();
-    $timeZone = wp_timezone_string();
-    $isShortOffsetNameShown = Settings::isShortOffsetNameShown();
 
     if ($groupName) {
       $data = GraphQlClient::get_upcoming_events_by_group_name($url, (int) $eventsCount, $groupName); // TODO wrap and put into shortcut as well

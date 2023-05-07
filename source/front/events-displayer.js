@@ -1,17 +1,25 @@
 import Formatter from './formatter.js'
 import { createAnchorElement } from './html-creator.js'
 
-export function displayEvents({ data, document, list }) {
-  const locale = list.getAttribute('data-locale')
-  const maxEventsCount = list.getAttribute('data-maximum')
-  const timeZone = list.getAttribute('data-time-zone')
-  const isShortOffsetNameShown = list.hasAttribute(
-    'data-is-short-offset-name-shown'
-  )
+export function clearEventsList(container) {
+  const list = container.querySelector('ul')
+  list.replaceChildren()
+}
+
+export function displayEvents({ data, document, container }) {
+  hideLoadingIndicator(container)
+
+  const isShortOffsetNameShown =
+    window.MOBILIZON_CONNECTOR.isShortOffsetNameShown
+  const locale = window.MOBILIZON_CONNECTOR.locale
+  const maxEventsCount = container.getAttribute('data-maximum')
+  const timeZone = window.MOBILIZON_CONNECTOR.timeZone
+
   const events = data.events
     ? data.events.elements
     : data.group.organizedEvents.elements
   const eventsCount = Math.min(maxEventsCount, events.length)
+  const list = container.querySelector('ul')
   for (let i = 0; i < eventsCount; i++) {
     const li = document.createElement('li')
 
@@ -53,8 +61,8 @@ export function displayEvents({ data, document, list }) {
   }
 }
 
-export function displayErrorMessage({ data, list }) {
-  console.error(data)
+export function displayErrorMessage({ data, container }) {
+  hideLoadingIndicator(container)
   if (
     Object.prototype.hasOwnProperty.call(data, 'response') &&
     Object.prototype.hasOwnProperty.call(data.response, 'errors') &&
@@ -62,8 +70,26 @@ export function displayErrorMessage({ data, list }) {
     Object.prototype.hasOwnProperty.call(data.response.errors[0], 'code') &&
     data.response.errors[0].code === 'group_not_found'
   ) {
-    list.children[1].style.display = 'block'
+    const message = container.querySelector('.group-not-found')
+    message.style.display = 'block'
   } else {
-    list.children[0].style.display = 'block'
+    const message = container.querySelector('.general-error')
+    message.style.display = 'block'
+    console.error(data)
   }
+}
+
+export function showLoadingIndicator(container) {
+  const indicator = container.querySelector('.loading-indicator')
+  indicator.style.display = 'block'
+}
+
+function hideLoadingIndicator(container) {
+  const indicator = container.querySelector('.loading-indicator')
+  indicator.style.display = 'none'
+}
+
+export function hideErrorMessages(container) {
+  container.querySelector('.group-not-found').style.display = 'none'
+  container.querySelector('.general-error').style.display = 'none'
 }

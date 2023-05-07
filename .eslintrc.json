@@ -3,25 +3,49 @@
     "browser": true,
     "es2020": true
   },
+  "globals": {
+    "MOBILIZON_CONNECTOR": "readonly"
+  },
+  "parser": "@babel/eslint-parser",
   "extends": [
     "eslint:recommended",
-    "plugin:ava/recommended"
+    "plugin:ava/recommended",
+    "plugin:@wordpress/eslint-plugin/recommended"
   ],
   "parserOptions": {
     "ecmaVersion": 11,
-    "sourceType": "module"
+    "requireConfigFile": false,
+    "sourceType": "module",
+    "babelOptions": {
+      "presets": ["@babel/preset-react"]
+    }
   },
   "plugins": [
-    "ava"
+    "ava",
+    "jsx"
   ],
   "rules": {
+    "import/no-unresolved": [
+      "off"
+    ],
     "indent": [
       "error",
       2
     ],
+    "no-console": [
+      "error", {
+        "allow": ["error"]
+      }
+    ],
+    "prettier/prettier": [
+      "off"
+    ],
     "quotes": [
       "error",
       "single"
+    ],
+    "react/jsx-key": [
+      "off"
     ],
     "semi": [
       "error",

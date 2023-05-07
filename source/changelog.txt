@@ -1,11 +1,48 @@
 ### [Unreleased]
 #### Added
 #### Changed
-- Update dependencies
 #### Deprecated
 #### Removed
 #### Fixed
 #### Security
+
+### [0.11.1]
+#### Fixed
+- Revert minimum PHP version to 7.4 to allow some more time for upgrading PHP
+
+### [0.11.0]
+#### Changed
+- Update dependencies
+- Confirm compatibility with WordPress 6.2
+#### Security
+- Set minimum PHP version to oldest stable 8.0
+
+### [0.10.1]
+#### Changed
+- Confirm compatibility with WordPress 6.1
+- Update dependencies
+
+### [0.10.0]
+#### Added
+- Add Gutenberg events list block
+- Show loading indicator during request
+#### Changed
+- Set list style type to none and left padding to zero for all occurences
+- Move shortcut usage description into installation section in `readme.txt`
+- Update dependencies
+
+### [0.9.1] - 2020-05-19
+#### Fixed
+- Fix WordPress compatibility version number
+
+### [0.9.0] - 2020-05-19
+#### Added
+- Improve explanation of group name filter
+#### Changed
+- Update dependencies
+- Confirm compatibility with WordPress 6.0
+#### Fixed
+- Fix displaying error message for the case the group is not found
 
 ### [0.8.0] - 2022-01-09
 #### Added

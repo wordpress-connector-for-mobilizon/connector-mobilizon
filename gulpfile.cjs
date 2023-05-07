@@ -10,6 +10,7 @@ const FOLDER_BUILD = './build'
 function injectMetadata() {
   return src(
     [
+      FOLDER_BUILD + '/front/block-events-loader.js',
       FOLDER_BUILD + '/front/events-loader.js',
       FOLDER_BUILD + '/' + PACKAGE.name + '.php',
       FOLDER_BUILD + '/includes/constants.php',

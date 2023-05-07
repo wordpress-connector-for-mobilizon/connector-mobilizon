@@ -37,7 +37,7 @@ export function getUpcomingEvents({ url, limit }) {
 
 export function getUpcomingEventsByGroupName({ url, limit, groupName }) {
   const query = `
-    query ($afterDatetime: DateTime, $groupName: String, $limit: Int) {
+    query ($afterDatetime: DateTime, $groupName: String!, $limit: Int) {
       group(preferredUsername: $groupName) {
         organizedEvents(afterDatetime: $afterDatetime, limit: $limit) {
           elements {

@@ -4,9 +4,7 @@ if (!defined('ABSPATH')) {
   exit;
 }
 ?>
-<ul class="<?php echo esc_attr($classNamePrefix); ?>_events-list"
-  data-url="<?php echo esc_attr($url); ?>"
-  data-locale="<?php echo esc_attr($locale); ?>"
+<div class="<?php echo esc_attr($classNamePrefix); ?>_events-list"
   data-maximum="<?php echo esc_attr($eventsCount); ?>"
   data-group-name="<?php echo esc_attr($groupName); ?>"
   data-time-zone="<?php echo esc_attr($timeZone); ?>"

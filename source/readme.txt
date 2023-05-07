@@ -15,26 +15,69 @@ License: <wordpress-license>
 <wordpress-nice-name> allows you to display the upcoming events of [Mobilizon](https://joinmobilizon.org/), which is a federated event listing platform, on your WordPress website.
 
 Features
-- Display events as widget and as shortcut
-- Display events' title, date, and location if available
+- Display events as Gutenberg block, as widget and as shortcut
+- Display events' title, date, and location, if available
 - Cache requests' responses for 2 minutes in the browser's `sessionStorage`
-- Configure number of events to show per widget and per shortcut
-- Optionally filter events by a specific group per widget and per shortcut
+- Configure number of events to show per block, per widget and per shortcut
+- Optionally filter events by a specific group per block, per widget and per shortcut
 - Set the URL of the Mobilizon instance in the settings
 - Toggle adding named offset in brackets after the time in the settings
 
-Shortcut format with limiting the number of events to show to 3 for example: `[<wordpress-name>-events-list events-count=3]`
-Optionally, you can only show the events of a specific group by indicatings its name: `[<wordpress-name>-events-list events-count=3 group-name="mygroup"]`
-
 The source code is available on [Github](https://github.com/dwaxweiler/connector-mobilizon).
+
+## Installation
+
+Shortcut format with limiting the number of events to show to 3 for example: `[<wordpress-name>-events-list events-count=3]`
+
+Optionally, you can only show the events of a specific group by indicatings its name: `[<wordpress-name>-events-list events-count=3 group-name="mygroup"]`
+You have to use their username, e.g. `@nosliensvivants`, and append the name of their instance if they use a different one, e.g. `@yaam_berlin@mobilize.berlin`.
 
 ## Screenshots
 1. Events list
 2. General settings
 3. Widget creation
 4. Shortcut creation
+5. Gutenberg block in editor
 
 ## Changelog
+
+### [0.11.1]
+#### Fixed
+- Revert minimum PHP version to 7.4 to allow some more time for upgrading PHP
+
+### [0.11.0]
+#### Changed
+- Update dependencies
+- Confirm compatibility with WordPress 6.2
+#### Security
+- Set minimum PHP version to oldest stable 8.0
+
+### [0.10.1]
+#### Changed
+- Confirm compatibility with WordPress 6.1
+- Update dependencies
+
+### [0.10.0]
+#### Added
+- Add Gutenberg events list block
+- Show loading indicator during request
+#### Changed
+- Set list style type to none and left padding to zero for all occurences
+- Move shortcut usage description into installation section in `readme.txt`
+- Update dependencies
+
+### [0.9.1] - 2020-05-19
+#### Fixed
+- Fix WordPress compatibility version number
+
+### [0.9.0] - 2020-05-19
+#### Added
+- Improve explanation of group name filter
+#### Changed
+- Update dependencies
+- Confirm compatibility with WordPress 6.0
+#### Fixed
+- Fix displaying error message for the case the group is not found
 
 ### [0.8.0] - 2022-01-09
 #### Added

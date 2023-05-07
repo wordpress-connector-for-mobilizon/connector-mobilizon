@@ -6,10 +6,13 @@ const CopyPlugin = require('copy-webpack-plugin')
 const FOLDER_SOURCE = './source'
 
 module.exports = {
-  entry: FOLDER_SOURCE + '/front/events-loader.js',
+  entry: {
+    'block-events-loader': FOLDER_SOURCE + '/front/block-events-loader.js',
+    'events-loader': FOLDER_SOURCE + '/front/events-loader.js',
+  },
   output: {
-    filename: 'events-loader.js',
-    path: path.resolve(__dirname, 'build/' + '/front'),
+    filename: '[name].js',
+    path: path.resolve(__dirname, 'build/front'),
   },
   module: {
     rules: [
