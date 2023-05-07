@@ -41,6 +41,10 @@ You have to use their username, e.g. `@nosliensvivants`, and append the name of 
 
 ## Changelog
 
+### [0.11.1]
+#### Fixed
+- Revert minimum PHP version to 7.4 to allow some more time for upgrading PHP
+
 ### [0.11.0]
 #### Changed
 - Update dependencies

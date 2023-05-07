@@ -4,8 +4,11 @@
 #### Deprecated
 #### Removed
 #### Fixed
-- Revert minimum PHP version to 7.4 to allow some more time for upgrading PHP
 #### Security
+
+### [0.11.1]
+#### Fixed
+- Revert minimum PHP version to 7.4 to allow some more time for upgrading PHP
 
 ### [0.11.0]
 #### Changed
