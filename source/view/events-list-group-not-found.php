@@ -7,5 +7,5 @@ if (!defined('ABSPATH')) {
 }
 ?>
 <div class="<?php echo esc_attr($classNamePrefix); ?>_events-list">
-  <?php esc_html_e('The group could not be found!', 'connector-mobilizon'); ?>
+  <?php echo esc_html(sprintf(__('The group "%s" could not be found!', 'connector-mobilizon'), $groupName)); ?>
 </div>
