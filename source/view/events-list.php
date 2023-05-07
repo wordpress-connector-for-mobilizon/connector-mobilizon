@@ -5,7 +5,7 @@ if (!defined('ABSPATH')) {
 }
 ?>
 <div class="<?php echo esc_attr($classNamePrefix); ?>_events-list-php">
-  <ul>
+  <ul style="list-style-type: none; padding-left: 0;">
     <?php foreach($events as $event) { ?>
     <li>
       <a href="<?php echo esc_attr($event['url']); ?>"><?php echo esc_html_e($event['title']); ?></a>
