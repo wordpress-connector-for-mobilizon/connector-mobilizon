@@ -1,4 +1,10 @@
 <?php
+namespace MobilizonConnector;
+
+// Exit if this file is called directly.
+if (!defined('ABSPATH')) {
+  exit;
+}
 
 final class DateTimeWrapper {
   private $dateTime;
@@ -12,13 +18,13 @@ final class DateTimeWrapper {
     if (!$timeZone) {
       $timeZone = 'utc';
     }
-    $this->dateTime = new DateTime($text);
+    $this->dateTime = new \DateTime($text);
     $this->locale = $locale;
-    $this->timeZone = new DateTimeZone($timeZone);
+    $this->timeZone = new \DateTimeZone($timeZone);
   }
 
   public function getShortDate(): string {
-    $formatter = IntlDateFormatter::create($this->locale, IntlDateFormatter::SHORT, IntlDateFormatter::NONE, $this->timeZone);
+    $formatter = \IntlDateFormatter::create($this->locale, \IntlDateFormatter::SHORT, \IntlDateFormatter::NONE, $this->timeZone);
     return $formatter->format($this->dateTime);
   }
 
@@ -27,7 +33,7 @@ final class DateTimeWrapper {
   }
 
   public function get24Time(): string {
-    $formatter = IntlDateFormatter::create($this->locale, IntlDateFormatter::NONE, IntlDateFormatter::SHORT, $this->timeZone);
+    $formatter = \IntlDateFormatter::create($this->locale, \IntlDateFormatter::NONE, \IntlDateFormatter::SHORT, $this->timeZone);
     return $formatter->format($this->dateTime);
   }
 }

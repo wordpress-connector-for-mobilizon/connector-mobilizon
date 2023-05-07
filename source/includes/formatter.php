@@ -1,4 +1,11 @@
 <?php
+namespace MobilizonConnector;
+
+// Exit if this file is called directly.
+if (!defined('ABSPATH')) {
+  exit;
+}
+
 final class Formatter
 {
   public static function format_date(string $locale, string $timeZone, string $start, ?string $end, bool $isShortOffsetNameShown): string {
