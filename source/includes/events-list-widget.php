@@ -29,18 +29,25 @@ class EventsListWidget extends \WP_Widget {
     $eventsCount = $options['eventsCount'];
     $groupName = isset($options['groupName']) ? $options['groupName'] : '';
 
-    if ($groupName) {
-      $data = GraphQlClient::get_upcoming_events_by_group_name($url, (int) $eventsCount, $groupName);
-    } else {
-      $data = GraphQlClient::get_upcoming_events($url, (int) $eventsCount);
+    try {
+      if ($groupName) {
+        $data = GraphQlClient::get_upcoming_events_by_group_name($url, (int) $eventsCount, $groupName);
+      } else {
+        $data = GraphQlClient::get_upcoming_events($url, (int) $eventsCount);
+      }
+      $events = $data['data']['events']['elements'];
+
+      $classNamePrefix = NAME;
+      $locale = get_locale();
+      $isShortOffsetNameShown = Settings::isShortOffsetNameShown();
+      $timeZone = wp_timezone_string();
+  
+      require dirname(__DIR__) . '/view/events-list.php';
+    } catch (GeneralException $e) {
+      require dirname(__DIR__) . '/view/events-list-not-loaded.php';
+    } catch (GroupNotFoundException $e) {
+      require dirname(__DIR__) . '/view/events-list-group-not-found.php';
     }
-
-    $classNamePrefix = NAME;
-    $locale = get_locale();
-    $isShortOffsetNameShown = Settings::isShortOffsetNameShown();
-    $timeZone = wp_timezone_string();
-
-    require dirname(__DIR__) . '/view/events-list.php';
 
     echo $args['after_widget'];
   }

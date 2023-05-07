@@ -62,13 +62,15 @@ final class GraphQlClient {
     //   return Promise.resolve(dataInCache)
     // }
     $data = self::query($endpoint, $query, ['limit' => $limit]);
-      // SessionCache.add(sessionStorage, { url, query, variables: { limit } }, data)
+    self::checkData($data);
+
+    // SessionCache.add(sessionStorage, { url, query, variables: { limit } }, data)
     return $data;
   }
 
   public static function get_upcoming_events_by_group_name(string $url, int $limit, string $groupName): array {
     $query = <<<'GRAPHQL'
-      query ($afterDatetime: DateTime, $groupName: String, $limit: Int) {
+      query ($afterDatetime: DateTime, $groupName: String!, $limit: Int) {
         group(preferredUsername: $groupName) {
           organizedEvents(afterDatetime: $afterDatetime, limit: $limit) {
             elements {
@@ -100,7 +102,9 @@ final class GraphQlClient {
     //   return Promise.resolve(dataInCache)
     // }
     $afterDatetime = date(\DateTime::ISO8601);
-    $data = self::query($endpoint, $query, ['afterDatetime'=> $afterDatetime, 'groupName' => $groupName, 'limit' => $limit]);
+    $data = self::query($endpoint, $query, ['afterDatetime' => $afterDatetime, 'groupName' => $groupName, 'limit' => $limit]);
+    self::checkData($data);
+
     // return request(url, query, { afterDatetime, groupName, limit }).then(
     //   (data) => {
     //     SessionCache.add(
@@ -112,5 +116,17 @@ final class GraphQlClient {
     //   }
     // )
     return $data;
+  }
+
+  private static function checkData($data) {
+    if (isset($data['errors'])) {
+      if (count($data['errors']) > 0 &&
+          isset($data['errors'][0]['code']) &&
+          $data['errors'][0]['code'] === 'group_not_found') {
+        throw new GroupNotFoundException(serialize($data['errors'][0]));
+      } else {
+        throw new GeneralException(serialize($data['errors']));
+      }
+    }
   }
 }

@@ -10,6 +10,8 @@
  * License:           <wordpress-license>
  */
 
+require_once __DIR__ . '/includes/exceptions/general-exception.php';
+require_once __DIR__ . '/includes/exceptions/group-not-found-exception.php';
 require_once __DIR__ . '/includes/constants.php';
 require_once __DIR__ . '/includes/settings.php';
 require_once __DIR__ . '/includes/date-time-wrapper.php';

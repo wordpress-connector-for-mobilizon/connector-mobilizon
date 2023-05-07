@@ -28,19 +28,26 @@ class EventsListShortcut {
     $eventsCount = $atts_with_overriden_defaults['events-count'];
     $groupName = $atts_with_overriden_defaults['group-name'];
 
-    if ($groupName) {
-      $data = GraphQlClient::get_upcoming_events_by_group_name($url, (int) $eventsCount, $groupName);
-    } else {
-      $data = GraphQlClient::get_upcoming_events($url, (int) $eventsCount);
-    }
-
-    $classNamePrefix = NAME;
-    $locale = get_locale();
-    $isShortOffsetNameShown = Settings::isShortOffsetNameShown();
-    $timeZone = wp_timezone_string();
-
     ob_start();
-    require dirname(__DIR__) . '/view/events-list.php';
+    try {
+      if ($groupName) {
+        $data = GraphQlClient::get_upcoming_events_by_group_name($url, (int) $eventsCount, $groupName);
+      } else {
+        $data = GraphQlClient::get_upcoming_events($url, (int) $eventsCount);
+      }
+      $events = $data['data']['group']['organizedEvents']['elements'];
+
+      $classNamePrefix = NAME;
+      $locale = get_locale();
+      $isShortOffsetNameShown = Settings::isShortOffsetNameShown();
+      $timeZone = wp_timezone_string();
+
+      require dirname(__DIR__) . '/view/events-list.php';
+    } catch (GeneralException $e) {
+      require dirname(__DIR__) . '/view/events-list-not-loaded.php';
+    } catch (GroupNotFoundException $e) {
+      require dirname(__DIR__) . '/view/events-list-group-not-found.php';
+    }
     $output = ob_get_clean();
     return $output;
   }

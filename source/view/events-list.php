@@ -5,10 +5,8 @@ if (!defined('ABSPATH')) {
 }
 ?>
 <div class="<?php echo esc_attr($classNamePrefix); ?>_events-list-php">
-  <div class="general-error" style="display: none;"><?php esc_html_e('The events could not be loaded!', 'connector-mobilizon'); ?></div>
-  <div class="group-not-found" style="display: none;"><?php esc_html_e('The group could not be found!', 'connector-mobilizon'); ?></div>
   <ul>
-    <?php foreach($data['data']['events']['elements'] as $event) { ?>
+    <?php foreach($events as $event) { ?>
     <li>
       <a href="<?php echo esc_attr($event['url']); ?>"><?php echo esc_html_e($event['title']); ?></a>
       <br>
