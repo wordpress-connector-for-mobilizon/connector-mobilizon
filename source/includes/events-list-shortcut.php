@@ -24,9 +24,20 @@ class EventsListShortcut {
       ), $atts
     );
 
-    $classNamePrefix = NAME;
+    $url = Settings::getUrl();
     $eventsCount = $atts_with_overriden_defaults['events-count'];
     $groupName = $atts_with_overriden_defaults['group-name'];
+
+    if ($groupName) {
+      $data = GraphQlClient::get_upcoming_events_by_group_name($url, (int) $eventsCount, $groupName);
+    } else {
+      $data = GraphQlClient::get_upcoming_events($url, (int) $eventsCount);
+    }
+
+    $classNamePrefix = NAME;
+    $locale = get_locale();
+    $isShortOffsetNameShown = Settings::isShortOffsetNameShown();
+    $timeZone = wp_timezone_string();
 
     ob_start();
     require dirname(__DIR__) . '/view/events-list.php';

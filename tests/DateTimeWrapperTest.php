@@ -7,6 +7,11 @@ final class DateTimeWrapperTest extends TestCase {
     $this->assertEquals('24/12/2020', $d->getShortDate());
   }
 
+  public function testCanGetShortDateForUsualDateWithLocaleWithUnderscore(): void {
+    $d = new DateTimeWrapper('2020-12-24T16:45:00Z');
+    $this->assertEquals('24/12/2020', $d->getShortDate(), 'en_GB');
+  }
+
   public function testCanGetShortDateForUsualDateWithTimezoneString(): void {
     $d = new DateTimeWrapper('2020-12-24T16:45:00Z', 'en-GB', 'Europe/Rome');
     $this->assertEquals('24/12/2020', $d->getShortDate());
@@ -35,5 +40,5 @@ final class DateTimeWrapperTest extends TestCase {
   public function testCanGetShortOffsetNameForUsualTime(): void {
     $d = new DateTimeWrapper('2020-12-24T16:45:00Z');
     $this->assertEquals(0, $d->getOffset()); // TODO was UTC
-  }  
+  }
 }

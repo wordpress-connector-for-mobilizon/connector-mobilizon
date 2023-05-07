@@ -4,16 +4,11 @@ if (!defined('ABSPATH')) {
   exit;
 }
 ?>
-<div class="<?php echo esc_attr($classNamePrefix); ?>_events-list"
-  data-maximum="<?php echo esc_attr($eventsCount); ?>"
-  data-group-name="<?php echo esc_attr($groupName); ?>"
-  data-time-zone="<?php echo esc_attr($timeZone); ?>"
-  <?php echo $isShortOffsetNameShown ? 'data-is-short-offset-name-shown' : ''; ?>>
+<div class="<?php echo esc_attr($classNamePrefix); ?>_events-list">
   <li style="display: none;"><?php esc_html_e('The events could not be loaded!', 'connector-mobilizon'); ?></li>
   <li style="display: none;"><?php esc_html_e('The group could not be found!', 'connector-mobilizon'); ?></li>
 </ul>
 
-<?php /*print_r($data);*/ ?>
 <ul>
 <?php foreach($data['data']['events']['elements'] as $event) { ?>
   <li>

@@ -99,7 +99,7 @@ final class GraphQlClient {
     // if (dataInCache !== null) {
     //   return Promise.resolve(dataInCache)
     // }
-    $afterDatetime = date(DateTime::ISO8601);
+    $afterDatetime = date(\DateTime::ISO8601);
     $data = self::query($endpoint, $query, ['afterDatetime'=> $afterDatetime, 'groupName' => $groupName, 'limit' => $limit]);
     // return request(url, query, { afterDatetime, groupName, limit }).then(
     //   (data) => {
