@@ -4,4 +4,5 @@ coverage/
 node_modules/
 vendor/
 
+.phpunit.cache
 .phpunit.result.cache

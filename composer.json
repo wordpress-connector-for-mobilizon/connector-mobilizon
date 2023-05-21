@@ -1,8 +1,8 @@
 {
   "autoload": {
-    "classmap": [
-      "source/includes"
-    ]
+    "psr-4": {
+      "MobilizonConnector\\": "source/includes/"
+    }
   },
   "require-dev": {
     "phpunit/phpunit": "^9.6"
