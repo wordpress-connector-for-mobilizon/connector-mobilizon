@@ -18,17 +18,17 @@ final class DateTimeWrapper {
     $this->timeZone = new \DateTimeZone($timeZone);
   }
 
+  public function get24Time(): string {
+    $formatter = \IntlDateFormatter::create($this->locale, \IntlDateFormatter::NONE, \IntlDateFormatter::SHORT, $this->timeZone);
+    return $formatter->format($this->dateTime);
+  }
+
   public function getShortDate(): string {
     $formatter = \IntlDateFormatter::create($this->locale, \IntlDateFormatter::SHORT, \IntlDateFormatter::NONE, $this->timeZone);
     return $formatter->format($this->dateTime);
   }
 
-  public function getOffset(): string {
-    return $this->timeZone->getOffset($this->dateTime);
-  }
-
-  public function get24Time(): string {
-    $formatter = \IntlDateFormatter::create($this->locale, \IntlDateFormatter::NONE, \IntlDateFormatter::SHORT, $this->timeZone);
-    return $formatter->format($this->dateTime);
+  public function getTimeZoneName(): string {
+    return $this->timeZone->getName();
   }
 }

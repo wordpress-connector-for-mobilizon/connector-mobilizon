@@ -11,7 +11,7 @@ final class FormatterTest extends PHPUnit\Framework\TestCase
   }
 
   public function testCanDateFormatOneDateWithOffset(): void {
-    $this->assertSame('15/04/2021 10:30 - 15:30 (0)', Formatter::format_date('en-GB', 'UTC', '2021-04-15T10:30:00Z', '2021-04-15T15:30:00Z', true));
+    $this->assertSame('15/04/2021 10:30 - 15:30 (UTC)', Formatter::format_date('en-GB', 'UTC', '2021-04-15T10:30:00Z', '2021-04-15T15:30:00Z', true));
   }
 
   public function testCanDateFormatOneDateWithTimeZoneOffset(): void {
@@ -23,7 +23,7 @@ final class FormatterTest extends PHPUnit\Framework\TestCase
   }
 
   public function testCanDateFormatTwoDatesWithOffset(): void {
-    $this->assertSame('15/04/2021 10:30 - 16/04/2021 15:30 (0)', Formatter::format_date('en-GB', 'UTC', '2021-04-15T10:30:00Z', '2021-04-16T15:30:00Z', true));
+    $this->assertSame('15/04/2021 10:30 - 16/04/2021 15:30 (UTC)', Formatter::format_date('en-GB', 'UTC', '2021-04-15T10:30:00Z', '2021-04-16T15:30:00Z', true));
   }
 
   public function testCanDateFormatWhenSecondDateIsNull(): void {
@@ -31,7 +31,7 @@ final class FormatterTest extends PHPUnit\Framework\TestCase
   }
 
   public function testCanDateFormatWhenSecondDateIsNullWithOffset(): void {
-    $this->assertSame('15/04/2021 10:30 (0)', Formatter::format_date('en-GB', 'UTC', '2021-04-15T10:30:00Z', null, true));
+    $this->assertSame('15/04/2021 10:30 (UTC)', Formatter::format_date('en-GB', 'UTC', '2021-04-15T10:30:00Z', null, true));
   }
 
   public function testCanLocationFormatBothParameters(): void {

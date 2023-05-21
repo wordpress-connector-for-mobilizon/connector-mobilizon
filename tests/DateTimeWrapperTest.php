@@ -5,6 +5,11 @@ use MobilizonConnector\DateTimeWrapper;
 use PHPUnit\Framework\TestCase;
 
 final class DateTimeWrapperTest extends TestCase {
+  public function testCanGet24TimeForUsualTime(): void {
+    $d = new DateTimeWrapper('2020-12-24T16:45:00Z');
+    $this->assertSame('16:45', $d->get24Time());
+  }
+
   public function testCanGetShortDateForUsualDate(): void {
     $d = new DateTimeWrapper('2020-12-24T16:45:00Z');
     $this->assertSame('24/12/2020', $d->getShortDate());
@@ -35,13 +40,8 @@ final class DateTimeWrapperTest extends TestCase {
     $this->assertSame('24/12/2020', $d->getShortDate());
   }
 
-  public function testCanGet24TimeForUsualTime(): void {
-    $d = new DateTimeWrapper('2020-12-24T16:45:00Z');
-    $this->assertSame('16:45', $d->get24Time());
-  }
-
   public function testCanGetShortOffsetNameForUsualTime(): void {
     $d = new DateTimeWrapper('2020-12-24T16:45:00Z');
-    $this->assertSame('0', $d->getOffset()); // TODO was UTC
+    $this->assertSame('UTC', $d->getTimeZoneName());
   }
 }

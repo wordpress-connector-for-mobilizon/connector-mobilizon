@@ -8,7 +8,7 @@ final class Formatter
     $dateText = $startDateTime->getShortDate();
     $dateText .= ' ' . $startDateTime->get24Time();
     if (!$end && $isShortOffsetNameShown) {
-      $dateText .= ' (' . $startDateTime->getOffset() . ')';
+      $dateText .= ' (' . $startDateTime->getTimeZoneName() . ')';
     }
     if ($end) {
       $endDateTime = new DateTimeWrapper($end, $locale, $timeZone);
@@ -20,7 +20,7 @@ final class Formatter
       }
       $dateText .= $endDateTime->get24Time();
       if ($isShortOffsetNameShown) {
-        $dateText .= ' (' . $endDateTime->getOffset() . ')';
+        $dateText .= ' (' . $endDateTime->getTimeZoneName() . ')';
       }
     }
     return $dateText;
