@@ -47,20 +47,17 @@ final class GraphQlClient {
       }
       GRAPHQL;
 
+    $cachedEvents = EventsCache::get(['url' => $url, 'query' => $query, 'limit' => $limit]);
+    if ($cachedEvents !== false) {
+      return $cachedEvents;
+    }
+
     $endpoint = $url . '/api';
-    // const dataInCache = SessionCache.get(sessionStorage, {
-    //   url,
-    //   query,
-    //   variables: { limit },
-    // })
-    // if (dataInCache !== null) {
-    //   return Promise.resolve(dataInCache)
-    // }
     $data = self::query($endpoint, $query, ['limit' => $limit]);
     self::checkData($data);
 
-    // SessionCache.add(sessionStorage, { url, query, variables: { limit } }, data)
     $events = $data['data']['events']['elements'];
+    EventsCache::set(['url' => $url, 'query' => $query, 'limit' => $limit], $events);
     return $events;
   }
 
@@ -86,32 +83,19 @@ final class GraphQlClient {
       }
       GRAPHQL;
 
-    $endpoint = $url . '/api';
-
-    // const afterDatetime = DateTimeWrapper.getCurrentDatetimeAsString()
-    // const dataInCache = SessionCache.get(sessionStorage, {
-    //   url,
-    //   query,
-    //   variables: { afterDatetime, groupName, limit },
-    // })
-    // if (dataInCache !== null) {
-    //   return Promise.resolve(dataInCache)
-    // }
     $afterDatetime = date(\DateTime::ISO8601);
+
+    $cachedEvents = EventsCache::get(['url' => $url, 'query' => $query, 'afterDatetime' => $afterDatetime, 'groupName' => $groupName, 'limit' => $limit]);
+    if ($cachedEvents !== false) {
+      return $cachedEvents;
+    }
+
+    $endpoint = $url . '/api';
     $data = self::query($endpoint, $query, ['afterDatetime' => $afterDatetime, 'groupName' => $groupName, 'limit' => $limit]);
     self::checkData($data);
 
-    // return request(url, query, { afterDatetime, groupName, limit }).then(
-    //   (data) => {
-    //     SessionCache.add(
-    //       sessionStorage,
-    //       { url, query, variables: { afterDatetime, groupName, limit } },
-    //       data
-    //     )
-    //     return Promise.resolve(data)
-    //   }
-    // )
     $events = $data['data']['group']['organizedEvents']['elements'];
+    EventsCache::set(['url' => $url, 'query' => $query, 'afterDatetime' => $afterDatetime, 'groupName' => $groupName, 'limit' => $limit], $events);
     return $events;
   }
 

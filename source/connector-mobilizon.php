@@ -13,6 +13,7 @@
 require_once __DIR__ . '/includes/exceptions/GeneralException.php';
 require_once __DIR__ . '/includes/exceptions/GroupNotFoundException.php';
 require_once __DIR__ . '/includes/Constants.php';
+require_once __DIR__ . '/includes/EventsCache.php';
 require_once __DIR__ . '/includes/Settings.php';
 require_once __DIR__ . '/includes/DateTimeWrapper.php';
 require_once __DIR__ . '/includes/Formatter.php';
