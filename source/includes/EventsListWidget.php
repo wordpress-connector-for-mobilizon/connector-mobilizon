@@ -1,11 +1,6 @@
 <?php
 namespace MobilizonConnector;
 
-// Exit if this file is called directly.
-if (!defined('ABSPATH')) {
-  exit;
-}
-
 class EventsListWidget extends \WP_Widget {
 
   public function __construct() {
