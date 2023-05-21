@@ -13,13 +13,13 @@
 require_once __DIR__ . '/includes/exceptions/general-exception.php';
 require_once __DIR__ . '/includes/exceptions/group-not-found-exception.php';
 require_once __DIR__ . '/includes/constants.php';
-require_once __DIR__ . '/includes/settings.php';
-require_once __DIR__ . '/includes/date-time-wrapper.php';
-require_once __DIR__ . '/includes/formatter.php';
-require_once __DIR__ . '/includes/graphql-client.php';
-require_once __DIR__ . '/includes/events-list-block.php';
-require_once __DIR__ . '/includes/events-list-shortcut.php';
-require_once __DIR__ . '/includes/events-list-widget.php';
+require_once __DIR__ . '/includes/Settings.php';
+require_once __DIR__ . '/includes/DateTimeWrapper.php';
+require_once __DIR__ . '/includes/Formatter.php';
+require_once __DIR__ . '/includes/GraphQlClient.php';
+require_once __DIR__ . '/includes/EventsListBlock.php';
+require_once __DIR__ . '/includes/EventsListShortcut.php';
+require_once __DIR__ . '/includes/EventsListWidget.php';
 
 // Exit if this file is called directly.
 if (!defined('ABSPATH')) {
