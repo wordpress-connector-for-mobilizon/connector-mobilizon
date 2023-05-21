@@ -39,8 +39,9 @@ The current changelog can be found under [source/changelog.txt](source/changelog
 
 - Run ESLint: `npm run eslint`
 - Run JavaScript code coverage with tests: `npm run coverage`
-- Run tests: `npm test` & `./vendor/bin/phpunit` (`composer dump-autoload` after newly created class)
+- Run tests: `npm test`
 - Delete build folder: `npm run clean`
 - Update PHP dependencies: `composer update`
 - Check for direct PHP dependency updates: `composer outdated --direct`
 - Format code with prettier: `npm run format`
+- Generate `vendor/autoload.php` file after creating new class: `composer dump-autoload`
