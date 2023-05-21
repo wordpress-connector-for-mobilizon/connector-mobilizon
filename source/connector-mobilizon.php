@@ -10,9 +10,9 @@
  * License:           <wordpress-license>
  */
 
-require_once __DIR__ . '/includes/exceptions/general-exception.php';
-require_once __DIR__ . '/includes/exceptions/group-not-found-exception.php';
-require_once __DIR__ . '/includes/constants.php';
+require_once __DIR__ . '/includes/exceptions/GeneralException.php';
+require_once __DIR__ . '/includes/exceptions/GroupNotFoundException.php';
+require_once __DIR__ . '/includes/Constants.php';
 require_once __DIR__ . '/includes/Settings.php';
 require_once __DIR__ . '/includes/DateTimeWrapper.php';
 require_once __DIR__ . '/includes/Formatter.php';
