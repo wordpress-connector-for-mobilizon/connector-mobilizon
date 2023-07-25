@@ -8,6 +8,15 @@
 #### Fixed
 #### Security
 
+### [0.11.3]
+#### Fixed
+- Clean up distributed files
+
+### [0.11.2]
+#### Changed
+- Update dependencies
+- Confirm compatibility with WordPress 6.3
+
 ### [0.11.1]
 #### Fixed
 - Revert minimum PHP version to 7.4 to allow some more time for upgrading PHP
