@@ -6,6 +6,10 @@
 #### Fixed
 #### Security
 
+### [0.11.3]
+#### Fixed
+- Clean up distributed files
+
 ### [0.11.2]
 #### Changed
 - Update dependencies

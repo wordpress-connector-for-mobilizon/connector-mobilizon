@@ -41,6 +41,10 @@ You have to use their username, e.g. `@nosliensvivants`, and append the name of 
 
 ## Changelog
 
+### [0.11.3]
+#### Fixed
+- Clean up distributed files
+
 ### [0.11.2]
 #### Changed
 - Update dependencies
