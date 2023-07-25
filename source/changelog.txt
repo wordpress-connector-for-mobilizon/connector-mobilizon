@@ -1,12 +1,15 @@
 ### [Unreleased]
 #### Added
 #### Changed
-- Update dependencies
-- Confirm compatibility with WordPress 6.3
 #### Deprecated
 #### Removed
 #### Fixed
 #### Security
+
+### [0.11.2]
+#### Changed
+- Update dependencies
+- Confirm compatibility with WordPress 6.3
 
 ### [0.11.1]
 #### Fixed
