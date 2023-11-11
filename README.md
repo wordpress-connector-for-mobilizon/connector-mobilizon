@@ -34,6 +34,8 @@ The current changelog can be found under [source/changelog.txt](source/changelog
 11. Commit the new version in git with the same message.
 12. Tag the new version: `git tag v<version>`
 13. Push the new tag to the repository: `git push --tags`
+14. Append `-next` to the version number in `package.json`.
+15. Update the `package-lock.json`: `npm i --package-lock-only`
 
 ### Other commands
 
