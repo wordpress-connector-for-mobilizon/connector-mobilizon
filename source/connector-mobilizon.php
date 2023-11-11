@@ -13,6 +13,7 @@
 require_once __DIR__ . '/includes/exceptions/GeneralException.php';
 require_once __DIR__ . '/includes/exceptions/GroupNotFoundException.php';
 require_once __DIR__ . '/includes/Constants.php';
+require_once __DIR__ . '/includes/Api.php';
 require_once __DIR__ . '/includes/EventsCache.php';
 require_once __DIR__ . '/includes/Settings.php';
 require_once __DIR__ . '/includes/DateTimeWrapper.php';
@@ -30,6 +31,7 @@ if (!defined('ABSPATH')) {
 final class Mobilizon_Connector {
 
   private function __construct() {
+    add_action('init', [$this, 'register_api']);
     add_action('init', [$this, 'register_blocks']);
     add_action('init', [$this, 'register_settings'], 1); // required for register_blocks
     add_action('init', [$this, 'register_shortcut']);
@@ -58,6 +60,10 @@ final class Mobilizon_Connector {
       'url' => MobilizonConnector\Settings::getUrl()
     );
     wp_add_inline_script($scriptName, 'var MOBILIZON_CONNECTOR = ' . json_encode($settings), 'before');
+  }
+
+  public function register_api() {
+    MobilizonConnector\Api::init();
   }
 
   public function register_blocks() {

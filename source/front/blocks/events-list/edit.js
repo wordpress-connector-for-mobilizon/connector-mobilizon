@@ -1,5 +1,9 @@
 /* eslint-disable @wordpress/i18n-ellipsis */
 import { loadEventList } from '../../events-loader.js'
+import {
+  showLoadingIndicator,
+  hideLoadingIndicator
+} from '../../events-displayer.js'
 
 const { InspectorControls, useBlockProps } = wp.blockEditor
 const { PanelBody } = wp.components
@@ -23,7 +27,25 @@ export default ({ attributes, setAttributes }) => {
     timer = setTimeout(() => {
       const container = document.getElementById(blockProps.id)
       if (container) {
-        loadEventList(container)
+        // loadEventList(container)
+        // TODO use API instead
+        
+        // TODO not using newest values yet
+        showLoadingIndicator(container)
+        const eventsCount = attributes.eventsCount
+        const groupName = attributes.groupName
+        let url = `/wp-json/connector-mobilizon/v1/events?eventsCount=${eventsCount}`
+        if (groupName) {
+          url += `&groupName=${groupName}`
+        }
+        fetch(url)
+          .then((response) => response.text()) // TODO also handle response.ok being false
+          .then((data) => {
+            console.log(data) // TODO handle
+          })
+          .finally(() => {
+            hideLoadingIndicator(container)
+          })
       }
     }, 500)
   }
@@ -37,6 +59,7 @@ export default ({ attributes, setAttributes }) => {
     reloadEventList()
   }
   function updateGroupName(event) {
+    // TODO not triggered on pasting only
     setAttributes({ groupName: event.target.value })
     reloadEventList()
   }

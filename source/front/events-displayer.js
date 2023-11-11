@@ -84,7 +84,7 @@ export function showLoadingIndicator(container) {
   indicator.style.display = 'block'
 }
 
-function hideLoadingIndicator(container) {
+export function hideLoadingIndicator(container) {
   const indicator = container.querySelector('.loading-indicator')
   indicator.style.display = 'none'
 }
