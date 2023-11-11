@@ -70,9 +70,9 @@ export function getUpcomingEventsByGroupName({ url, limit, groupName }) {
       SessionCache.add(
         sessionStorage,
         { url, query, variables: { afterDatetime, groupName, limit } },
-        data
+        data,
       )
       return Promise.resolve(data)
-    }
+    },
   )
 }
