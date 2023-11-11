@@ -41,6 +41,11 @@ You have to use their username, e.g. `@nosliensvivants`, and append the name of 
 
 ## Changelog
 
+### [0.11.4]
+#### Changed
+- Confirm compatibility with WordPress 6.4
+- Update dependencies
+
 ### [0.11.3]
 #### Fixed
 - Clean up distributed files
