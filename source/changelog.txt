@@ -8,6 +8,11 @@
 #### Fixed
 #### Security
 
+### [0.11.4]
+#### Changed
+- Confirm compatibility with WordPress 6.4
+- Update dependencies
+
 ### [0.11.3]
 #### Fixed
 - Clean up distributed files

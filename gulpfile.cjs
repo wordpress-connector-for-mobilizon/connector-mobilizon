@@ -15,7 +15,7 @@ function injectMetadata() {
       FOLDER_BUILD + '/includes/Constants.php',
       FOLDER_BUILD + '/readme.txt',
     ],
-    { base: './' }
+    { base: './' },
   )
     .pipe(replace('<wordpress-author-name>', PACKAGE.author.name))
     .pipe(replace('<wordpress-author-url>', PACKAGE.author.url))
@@ -25,22 +25,22 @@ function injectMetadata() {
     .pipe(
       replace(
         '<wordpress-minimum-version>',
-        PACKAGE.additionalDetails.wordpressMinimumVersion
-      )
+        PACKAGE.additionalDetails.wordpressMinimumVersion,
+      ),
     )
     .pipe(replace('<wordpress-name>', PACKAGE.name))
     .pipe(replace('<wordpress-nice-name>', PACKAGE.additionalDetails.niceName))
     .pipe(
       replace(
         '<wordpress-php-minimum-version>',
-        PACKAGE.additionalDetails.phpMinimumVersion
-      )
+        PACKAGE.additionalDetails.phpMinimumVersion,
+      ),
     )
     .pipe(
       replace(
         '<wordpress-tested-up-to-version>',
-        PACKAGE.additionalDetails.wordpressTestedUpToVersion
-      )
+        PACKAGE.additionalDetails.wordpressTestedUpToVersion,
+      ),
     )
     .pipe(replace('<wordpress-version>', PACKAGE.version))
     .pipe(dest('.'))
