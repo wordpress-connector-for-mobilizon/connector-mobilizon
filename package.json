@@ -12,7 +12,7 @@
     "eslint": "npx eslint source/**/*.js",
     "format": "npx prettier --write .",
     "prepare": "husky install",
-    "test": "ava"
+    "test": "ava && ./vendor/bin/phpunit"
   },
   "author": {
     "name": "Daniel Waxweiler",

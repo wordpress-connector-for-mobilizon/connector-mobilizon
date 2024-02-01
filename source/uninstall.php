@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . '/includes/constants.php';
-require_once __DIR__ . '/includes/settings.php';
+require_once __DIR__ . '/includes/Constants.php';
+require_once __DIR__ . '/includes/Settings.php';
 
 // If uninstall.php is not called by WordPress, exit.
 if (!defined('WP_UNINSTALL_PLUGIN')) {
