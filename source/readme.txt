@@ -41,6 +41,10 @@ You have to use their username, e.g. `@nosliensvivants`, and append the name of 
 
 ## Changelog
 
+### [0.11.5]
+#### Changed
+- Confirm compatibility with WordPress 6.5
+
 ### [0.11.4]
 #### Changed
 - Confirm compatibility with WordPress 6.4

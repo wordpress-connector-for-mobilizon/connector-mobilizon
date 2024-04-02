@@ -8,6 +8,10 @@
 #### Fixed
 #### Security
 
+### [0.11.5]
+#### Changed
+- Confirm compatibility with WordPress 6.5
+
 ### [0.11.4]
 #### Changed
 - Confirm compatibility with WordPress 6.4

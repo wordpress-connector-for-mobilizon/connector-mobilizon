@@ -1,6 +1,6 @@
 {
   "name": "connector-mobilizon",
-  "version": "0.11.4-next",
+  "version": "0.11.5-next",
   "description": "Display Mobilizon events in WordPress.",
   "private": true,
   "type": "module",
@@ -63,7 +63,7 @@
     "niceName": "Connector for Mobilizon",
     "phpMinimumVersion": 7.4,
     "wordpressMinimumVersion": 5.6,
-    "wordpressTestedUpToVersion": "6.3"
+    "wordpressTestedUpToVersion": "6.5"
   },
   "lint-staged": {
     "source/**/*.js": "eslint",
