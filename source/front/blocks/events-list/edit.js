@@ -41,7 +41,8 @@ export default ({ attributes, setAttributes }) => {
         }
         fetch(url)
           .then((response) => response.text()) // TODO also handle response.ok being false
-          .then((events) => {
+          .then((data) => {
+            const events = JSON.parse(data)
             displayEvents({ events, document, container })
           })
           .catch((data) => {
