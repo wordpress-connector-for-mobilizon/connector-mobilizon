@@ -56,10 +56,9 @@ final class Mobilizon_Connector {
     $settings = array(
       'isShortOffsetNameShown' => MobilizonConnector\Settings::isShortOffsetNameShown(),
       'locale' => str_replace('_', '-', get_locale()),
-      'timeZone' => wp_timezone_string(),
-      'url' => MobilizonConnector\Settings::getUrl()
+      'timeZone' => wp_timezone_string()
     );
-    wp_add_inline_script($scriptName, 'var MOBILIZON_CONNECTOR = ' . json_encode($settings), 'before'); // TODO remove url
+    wp_add_inline_script($scriptName, 'var MOBILIZON_CONNECTOR = ' . json_encode($settings), 'before');
   }
 
   public function register_api() {
