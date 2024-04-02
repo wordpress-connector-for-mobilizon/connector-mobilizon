@@ -36,6 +36,7 @@ The current changelog can be found under [source/changelog.txt](source/changelog
 13. Push the new tag to the repository: `git push --tags`
 14. Append `-next` to the version number in `package.json`.
 15. Update the `package-lock.json`: `npm i --package-lock-only`
+16. Commit: `git commit -am "prepare next release"`
 
 ### Other commands
 
