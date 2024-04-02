@@ -40,24 +40,20 @@ test.beforeEach((t) => {
 })
 
 test('#displayEvents one event', (t) => {
-  const data = {
-    events: {
-      elements: [
-        {
-          title: 'a',
-          url: 'b',
-          beginsOn: '2021-04-15T10:30:00Z',
-          endsOn: '2021-04-15T15:30:00Z',
-          physicalAddress: {
-            description: 'c',
-            locality: 'd',
-          },
-        },
-      ],
+  const events = [
+    {
+      title: 'a',
+      url: 'b',
+      beginsOn: '2021-04-15T10:30:00Z',
+      endsOn: '2021-04-15T15:30:00Z',
+      physicalAddress: {
+        description: 'c',
+        locality: 'd',
+      },
     },
-  }
+  ]
   const container = t.context.container
-  displayEvents({ data, document, container })
+  displayEvents({ events, document, container })
   const list = container.querySelector('ul')
   t.is(list.children[0].childNodes[0].tagName, 'A')
   t.is(list.children[0].childNodes[0].getAttribute('href'), 'b')

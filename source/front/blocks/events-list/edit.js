@@ -1,8 +1,10 @@
 /* eslint-disable @wordpress/i18n-ellipsis */
-import { loadEventList } from '../../events-loader.js'
 import {
+  clearEventsList,
+  displayErrorMessage,
+  displayEvents,
+  hideErrorMessages,
   showLoadingIndicator,
-  hideLoadingIndicator
 } from '../../events-displayer.js'
 
 const { InspectorControls, useBlockProps } = wp.blockEditor
@@ -18,7 +20,7 @@ export default ({ attributes, setAttributes }) => {
   const blockProps = useBlockProps({
     className: NAME + '_events-list',
     'data-maximum': attributes.eventsCount,
-    'data-group-name': attributes.groupName,
+    'data-group-name': attributes.groupName, // TODO still necessary?
   })
   function reloadEventList() {
     if (timer) {
@@ -27,10 +29,9 @@ export default ({ attributes, setAttributes }) => {
     timer = setTimeout(() => {
       const container = document.getElementById(blockProps.id)
       if (container) {
-        // loadEventList(container)
-        // TODO use API instead
-        
-        // TODO not using newest values yet
+        // TODO not using newest values yet, can get out of sync
+        hideErrorMessages(container)
+        clearEventsList(container)
         showLoadingIndicator(container)
         const eventsCount = attributes.eventsCount
         const groupName = attributes.groupName
@@ -40,11 +41,11 @@ export default ({ attributes, setAttributes }) => {
         }
         fetch(url)
           .then((response) => response.text()) // TODO also handle response.ok being false
-          .then((data) => {
-            console.log(data) // TODO handle
+          .then((events) => {
+            displayEvents({ events, document, container })
           })
-          .finally(() => {
-            hideLoadingIndicator(container)
+          .catch((data) => {
+            displayErrorMessage({ data, container })
           })
       }
     }, 500)

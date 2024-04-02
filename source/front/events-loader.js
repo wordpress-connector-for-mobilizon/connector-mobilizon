@@ -36,3 +36,5 @@ export function loadEventList(container) {
       .catch((data) => displayErrorMessage({ data, container }))
   }
 }
+
+// TODO delete file and generated file events-loader.js?
