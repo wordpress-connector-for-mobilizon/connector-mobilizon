@@ -25,7 +25,8 @@ class Api {
               return !is_numeric($param);
             }
           ]
-        ]
+        ],
+        'permission_callback' => '__return_true',
       ]
       );
   }
