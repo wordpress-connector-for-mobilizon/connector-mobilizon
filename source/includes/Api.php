@@ -44,9 +44,9 @@ class Api {
       }
       return $events;
     } catch (GeneralException $e) {
-      return 'The events could not be loaded!';
+      return new \WP_Error('events_not_loading', 'The events could not be loaded!', array('status' => 500));
     } catch (GroupNotFoundException $e) {
-      return sprintf('The group "%s" could not be found!', $groupName);
+      return new \WP_Error('group_not_found', sprintf('The group "%s" could not be found!', $groupName), array('status' => 404));
     }
   }
 }
