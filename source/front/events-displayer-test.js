@@ -18,7 +18,6 @@ test.before(() => {
 
 test.beforeEach((t) => {
   t.context.container = document.createElement('div')
-  t.context.container.setAttribute('data-maximum', '2')
 
   const errorMessageGeneral = document.createElement('div')
   errorMessageGeneral.setAttribute('class', 'general-error')
@@ -53,7 +52,7 @@ test('#displayEvents one event', (t) => {
     },
   ]
   const container = t.context.container
-  displayEvents({ events, document, container })
+  displayEvents({ events, document, container, maxEventsCount: 2 })
   const list = container.querySelector('ul')
   t.is(list.children[0].childNodes[0].tagName, 'A')
   t.is(list.children[0].childNodes[0].getAttribute('href'), 'b')

@@ -17,10 +17,9 @@ const NAME = '<wordpress-name>'
 let timer
 
 export default ({ attributes, setAttributes }) => {
+  const { eventsCount, groupName } = attributes
   const blockProps = useBlockProps({
     className: NAME + '_events-list',
-    'data-maximum': attributes.eventsCount,
-    'data-group-name': attributes.groupName, // TODO still necessary?
   })
   function reloadEventList() {
     if (timer) {
@@ -33,8 +32,6 @@ export default ({ attributes, setAttributes }) => {
         hideErrorMessages(container)
         clearEventsList(container)
         showLoadingIndicator(container)
-        const eventsCount = attributes.eventsCount
-        const groupName = attributes.groupName
         let url = `/wp-json/connector-mobilizon/v1/events?eventsCount=${eventsCount}`
         if (groupName) {
           url += `&groupName=${groupName}`
@@ -43,7 +40,12 @@ export default ({ attributes, setAttributes }) => {
           .then((response) => response.text()) // TODO also handle response.ok being false
           .then((data) => {
             const events = JSON.parse(data)
-            displayEvents({ events, document, container })
+            displayEvents({
+              events,
+              document,
+              container,
+              maxEventsCount: eventsCount,
+            })
           })
           .catch((data) => {
             displayErrorMessage({ data, container })
@@ -55,12 +57,14 @@ export default ({ attributes, setAttributes }) => {
     reloadEventList()
   }, [])
   function updateEventsCount(event) {
+    // console.log('new value: ', event.target.value) // TODO
     let newValue = Number(event.target.value)
     if (newValue < 1) newValue = 1
     setAttributes({ eventsCount: newValue })
     reloadEventList()
   }
   function updateGroupName(event) {
+    // console.log('new value: ', event.target.value) // TODO
     // TODO not triggered on pasting only
     setAttributes({ groupName: event.target.value })
     reloadEventList()
@@ -77,7 +81,7 @@ export default ({ attributes, setAttributes }) => {
         <input
           className="components-text-control__input"
           type="number"
-          value={attributes.eventsCount}
+          value={eventsCount}
           onChange={updateEventsCount}
           id={NAME + '_events-count'}
         />
@@ -90,7 +94,7 @@ export default ({ attributes, setAttributes }) => {
         <input
           className="components-text-control__input"
           type="text"
-          value={attributes.groupName}
+          value={groupName}
           onChange={updateGroupName}
           id={NAME + '_group-name'}
         />

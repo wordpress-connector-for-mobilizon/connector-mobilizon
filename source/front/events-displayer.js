@@ -6,13 +6,12 @@ export function clearEventsList(container) {
   list.replaceChildren()
 }
 
-export function displayEvents({ events, document, container }) {
+export function displayEvents({ events, document, container, maxEventsCount }) {
   hideLoadingIndicator(container)
 
   const isShortOffsetNameShown =
     window.MOBILIZON_CONNECTOR.isShortOffsetNameShown
   const locale = window.MOBILIZON_CONNECTOR.locale
-  const maxEventsCount = container.getAttribute('data-maximum')
   const timeZone = window.MOBILIZON_CONNECTOR.timeZone
 
   const eventsCount = Math.min(maxEventsCount, events.length)
