@@ -28,7 +28,6 @@ export default ({ attributes, setAttributes }) => {
     timer = setTimeout(() => {
       const container = document.getElementById(blockProps.id)
       if (container) {
-        // TODO not using newest values yet, can get out of sync
         hideErrorMessages(container)
         clearEventsList(container)
         showLoadingIndicator(container)
@@ -37,7 +36,12 @@ export default ({ attributes, setAttributes }) => {
           url += `&groupName=${groupName}`
         }
         fetch(url)
-          .then((response) => response.text()) // TODO also handle response.ok being false
+          .then((response) => {
+            if (!response.ok) {
+              return Promise.reject('Network response was not OK.')
+            }
+            return response.text()
+          })
           .then((data) => {
             const events = JSON.parse(data)
             displayEvents({
