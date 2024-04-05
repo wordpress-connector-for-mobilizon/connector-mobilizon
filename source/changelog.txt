@@ -6,6 +6,7 @@
 #### Deprecated
 #### Removed
 #### Fixed
+- Not loading more than one block in Gutenberg editor
 #### Security
 
 ### [0.11.5]

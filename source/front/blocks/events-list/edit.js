@@ -14,9 +14,8 @@ const { __ } = wp.i18n
 
 const NAME = '<wordpress-name>'
 
-let timer
-
 export default ({ attributes, setAttributes }) => {
+  let timer
   const { eventsCount, groupName } = attributes
   const blockProps = useBlockProps({
     className: NAME + '_events-list',
@@ -25,7 +24,7 @@ export default ({ attributes, setAttributes }) => {
     if (timer) {
       clearTimeout(timer)
     }
-    timer = setTimeout(() => {
+    timer = setTimeout(async () => {
       const container = document.getElementById(blockProps.id)
       if (container) {
         hideErrorMessages(container)
@@ -35,7 +34,7 @@ export default ({ attributes, setAttributes }) => {
         if (groupName) {
           url += `&groupName=${groupName}`
         }
-        fetch(url)
+        await fetch(url)
           .then((response) => {
             if (!response.ok) {
               return Promise.reject('Network response was not OK.')
