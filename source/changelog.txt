@@ -3,6 +3,7 @@
 - Display name of group when it cannot be found
 #### Changed
 - Let backend do requests to API of Mobilizon instance for increased privacy
+- Update dependencies
 #### Deprecated
 #### Removed
 #### Fixed
