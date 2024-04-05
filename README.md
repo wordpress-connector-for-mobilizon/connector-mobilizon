@@ -47,3 +47,4 @@ The current changelog can be found under [source/changelog.txt](source/changelog
 - Update PHP dependencies: `composer update`
 - Check for direct PHP dependency updates: `composer outdated --direct`
 - Format code with prettier: `npm run format`
+- Generate `vendor/autoload.php` file after creating new class: `composer dump-autoload`

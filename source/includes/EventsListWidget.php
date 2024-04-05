@@ -1,11 +1,6 @@
 <?php
 namespace MobilizonConnector;
 
-// Exit if this file is called directly.
-if (!defined('ABSPATH')) {
-  exit;
-}
-
 class EventsListWidget extends \WP_Widget {
 
   public function __construct() {
@@ -25,11 +20,28 @@ class EventsListWidget extends \WP_Widget {
       echo $args['before_title'].apply_filters('widget_title', $options['title']).$args['after_title'];
     }
 
-    $classNamePrefix = NAME;
+    $url = Settings::getUrl();
     $eventsCount = $options['eventsCount'];
     $groupName = isset($options['groupName']) ? $options['groupName'] : '';
 
-    require dirname(__DIR__) . '/view/events-list.php';
+    try {
+      if ($groupName) {
+        $events = GraphQlClient::get_upcoming_events_by_group_name($url, (int) $eventsCount, $groupName);
+      } else {
+        $events = GraphQlClient::get_upcoming_events($url, (int) $eventsCount);
+      }
+
+      $classNamePrefix = NAME;
+      $locale = get_locale();
+      $isShortOffsetNameShown = Settings::isShortOffsetNameShown();
+      $timeZone = wp_timezone_string();
+  
+      require dirname(__DIR__) . '/view/events-list.php';
+    } catch (GeneralException $e) {
+      require dirname(__DIR__) . '/view/events-list-not-loaded.php';
+    } catch (GroupNotFoundException $e) {
+      require dirname(__DIR__) . '/view/events-list-group-not-found.php';
+    }
 
     echo $args['after_widget'];
   }

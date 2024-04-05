@@ -8,7 +8,6 @@ const FOLDER_SOURCE = './source'
 module.exports = {
   entry: {
     'block-events-loader': FOLDER_SOURCE + '/front/block-events-loader.js',
-    'events-loader': FOLDER_SOURCE + '/front/events-loader.js',
   },
   output: {
     filename: '[name].js',

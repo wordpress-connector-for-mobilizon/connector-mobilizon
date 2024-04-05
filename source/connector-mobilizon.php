@@ -10,11 +10,18 @@
  * License:           <wordpress-license>
  */
 
-require_once __DIR__ . '/includes/constants.php';
-require_once __DIR__ . '/includes/settings.php';
-require_once __DIR__ . '/includes/events-list-block.php';
-require_once __DIR__ . '/includes/events-list-shortcut.php';
-require_once __DIR__ . '/includes/events-list-widget.php';
+require_once __DIR__ . '/includes/exceptions/GeneralException.php';
+require_once __DIR__ . '/includes/exceptions/GroupNotFoundException.php';
+require_once __DIR__ . '/includes/Constants.php';
+require_once __DIR__ . '/includes/Api.php';
+require_once __DIR__ . '/includes/EventsCache.php';
+require_once __DIR__ . '/includes/Settings.php';
+require_once __DIR__ . '/includes/DateTimeWrapper.php';
+require_once __DIR__ . '/includes/Formatter.php';
+require_once __DIR__ . '/includes/GraphQlClient.php';
+require_once __DIR__ . '/includes/EventsListBlock.php';
+require_once __DIR__ . '/includes/EventsListShortcut.php';
+require_once __DIR__ . '/includes/EventsListWidget.php';
 
 // Exit if this file is called directly.
 if (!defined('ABSPATH')) {
@@ -24,11 +31,11 @@ if (!defined('ABSPATH')) {
 final class Mobilizon_Connector {
 
   private function __construct() {
+    add_action('init', [$this, 'register_api']);
     add_action('init', [$this, 'register_blocks']);
     add_action('init', [$this, 'register_settings'], 1); // required for register_blocks
     add_action('init', [$this, 'register_shortcut']);
     add_action('widgets_init', [$this, 'register_widget']);
-    add_action('wp_enqueue_scripts', [$this, 'register_scripts']);
     register_activation_hook(__FILE__, [$this, 'enable_activation']);
   }
 
@@ -49,10 +56,13 @@ final class Mobilizon_Connector {
     $settings = array(
       'isShortOffsetNameShown' => MobilizonConnector\Settings::isShortOffsetNameShown(),
       'locale' => str_replace('_', '-', get_locale()),
-      'timeZone' => wp_timezone_string(),
-      'url' => MobilizonConnector\Settings::getUrl()
+      'timeZone' => wp_timezone_string()
     );
     wp_add_inline_script($scriptName, 'var MOBILIZON_CONNECTOR = ' . json_encode($settings), 'before');
+  }
+
+  public function register_api() {
+    MobilizonConnector\Api::init();
   }
 
   public function register_blocks() {
@@ -62,12 +72,6 @@ final class Mobilizon_Connector {
 
   public function register_settings() {
     MobilizonConnector\Settings::init();
-  }
-
-  public function register_scripts() {
-    $name = MobilizonConnector\NAME . '-js';
-    wp_enqueue_script($name, plugins_url('front/events-loader.js', __FILE__ ));
-    $this->load_settings_globally_before_script($name);
   }
 
   public function register_shortcut() {
