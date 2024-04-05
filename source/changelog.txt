@@ -2,11 +2,11 @@
 #### Added
 - Display name of group when it cannot be found
 #### Changed
-- Let backend do requests to API for viewing all forms, except for in-editor block preview
+- Let backend do requests to API of Mobilizon instance for increased privacy
 #### Deprecated
 #### Removed
 #### Fixed
-- Not loading more than one block in Gutenberg editor
+- Fix displaying more than one block in the editor
 #### Security
 
 ### [0.11.5]
