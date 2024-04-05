@@ -25,9 +25,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "graphql": "16.8.1",
-    "graphql-request": "6.1.0",
-    "luxon": "3.4.4",
-    "object-hash": "3.0.0"
+    "luxon": "3.4.4"
   },
   "devDependencies": {
     "@babel/core": "7.24.4",
