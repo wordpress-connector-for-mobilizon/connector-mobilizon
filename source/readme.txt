@@ -41,6 +41,15 @@ You have to use their username, e.g. `@nosliensvivants`, and append the name of 
 
 ## Changelog
 
+### [1.0.0]
+#### Added
+- Display name of group when it cannot be found
+#### Changed
+- Let backend do requests to API of Mobilizon instance for increased privacy
+- Update dependencies
+#### Fixed
+- Fix displaying more than one block in the editor
+
 ### [0.11.5]
 #### Changed
 - Confirm compatibility with WordPress 6.5

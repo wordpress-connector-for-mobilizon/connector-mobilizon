@@ -1,14 +1,19 @@
 ### [Unreleased]
 #### Added
+#### Changed
+#### Deprecated
+#### Removed
+#### Fixed
+#### Security
+
+### [1.0.0]
+#### Added
 - Display name of group when it cannot be found
 #### Changed
 - Let backend do requests to API of Mobilizon instance for increased privacy
 - Update dependencies
-#### Deprecated
-#### Removed
 #### Fixed
 - Fix displaying more than one block in the editor
-#### Security
 
 ### [0.11.5]
 #### Changed
