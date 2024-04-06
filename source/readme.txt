@@ -16,10 +16,10 @@ License: <wordpress-license>
 
 Features
 - Display events as Gutenberg block, as widget and as shortcut
-- Display events' title, date, and location, if available
+- Display events' title with link, date, and location, if available
 - Cache requests' responses for 2 minutes in the database
 - Configure number of events to show per block, per widget and per shortcut
-- Optionally filter events by a specific group per block, per widget and per shortcut
+- Optionally filter events by a specific public group per block, per widget and per shortcut
 - Set the URL of the Mobilizon instance in the settings
 - Toggle adding named offset in brackets after the time in the settings
 
