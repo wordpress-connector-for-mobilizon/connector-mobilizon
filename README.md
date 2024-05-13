@@ -6,6 +6,8 @@ More details can be found in the [WordPress Plugin Directory](https://wordpress.
 
 The current changelog can be found under [source/changelog.txt](source/changelog.txt).
 
+This plugin uses [Mobilizon's GraphQL API](https://docs.joinmobilizon.org/contribute/graphql_api/).
+
 ## Development
 
 ### Setup
