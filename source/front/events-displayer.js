@@ -18,6 +18,9 @@ export function displayEvents({ events, document, container, maxEventsCount }) {
   const list = container.querySelector('ul')
   for (let i = 0; i < eventsCount; i++) {
     const li = document.createElement('li')
+    // TODO add style
+
+    // TODO add image
 
     const a = createAnchorElement({
       document,
