@@ -23,6 +23,7 @@ class EventsListWidget extends \WP_Widget {
     $url = Settings::getUrl();
     $eventsCount = $options['eventsCount'];
     $groupName = isset($options['groupName']) ? $options['groupName'] : '';
+    $classNamePrefix = NAME;
 
     try {
       if ($groupName) {
@@ -31,7 +32,6 @@ class EventsListWidget extends \WP_Widget {
         $events = GraphQlClient::get_upcoming_events($url, (int) $eventsCount);
       }
 
-      $classNamePrefix = NAME;
       $locale = get_locale();
       $isShortOffsetNameShown = Settings::isShortOffsetNameShown();
       $timeZone = wp_timezone_string();

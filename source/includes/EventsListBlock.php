@@ -39,6 +39,7 @@ class EventsListBlock {
     $url = Settings::getUrl();
     $eventsCount = $block_attributes['eventsCount'];
     $groupName = isset($block_attributes['groupName']) ? $block_attributes['groupName'] : '';
+    $classNamePrefix = NAME;
 
     ob_start();
     try {
@@ -48,7 +49,6 @@ class EventsListBlock {
         $events = GraphQlClient::get_upcoming_events($url, (int) $eventsCount);
       }
 
-      $classNamePrefix = NAME;
       $locale = get_locale();
       $isShortOffsetNameShown = Settings::isShortOffsetNameShown();
       $timeZone = wp_timezone_string();

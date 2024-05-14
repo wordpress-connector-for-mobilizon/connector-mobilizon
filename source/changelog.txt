@@ -4,6 +4,7 @@
 #### Deprecated
 #### Removed
 #### Fixed
+- Fix undefined variable $classNamePrefix for both error views
 #### Security
 
 ### [1.0.0]
