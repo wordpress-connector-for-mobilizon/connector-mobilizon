@@ -1,6 +1,7 @@
 ### [Unreleased]
 #### Added
 #### Changed
+- Add some spacing between event items
 #### Deprecated
 #### Removed
 #### Fixed

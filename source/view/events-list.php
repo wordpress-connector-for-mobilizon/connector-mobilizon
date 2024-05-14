@@ -9,7 +9,7 @@ if (!defined('ABSPATH')) {
 <div class="<?php echo esc_attr($classNamePrefix); ?>_events-list">
   <ul style="list-style-type: none; padding-left: 0;">
     <?php foreach($events as $event) { ?>
-    <li>
+    <li style="margin-top: 10px;">
       <a href="<?php echo esc_attr($event['url']); ?>"><?php echo esc_html_e($event['title']); ?></a>
       <br>
       <?php echo esc_html_e(Formatter::format_date($locale, $timeZone, $event['beginsOn'], $event['endsOn'], $isShortOffsetNameShown)); ?>
