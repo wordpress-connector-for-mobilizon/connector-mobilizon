@@ -2,6 +2,7 @@
 #### Added
 #### Changed
 - Add some spacing between event items
+- Update dependencies
 #### Deprecated
 #### Removed
 #### Fixed
