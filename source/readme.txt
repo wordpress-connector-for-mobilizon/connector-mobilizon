@@ -23,6 +23,8 @@ Features
 - Set the URL of the Mobilizon instance in the settings
 - Toggle adding named offset in brackets after the time in the settings
 
+This plugin requests the events via Mobilizon's GraphQL API.
+
 The source code is available on [Github](https://github.com/dwaxweiler/connector-mobilizon).
 
 ## Installation
