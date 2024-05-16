@@ -43,7 +43,7 @@
     "eslint-plugin-jsx": "0.1.0",
     "eslint-plugin-react": "7.34.1",
     "esm": "3.2.25",
-    "gulp": "4.0.2",
+    "gulp": "5.0.0",
     "gulp-replace": "1.1.4",
     "husky": "9.0.11",
     "lint-staged": "15.2.2",
