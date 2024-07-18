@@ -3,6 +3,7 @@
 #### Changed
 - Add some spacing between event items
 - Update dependencies
+- Confirm compatibility with WordPress 6.6
 #### Deprecated
 #### Removed
 #### Fixed
