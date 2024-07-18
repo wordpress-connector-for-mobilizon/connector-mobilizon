@@ -43,6 +43,15 @@ You have to use their username, e.g. `@nosliensvivants`, and append the name of 
 
 ## Changelog
 
+### [1.1.0]
+#### Added
+- Add some spacing between event items
+#### Changed
+- Update dependencies
+- Confirm compatibility with WordPress 6.6
+#### Fixed
+- Fix undefined variable $classNamePrefix for both error views
+
 ### [1.0.0]
 #### Added
 - Display name of group when it cannot be found

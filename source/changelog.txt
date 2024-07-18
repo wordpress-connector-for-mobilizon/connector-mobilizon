@@ -1,14 +1,19 @@
 ### [Unreleased]
 #### Added
 #### Changed
-- Add some spacing between event items
-- Update dependencies
-- Confirm compatibility with WordPress 6.6
 #### Deprecated
 #### Removed
 #### Fixed
-- Fix undefined variable $classNamePrefix for both error views
 #### Security
+
+### [1.1.0]
+#### Added
+- Add some spacing between event items
+#### Changed
+- Update dependencies
+- Confirm compatibility with WordPress 6.6
+#### Fixed
+- Fix undefined variable $classNamePrefix for both error views
 
 ### [1.0.0]
 #### Added
