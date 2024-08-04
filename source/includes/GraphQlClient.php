@@ -62,6 +62,17 @@ final class GraphQlClient {
     self::checkData($data);
 
     $events = $data['data']['events']['elements'];
+    foreach ($events as &$event) {
+      if ($event['picture']) {
+        $picture_response = self::download_image($event['picture']['url']);
+        if ($picture_response !== false) {
+          $picture_encoded = 'data:' . $event['picture']['contentType'] . ';base64,' . base64_encode($picture_response);
+          $event['picture']['base64'] = $picture_encoded;
+        }
+      }
+      unset($event);
+    }
+
     EventsCache::set(['url' => $url, 'query' => $query, 'limit' => $limit], $events);
     return $events;
   }
@@ -95,11 +106,10 @@ final class GraphQlClient {
 
     $afterDatetime = date(\DateTime::ISO8601);
 
-    // TODO
-    // $cachedEvents = EventsCache::get(['url' => $url, 'query' => $query, 'afterDatetime' => $afterDatetime, 'groupName' => $groupName, 'limit' => $limit]);
-    // if ($cachedEvents !== false) {
-    //   return $cachedEvents;
-    // }
+    $cachedEvents = EventsCache::get(['url' => $url, 'query' => $query, 'afterDatetime' => $afterDatetime, 'groupName' => $groupName, 'limit' => $limit]);
+    if ($cachedEvents !== false) {
+      return $cachedEvents;
+    }
 
     $endpoint = $url . '/api';
     $data = self::query($endpoint, $query, ['afterDatetime' => $afterDatetime, 'groupName' => $groupName, 'limit' => $limit]);
@@ -107,22 +117,19 @@ final class GraphQlClient {
 
     $events = $data['data']['group']['organizedEvents']['elements'];
     
-    foreach ($data['data']['group']['organizedEvents']['elements'] as &$event) {
+    foreach ($events as &$event) {
       if ($event['picture']) {
-        $picture_response = self::get_encoded_image($event['picture']['url']);
+        $picture_response = self::download_image($event['picture']['url']);
         if ($picture_response !== false) {
           $picture_encoded = 'data:' . $event['picture']['contentType'] . ';base64,' . base64_encode($picture_response);
           $event['picture']['base64'] = $picture_encoded;
-          // TODO
-          // EventsCache::set(['url' => $url, 'query' => $query, 'afterDatetime' => $afterDatetime, 'groupName' => $groupName, 'limit' => $limit, 'eventId' => $event['id']], $picture_encoded);
         }
       }
       unset($event);
     }
 
-    EventsCache::set(['url' => $url, 'query' => $query, 'afterDatetime' => $afterDatetime, 'groupName' => $groupName, 'limit' => $limit], $data['data']['group']['organizedEvents']['elements']);
-
-    return $data['data']['group']['organizedEvents']['elements'];
+    EventsCache::set(['url' => $url, 'query' => $query, 'afterDatetime' => $afterDatetime, 'groupName' => $groupName, 'limit' => $limit], $events);
+    return $events;
   }
 
   private static function checkData($data) {
@@ -137,7 +144,7 @@ final class GraphQlClient {
     }
   }
 
-  private static function get_encoded_image($url) {
+  private static function download_image($url) {
     // Initialize curl handle
     $ch = curl_init($url);
 
@@ -145,7 +152,6 @@ final class GraphQlClient {
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
     curl_setopt($ch, CURLOPT_TIMEOUT, 60); // Set timeout to 60 seconds (adjust as needed)
-    curl_setopt($ch, CURLOPT_VERBOSE, 1); // TODO
 
     // Execute the request
     $image_data = curl_exec($ch);
@@ -154,16 +160,11 @@ final class GraphQlClient {
     if (curl_errno($ch)) {
       print_r(curl_error($ch));
       throw new \Error('Error: ' . curl_error($ch));
-      // return false;
     }
 
     // Close curl handle
     curl_close($ch);
 
-    // Encode image data (base64 in this example)
-    // $encoded_image = base64_encode($image_data);
-
     return $image_data;
   }
-
 }

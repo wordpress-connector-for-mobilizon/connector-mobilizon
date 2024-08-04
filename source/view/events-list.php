@@ -9,7 +9,7 @@ if (!defined('ABSPATH')) {
 <div class="<?php echo esc_attr($classNamePrefix); ?>_events-list">
   <ul style="list-style-type: none; padding-left: 0;">
     <?php foreach ($events as $event) { ?>
-    <li style="margin-top: 10px;">
+    <li style="line-height: 150%; margin-top: 20px;">
       <?php if (isset($event['picture'])) { ?>
       <img alt="<?php echo esc_attr($event['picture']['alt']); ?>" src="<?php echo esc_attr($event['picture']['base64']); ?>" style="display: block;">
       <?php } ?>
