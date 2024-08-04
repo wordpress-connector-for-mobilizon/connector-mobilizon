@@ -11,7 +11,7 @@ if (!defined('ABSPATH')) {
     <?php foreach ($events as $event) { ?>
     <li style="line-height: 150%; margin-top: 20px;">
       <?php if (isset($event['picture'])) { ?>
-      <img alt="<?php echo esc_attr($event['picture']['alt']); ?>" src="<?php echo esc_attr($event['picture']['base64']); ?>" style="display: block;">
+      <img alt="<?php echo esc_attr($event['picture']['alt']); ?>" src="<?php echo esc_attr($event['picture']['base64']); ?>" style="display: block; max-width: 100%;">
       <?php } ?>
       <a href="<?php echo esc_attr($event['url']); ?>"><?php echo esc_html_e($event['title']); ?></a>
       <br>
