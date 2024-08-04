@@ -1,5 +1,5 @@
 import Formatter from './formatter.js'
-import { createAnchorElement } from './html-creator.js'
+import { createAnchorElement, createImageElement } from './html-creator.js'
 
 export function clearEventsList(container) {
   const list = container.querySelector('ul')
@@ -18,6 +18,19 @@ export function displayEvents({ events, document, container, maxEventsCount }) {
   const list = container.querySelector('ul')
   for (let i = 0; i < eventsCount; i++) {
     const li = document.createElement('li')
+    li.style.lineHeight = '150%'
+    li.style.marginTop = '20px'
+
+    if (events[i].picture) {
+      const img = createImageElement({
+        document,
+        alt: events[i].picture.alt ? events[i].picture.alt : '',
+        src: events[i].picture.base64 ? events[i].picture.base64 : '',
+      })
+      img.style.display = 'block'
+      img.style.maxWidth = '100%'
+      li.appendChild(img)
+    }
 
     const a = createAnchorElement({
       document,

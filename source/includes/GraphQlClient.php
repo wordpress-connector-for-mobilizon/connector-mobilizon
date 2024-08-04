@@ -40,6 +40,11 @@ final class GraphQlClient {
             physicalAddress {
               description,
               locality
+            },
+            picture {
+              alt,
+              contentType,
+              url
             }
           },
           total
@@ -57,6 +62,17 @@ final class GraphQlClient {
     self::checkData($data);
 
     $events = $data['data']['events']['elements'];
+    foreach ($events as &$event) {
+      if ($event['picture']) {
+        $picture_response = self::download_image($event['picture']['url']);
+        if ($picture_response !== false) {
+          $picture_encoded = 'data:' . $event['picture']['contentType'] . ';base64,' . base64_encode($picture_response);
+          $event['picture']['base64'] = $picture_encoded;
+        }
+      }
+      unset($event);
+    }
+
     EventsCache::set(['url' => $url, 'query' => $query, 'limit' => $limit], $events);
     return $events;
   }
@@ -75,6 +91,11 @@ final class GraphQlClient {
               physicalAddress {
                 description,
                 locality
+              },
+              picture {
+                alt,
+                contentType,
+                url
               }
             },
             total
@@ -95,6 +116,18 @@ final class GraphQlClient {
     self::checkData($data);
 
     $events = $data['data']['group']['organizedEvents']['elements'];
+    
+    foreach ($events as &$event) {
+      if ($event['picture']) {
+        $picture_response = self::download_image($event['picture']['url']);
+        if ($picture_response !== false) {
+          $picture_encoded = 'data:' . $event['picture']['contentType'] . ';base64,' . base64_encode($picture_response);
+          $event['picture']['base64'] = $picture_encoded;
+        }
+      }
+      unset($event);
+    }
+
     EventsCache::set(['url' => $url, 'query' => $query, 'afterDatetime' => $afterDatetime, 'groupName' => $groupName, 'limit' => $limit], $events);
     return $events;
   }
@@ -109,5 +142,29 @@ final class GraphQlClient {
         throw new GeneralException(serialize($data['errors']));
       }
     }
+  }
+
+  private static function download_image($url) {
+    // Initialize curl handle
+    $ch = curl_init($url);
+
+    // Set curl options
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 60); // Set timeout to 60 seconds (adjust as needed)
+
+    // Execute the request
+    $image_data = curl_exec($ch);
+
+    // Check for errors
+    if (curl_errno($ch)) {
+      print_r(curl_error($ch));
+      throw new \Error('Error: ' . curl_error($ch));
+    }
+
+    // Close curl handle
+    curl_close($ch);
+
+    return $image_data;
   }
 }
