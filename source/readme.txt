@@ -23,6 +23,8 @@ Features
 - Set the URL of the Mobilizon instance in the settings
 - Toggle adding named offset in brackets after the time in the settings
 
+This plugin requests the events via Mobilizon's GraphQL API.
+
 The source code is available on [Github](https://github.com/dwaxweiler/connector-mobilizon).
 
 ## Installation
@@ -40,6 +42,15 @@ You have to use their username, e.g. `@nosliensvivants`, and append the name of 
 5. Gutenberg block in editor
 
 ## Changelog
+
+### [1.1.0]
+#### Added
+- Add some spacing between event items
+#### Changed
+- Update dependencies
+- Confirm compatibility with WordPress 6.6
+#### Fixed
+- Fix undefined variable $classNamePrefix for both error views
 
 ### [1.0.0]
 #### Added
