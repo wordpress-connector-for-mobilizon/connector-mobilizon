@@ -43,6 +43,12 @@ You have to use their username, e.g. `@nosliensvivants`, and append the name of 
 
 ## Changelog
 
+### [1.2.0]
+#### Added
+- Display event picture if available
+#### Changed
+- Update dependencies
+
 ### [1.1.0]
 #### Added
 - Add some spacing between event items

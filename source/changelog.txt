@@ -1,12 +1,16 @@
 ### [Unreleased]
 #### Added
-- Display event picture if available
 #### Changed
-- Update dependencies
 #### Deprecated
 #### Removed
 #### Fixed
 #### Security
+
+### [1.2.0]
+#### Added
+- Display event picture if available
+#### Changed
+- Update dependencies
 
 ### [1.1.0]
 #### Added
