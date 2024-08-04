@@ -2,6 +2,7 @@
 #### Added
 - Display event picture if available
 #### Changed
+- Update dependencies
 #### Deprecated
 #### Removed
 #### Fixed
