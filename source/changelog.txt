@@ -1,6 +1,7 @@
 ### [Unreleased]
 #### Added
 #### Changed
+- Confirm compatibility with WordPress 6.7
 #### Deprecated
 #### Removed
 #### Fixed
