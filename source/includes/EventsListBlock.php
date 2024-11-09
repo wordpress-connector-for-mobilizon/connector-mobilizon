@@ -10,7 +10,7 @@ class EventsListBlock {
         'wp-blocks',
         'wp-components',
         'wp-i18n'
-      ]);
+      ], '<wordpress-version>');
     register_block_type(NAME . '/events-list', [
       'api_version' => 2,
       'title' => __('Events List', 'connector-mobilizon'),
