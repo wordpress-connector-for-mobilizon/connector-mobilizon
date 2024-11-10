@@ -1,10 +1,14 @@
 ### [Unreleased]
 #### Added
+- Comment for translators what placeholder will contain
 #### Changed
 - Confirm compatibility with WordPress 6.7
+- Load block script only in footer to reduce waiting time
 #### Deprecated
 #### Removed
 #### Fixed
+- Mark event-related data as non-translatable within plugin
+- Add version number to script registration to break browser caching
 #### Security
 
 ### [1.2.0]
