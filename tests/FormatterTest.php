@@ -42,6 +42,10 @@ final class FormatterTest extends PHPUnit\Framework\TestCase
     $this->assertSame('a', Formatter::format_location('a', ''));
   }
 
+  public function testLocationFormatDescriptionOnlyWithNull(): void {
+    $this->assertSame('a', Formatter::format_location('a', null));
+  }
+
   public function testLocationFormatDescriptionWithSpaceOnly(): void {
     $this->assertSame('', Formatter::format_location(' ', ''));
   }

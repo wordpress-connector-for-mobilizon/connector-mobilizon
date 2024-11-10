@@ -10,6 +10,7 @@
 #### Fixed
 - Mark event-related data as non-translatable within plugin
 - Add version number to script registration to break browser caching
+- Handle location being null
 #### Security
 
 ### [1.2.0]

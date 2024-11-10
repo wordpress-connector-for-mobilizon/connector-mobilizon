@@ -26,7 +26,7 @@ final class Formatter
     return $dateText;
   }
 
-  public static function format_location(string $description, string $locality): string {
+  public static function format_location(string $description, ?string $locality): string {
     $location = '';
     if ($description && trim($description)) {
       $location .= trim($description);
