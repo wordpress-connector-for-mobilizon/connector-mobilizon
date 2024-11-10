@@ -4,6 +4,7 @@
 #### Changed
 - Confirm compatibility with WordPress 6.7
 - Load block script only in footer to reduce waiting time
+- Update dependencies
 #### Deprecated
 #### Removed
 #### Fixed
