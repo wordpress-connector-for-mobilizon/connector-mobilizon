@@ -43,6 +43,18 @@ You have to use their username, e.g. `@nosliensvivants`, and append the name of 
 
 ## Changelog
 
+### [1.3.0]
+#### Added
+- Comment for translators what placeholder will contain
+#### Changed
+- Confirm compatibility with WordPress 6.7
+- Load block script only in footer to reduce waiting time
+- Update dependencies
+#### Fixed
+- Mark event-related data as non-translatable within plugin
+- Add version number to script registration to break browser caching
+- Handle location being null
+
 ### [1.2.0]
 #### Added
 - Display event picture if available
