@@ -1,10 +1,11 @@
 import test from 'ava'
-import browserEnv from 'browser-env'
+import { JSDOM } from 'jsdom'
 
 import { createAnchorElement } from './html-creator.js'
 
 test.beforeEach(() => {
-  browserEnv()
+  const dom = new JSDOM()
+  global.document = dom.window.document
 })
 
 test('#createAnchorElement usual parameters', (t) => {

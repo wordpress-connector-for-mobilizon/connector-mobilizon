@@ -1,5 +1,5 @@
 import test from 'ava'
-import browserEnv from 'browser-env'
+import { JSDOM } from 'jsdom'
 
 import {
   displayEvents,
@@ -9,7 +9,9 @@ import {
 } from './events-displayer.js'
 
 test.before(() => {
-  browserEnv()
+  const dom = new JSDOM()
+  global.document = dom.window.document
+  global.window = dom.window
   window.MOBILIZON_CONNECTOR = {
     locale: 'en-GB',
     timeZone: 'utc',
