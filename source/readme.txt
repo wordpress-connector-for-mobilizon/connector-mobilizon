@@ -43,6 +43,11 @@ You have to use their username, e.g. `@nosliensvivants`, and append the name of 
 
 ## Changelog
 
+### [1.4.0]
+#### Changed
+- Update dependencies
+- Confirm compatibility with WordPress 6.8
+
 ### [1.3.0]
 #### Added
 - Comment for translators what placeholder will contain

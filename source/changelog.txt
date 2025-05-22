@@ -1,12 +1,15 @@
 ### [Unreleased]
 #### Added
 #### Changed
-- Update dependencies
-- Confirm compatibility with WordPress 6.8
 #### Deprecated
 #### Removed
 #### Fixed
 #### Security
+
+### [1.4.0]
+#### Changed
+- Update dependencies
+- Confirm compatibility with WordPress 6.8
 
 ### [1.3.0]
 #### Added
