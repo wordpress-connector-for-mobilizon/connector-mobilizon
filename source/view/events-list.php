@@ -23,4 +23,7 @@ if (!defined('ABSPATH')) {
     </li>
     <?php } ?>
   </ul>
+  <a href="<?php echo esc_attr($showMoreUrl); ?>" class="button" style="display:inline-block; margin-top: 20px;">
+    <?php esc_html_e('Show more on Mobilizon instance', 'connector-mobilizon'); ?>
+  </a>
 </div>
