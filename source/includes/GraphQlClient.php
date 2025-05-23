@@ -145,26 +145,8 @@ final class GraphQlClient {
   }
 
   private static function download_image($url) {
-    // Initialize curl handle
-    $ch = curl_init($url);
-
-    // Set curl options
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-    curl_setopt($ch, CURLOPT_TIMEOUT, 60); // Set timeout to 60 seconds (adjust as needed)
-
-    // Execute the request
-    $image_data = curl_exec($ch);
-
-    // Check for errors
-    if (curl_errno($ch)) {
-      print_r(curl_error($ch));
-      throw new \Error('Error: ' . curl_error($ch));
-    }
-
-    // Close curl handle
-    curl_close($ch);
-
+    $response = wp_remote_get($url);
+    $image_data = $response['body'];
     return $image_data;
   }
 }
