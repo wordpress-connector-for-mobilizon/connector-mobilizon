@@ -65,7 +65,7 @@ final class Mobilizon_Connector {
         get_admin_url() . 'options-general.php'
       )
     );
-    $settings_link = "<a href='$url'>" . __('Settings') . '</a>';
+    $settings_link = "<a href='$url'>" . esc_html__('Settings', 'connector-mobilizon') . '</a>';
     array_unshift($links, $settings_link);
     return $links;
   }
