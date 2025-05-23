@@ -33,7 +33,6 @@ Install this plugin on the "Add Plugin" page in the administrator backend of you
 In both cases, you then need to click the corresponding "Install now" button.
 
 After the installation, you can adapt the URL of the Mobilizon instance whose events you want to list on the plugin's settings' page.
-Access it by clicking "Settings" and then "Connector for Mobilizon".
 
 ### Shortcut usage
 

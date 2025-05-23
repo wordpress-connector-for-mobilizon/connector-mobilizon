@@ -37,6 +37,7 @@ final class Mobilizon_Connector {
     add_action('init', [$this, 'register_shortcut']);
     add_action('widgets_init', [$this, 'register_widget']);
     register_activation_hook(__FILE__, [$this, 'enable_activation']);
+    add_filter('plugin_action_links_connector-mobilizon/connector-mobilizon.php', [$this, 'add_settings_link_to_plugins_page']);
   }
 
   public static function init() {
@@ -46,6 +47,19 @@ final class Mobilizon_Connector {
         $instance = new self();
     }
     return $instance;
+  }
+
+  public function add_settings_link_to_plugins_page(array $links) {
+    $url = esc_url(
+      add_query_arg(
+        'page',
+        'connector-mobilizon-settings',
+        get_admin_url() . 'options-general.php'
+      )
+    );
+    $settings_link = "<a href='$url'>" . __('Settings') . '</a>';
+    array_unshift($links, $settings_link);
+    return $links;
   }
 
   public function enable_activation() {
