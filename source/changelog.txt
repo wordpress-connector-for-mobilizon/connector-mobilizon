@@ -1,5 +1,6 @@
 ### [Unreleased]
 #### Added
+- Display "Show more events" button below the events list
 #### Changed
 #### Deprecated
 #### Removed
