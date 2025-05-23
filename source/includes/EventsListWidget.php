@@ -26,8 +26,10 @@ class EventsListWidget extends \WP_Widget {
     $classNamePrefix = NAME;
 
     try {
+      $showMoreUrl = Settings::getUrl();
       if ($groupName) {
         $events = GraphQlClient::get_upcoming_events_by_group_name($url, (int) $eventsCount, $groupName);
+        $showMoreUrl .= '/@' . $groupName . '/events';
       } else {
         $events = GraphQlClient::get_upcoming_events($url, (int) $eventsCount);
       }

@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable @wordpress/i18n-ellipsis */
 import {
   clearEventsList,
@@ -30,9 +31,12 @@ export default ({ attributes, setAttributes }) => {
         clearEventsList(container)
         showLoadingIndicator(container)
         let url = `/wp-json/connector-mobilizon/v1/events?eventsCount=${eventsCount}`
+        let showMoreUrl = window.MOBILIZON_CONNECTOR.url
         if (groupName) {
+          showMoreUrl += '/@' + groupName + '/events'
           url += `&groupName=${groupName}`
         }
+        container.querySelector('a').href = showMoreUrl
         await fetch(url)
           .then((response) => response.text())
           .then((data) => {
@@ -55,7 +59,9 @@ export default ({ attributes, setAttributes }) => {
   }, [])
   function updateEventsCount(event) {
     let newValue = Number(event.target.value)
-    if (newValue < 1) newValue = 1
+    if (newValue < 1) {
+      newValue = 1
+    }
     setAttributes({ eventsCount: newValue })
     reloadEventList(newValue, attributes.groupName)
   }
@@ -108,6 +114,13 @@ export default ({ attributes, setAttributes }) => {
         {__('Loading...', '<wordpress-name>')}
       </div>
       <ul style={{ 'list-style-type': 'none', 'padding-left': 0 }}></ul>
+      <a
+        href=""
+        target="_blank"
+        style={{ display: 'inline-block', 'margin-top': '20px;' }}
+      >
+        {__('Show more events', '<wordpress-name>')}
+      </a>
     </div>,
   ]
 }
