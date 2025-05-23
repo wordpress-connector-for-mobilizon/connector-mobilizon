@@ -3,6 +3,7 @@
 - Display "Show more events" button below the events list
 - Document basic installation
 - Add settings link to plugin on plugins page
+- Add donation link to plugin on plugins page
 #### Changed
 #### Deprecated
 #### Removed
