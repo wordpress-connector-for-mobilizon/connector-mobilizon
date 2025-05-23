@@ -1,5 +1,17 @@
 import test from 'ava'
+import { JSDOM } from 'jsdom'
+
 import Formatter from './formatter.js'
+
+test.beforeEach(() => {
+  const dom = new JSDOM()
+  global.document = dom.window.document
+})
+
+test('#escapeHTML', (t) => {
+  const escaped = Formatter.escapeHTML('<b>a</b>')
+  t.is(escaped, '&lt;b&gt;a&lt;/b&gt;')
+})
 
 test('#formatDate one date', (t) => {
   const date = Formatter.formatDate({

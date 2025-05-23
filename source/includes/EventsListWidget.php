@@ -6,9 +6,9 @@ class EventsListWidget extends \WP_Widget {
   public function __construct() {
     parent::__construct(
       NAME . '-events-list',
-      NICE_NAME . ' ' . __('Events List', 'connector-mobilizon'),
+      NICE_NAME . ' ' . esc_html__('Events List', 'connector-mobilizon'),
       array(
-        'description' => __('A list of the upcoming events of the connected Mobilizon instance.', 'connector-mobilizon'),
+        'description' => esc_html__('A list of the upcoming events of the connected Mobilizon instance.', 'connector-mobilizon'),
       ),
     );
   }
@@ -49,7 +49,7 @@ class EventsListWidget extends \WP_Widget {
   }
 
   public function form($options) {
-    $title = !empty($options['title']) ? $options['title'] : __('Events', 'connector-mobilizon');
+    $title = !empty($options['title']) ? $options['title'] : esc_html__('Events', 'connector-mobilizon');
     $eventsCount = !empty($options['eventsCount']) ? $options['eventsCount'] : DEFAULT_EVENTS_COUNT;
     $groupName = !empty($options['groupName']) ? $options['groupName'] : '';
     

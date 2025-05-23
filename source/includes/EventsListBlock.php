@@ -13,8 +13,8 @@ class EventsListBlock {
       ], '<wordpress-version>', array('in_footer' => true));
     register_block_type(NAME . '/events-list', [
       'api_version' => 2,
-      'title' => __('Events List', 'connector-mobilizon'),
-      'description' =>  __('A list of the upcoming events of the connected Mobilizon instance.', 'connector-mobilizon'),
+      'title' => esc_html__('Events List', 'connector-mobilizon'),
+      'description' =>  esc_html__('A list of the upcoming events of the connected Mobilizon instance.', 'connector-mobilizon'),
       'category' => 'widgets',
       'icon' => 'list-view',
       'supports' => [

@@ -31,14 +31,14 @@ class Settings {
 
     add_settings_section(
       self::$SETTINGS_SECTION_NAME,
-      __('General Settings', 'connector-mobilizon'),
+      esc_html__('General Settings', 'connector-mobilizon'),
       '',
       self::$PAGE_NAME
     );
 
     add_settings_field(
       self::$SETTING_FIELD_NAME_URL,
-      __('URL', 'connector-mobilizon'),
+      esc_html__('URL', 'connector-mobilizon'),
       'MobilizonConnector\Settings::output_field_url',
       self::$PAGE_NAME,
       self::$SETTINGS_SECTION_NAME,
@@ -48,7 +48,7 @@ class Settings {
     );
     add_settings_field(
       self::$SETTING_FIELD_NAME_IS_SHORT_OFFSET_NAME_SHOWN,
-      __('Display named offset', 'connector-mobilizon'),
+      esc_html__('Display named offset', 'connector-mobilizon'),
       'MobilizonConnector\Settings::output_field_is_short_offset_name_shown',
       self::$PAGE_NAME,
       self::$SETTINGS_SECTION_NAME,
@@ -74,7 +74,7 @@ class Settings {
       add_settings_error(
         self::$OPTION_NAME_URL,
         'wordpress_mobilizon_field_url_error',
-        __('The URL is invalid.', 'connector-mobilizon'),
+        esc_html__('The URL is invalid.', 'connector-mobilizon'),
         'error'
       );
     }
@@ -86,7 +86,7 @@ class Settings {
 
   public static function register_settings_page() {
     add_options_page(
-      NICE_NAME . ' ' . __('Settings', 'connector-mobilizon'),
+      NICE_NAME . ' ' . esc_html__('Settings', 'connector-mobilizon'),
       NICE_NAME,
       'manage_options',
       NAME . '-settings',

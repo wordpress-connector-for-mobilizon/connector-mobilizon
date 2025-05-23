@@ -7,6 +7,7 @@ import {
   hideErrorMessages,
   showLoadingIndicator,
 } from '../../events-displayer.js'
+import Formatter from '../../formatter.js'
 
 const { InspectorControls, useBlockProps } = wp.blockEditor
 const { Panel, PanelBody } = wp.components
@@ -73,12 +74,18 @@ export default ({ attributes, setAttributes }) => {
   return [
     <InspectorControls>
       <Panel>
-        <PanelBody title={__('Events List Settings', '<wordpress-name>')}>
+        <PanelBody
+          title={Formatter.escapeHTML(
+            __('Events List Settings', '<wordpress-name>'),
+          )}
+        >
           <label
             className="components-base-control__label"
             htmlFor={NAME + '_events-count'}
           >
-            {__('Number of events to show', '<wordpress-name>')}
+            {Formatter.escapeHTML(
+              __('Number of events to show', '<wordpress-name>'),
+            )}
           </label>
           <input
             className="components-text-control__input"
@@ -91,7 +98,9 @@ export default ({ attributes, setAttributes }) => {
             className="components-base-control__label"
             htmlFor={NAME + '_group-name'}
           >
-            {__('Group name (optional)', '<wordpress-name>')}
+            {Formatter.escapeHTML(
+              __('Group name (optional)', '<wordpress-name>'),
+            )}
           </label>
           <input
             className="components-text-control__input"
@@ -105,13 +114,17 @@ export default ({ attributes, setAttributes }) => {
     </InspectorControls>,
     <div {...blockProps}>
       <div className="general-error" style={{ display: 'none' }}>
-        {__('The events could not be loaded!', '<wordpress-name>')}
+        {Formatter.escapeHTML(
+          __('The events could not be loaded!', '<wordpress-name>'),
+        )}
       </div>
       <div className="group-not-found" style={{ display: 'none' }}>
-        {__('The group could not be found!', '<wordpress-name>')}
+        {Formatter.escapeHTML(
+          __('The group could not be found!', '<wordpress-name>'),
+        )}
       </div>
       <div className="loading-indicator" style={{ display: 'none' }}>
-        {__('Loading...', '<wordpress-name>')}
+        {Formatter.escapeHTML(__('Loading...', '<wordpress-name>'))}
       </div>
       <ul style={{ 'list-style-type': 'none', 'padding-left': 0 }}></ul>
       <a
@@ -119,7 +132,7 @@ export default ({ attributes, setAttributes }) => {
         target="_blank"
         style={{ display: 'inline-block', 'margin-top': '20px;' }}
       >
-        {__('Show more events', '<wordpress-name>')}
+        {Formatter.escapeHTML(__('Show more events', '<wordpress-name>'))}
       </a>
     </div>,
   ]

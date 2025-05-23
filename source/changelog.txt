@@ -9,6 +9,7 @@
 #### Removed
 #### Fixed
 #### Security
+- Escape translated strings to prevent HTML injections
 
 ### [1.4.0]
 #### Changed
