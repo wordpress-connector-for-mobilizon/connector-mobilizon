@@ -72,13 +72,7 @@ export function displayEvents({ events, document, container, maxEventsCount }) {
 
 export function displayErrorMessage({ data, container }) {
   hideLoadingIndicator(container)
-  if (
-    Object.prototype.hasOwnProperty.call(data, 'response') &&
-    Object.prototype.hasOwnProperty.call(data.response, 'errors') &&
-    data.response.errors.length > 0 &&
-    Object.prototype.hasOwnProperty.call(data.response.errors[0], 'code') &&
-    data.response.errors[0].code === 'group_not_found'
-  ) {
+  if (Object.hasOwn(data, 'code') && data.code === 'group_not_found') {
     const message = container.querySelector('.group-not-found')
     message.style.display = 'block'
   } else {

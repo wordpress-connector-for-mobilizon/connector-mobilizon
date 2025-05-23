@@ -8,6 +8,7 @@
 #### Deprecated
 #### Removed
 #### Fixed
+- Show group not found error message in block
 #### Security
 - Escape translated strings to prevent HTML injections
 

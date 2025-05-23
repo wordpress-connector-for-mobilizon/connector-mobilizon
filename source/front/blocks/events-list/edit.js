@@ -39,7 +39,14 @@ export default ({ attributes, setAttributes }) => {
         }
         container.querySelector('a').href = showMoreUrl
         await fetch(url)
-          .then((response) => response.text())
+          .then(async (response) => {
+            if (!response.ok) {
+              // Reject if no 2xx response.
+              const data = await response.text()
+              return Promise.reject(data)
+            }
+            return response.text()
+          })
           .then((data) => {
             const events = JSON.parse(data)
             displayEvents({
@@ -50,7 +57,8 @@ export default ({ attributes, setAttributes }) => {
             })
           })
           .catch((data) => {
-            displayErrorMessage({ data, container })
+            const parsedData = JSON.parse(data)
+            displayErrorMessage({ data: parsedData, container })
           })
       }
     }, 500)

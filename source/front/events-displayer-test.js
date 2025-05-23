@@ -83,13 +83,7 @@ test('#displayErrorMessage general error message display', (t) => {
 test('#displayErrorMessage group not found error message display', (t) => {
   const container = t.context.container
   const data = {
-    response: {
-      errors: [
-        {
-          code: 'group_not_found',
-        },
-      ],
-    },
+    code: 'group_not_found',
   }
   displayErrorMessage({ data, container })
   t.is(container.querySelector('.general-error').style.display, 'none')
