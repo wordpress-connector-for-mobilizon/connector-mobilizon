@@ -29,6 +29,14 @@ The source code is available on [Github](https://github.com/dwaxweiler/connector
 
 ## Installation
 
+Install this plugin on the "Add Plugin" page in the administrator backend of your WordPress website by searching for it by its name or by uploading its archive by clicking on "Upload Plugin".
+In both cases, you then need to click the corresponding "Install now" button.
+
+After the installation, you can adapt the URL of the Mobilizon instance whose events you want to list on the plugin's settings' page.
+Access it by clicking "Settings" and then "Connector for Mobilizon".
+
+### Shortcut usage
+
 Shortcut format with limiting the number of events to show to 3 for example: `[<wordpress-name>-events-list events-count=3]`
 
 Optionally, you can only show the events of a specific group by indicatings its name: `[<wordpress-name>-events-list events-count=3 group-name="mygroup"]`

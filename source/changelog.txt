@@ -1,6 +1,7 @@
 ### [Unreleased]
 #### Added
 - Display "Show more events" button below the events list
+- Document basic installation
 #### Changed
 #### Deprecated
 #### Removed
