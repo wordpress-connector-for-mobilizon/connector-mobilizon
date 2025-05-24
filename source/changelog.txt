@@ -5,7 +5,7 @@
 - Add settings link to plugin on plugins page
 - Add donation link to plugin on plugins page
 #### Changed
-- Use wp_remote_get() instead of cURL functions for downloading the images
+- Use `wp_remote_get()` instead of cURL functions for downloading the images
 #### Deprecated
 #### Removed
 #### Fixed
