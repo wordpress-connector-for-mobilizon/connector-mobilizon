@@ -34,9 +34,9 @@ class EventsListWidget extends \WP_Widget {
         $events = GraphQlClient::get_upcoming_events($url, (int) $eventsCount);
       }
 
-      $locale = get_locale();
-      $isShortOffsetNameShown = Settings::isShortOffsetNameShown();
-      $timeZone = wp_timezone_string();
+      $dateFormat = SiteSettings::getDateFormat();
+      $timeFormat = SiteSettings::getTimeFormat();
+      $timeZone = SiteSettings::getTimeZone();
   
       require dirname(__DIR__) . '/view/events-list.php';
     } catch (GeneralException $e) {

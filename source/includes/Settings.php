@@ -46,7 +46,7 @@ class Settings {
         'label_for' => self::$SETTING_FIELD_NAME_URL
       )
     );
-    add_settings_field(
+    add_settings_field( // TODO remove
       self::$SETTING_FIELD_NAME_IS_SHORT_OFFSET_NAME_SHOWN,
       esc_html__('Display named offset', 'connector-mobilizon'),
       'MobilizonConnector\Settings::output_field_is_short_offset_name_shown',

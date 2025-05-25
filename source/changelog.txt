@@ -6,6 +6,7 @@
 - Add donation link to plugin on plugins page
 #### Changed
 - Use `wp_remote_get()` instead of cURL functions for downloading the images
+- Use date and time formats from general site settings 
 #### Deprecated
 #### Removed
 #### Fixed
