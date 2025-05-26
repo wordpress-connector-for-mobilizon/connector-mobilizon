@@ -5,17 +5,22 @@ final class LineFormatter
 {
   public static function format_date_time(\DateTimeZone $timeZone, string $dateFormat, string $timeFormat, string $start, ?string $end): string {
     $startDateTime = new LocalDateTime($start, $timeZone);
-    $dateText = LocalDateTimeFormatter::format($startDateTime, $dateFormat);
-    $dateText .= ' ' . LocalDateTimeFormatter::format($startDateTime, $timeFormat);
+    $startDate = LocalDateTimeFormatter::format($startDateTime, $dateFormat);
+    $startTime = LocalDateTimeFormatter::format($startDateTime, $timeFormat);
+
+    $dateText = $startDate . ' ' . $startTime;
     if ($end) {
       $endDateTime = new LocalDateTime($end, $timeZone);
-      if (LocalDateTimeFormatter::format($startDateTime, $dateFormat) != LocalDateTimeFormatter::format($endDateTime, $dateFormat)) {
+      $endDate = LocalDateTimeFormatter::format($endDateTime, $dateFormat);
+      $endTime = LocalDateTimeFormatter::format($endDateTime, $timeFormat);
+
+      if ($startDate != $endDate) {
         $dateText .= ' - ';
-        $dateText .= LocalDateTimeFormatter::format($endDateTime, $dateFormat) . ' ';
+        $dateText .= $endDate . ' ';
       } else {
         $dateText .= ' - ';
       }
-      $dateText .= LocalDateTimeFormatter::format($endDateTime, $timeFormat);
+      $dateText .= $endTime;
     }
     return $dateText;
   }

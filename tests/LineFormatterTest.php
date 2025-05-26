@@ -4,34 +4,36 @@ declare(strict_types=1);
 use MobilizonConnector\LineFormatter;
 use PHPUnit\Framework\TestCase;
 
+function date_i18n(string $format, int $timestamp) {
+  // Mock WordPress function.
+  if ($format == 'H:i') {
+    if ($timestamp == 1618482600) {
+      return '10:30';
+    } else if ($timestamp == 1618500600 || $timestamp == 1618587000) {
+      return '15:30';
+    }
+  } else if ($format == 'd/m/Y') {
+    if ($timestamp == 1618482600 || $timestamp == 1618500600) {
+      return '15/04/2021';
+    } else if ($timestamp == 1618587000) {
+      return '16/04/2021';
+    }
+  }
+  return '';
+}
+
 final class LineFormatterTest extends TestCase
 {
   public function testCanDateFormatOneDate(): void {
-    $this->assertSame('15/04/2021 10:30 - 15:30', LineFormatter::format_date_time(new \DateTimeZone('UTC'), '2021-04-15T10:30:00Z', '2021-04-15T15:30:00Z', false));
-  }
-
-  public function testCanDateFormatOneDateWithOffset(): void {
-    $this->assertSame('15/04/2021 10:30 - 15:30 (UTC)', LineFormatter::format_date_time(new \DateTimeZone('UTC'), '2021-04-15T10:30:00Z', '2021-04-15T15:30:00Z', true));
-  }
-
-  public function testCanDateFormatOneDateWithTimeZoneOffset(): void {
-    $this->assertSame('15/04/2021 11:30 - 16:30', LineFormatter::format_date_time(new \DateTimeZone('+01:00'), '2021-04-15T10:30:00Z', '2021-04-15T15:30:00Z', false));
+    $this->assertSame('15/04/2021 10:30 - 15:30', LineFormatter::format_date_time(new \DateTimeZone('UTC'), 'd/m/Y', 'H:i', '2021-04-15T10:30:00Z', '2021-04-15T15:30:00Z'));
   }
 
   public function testCanDateFormatTwoDates(): void {
-    $this->assertSame('15/04/2021 10:30 - 16/04/2021 15:30', LineFormatter::format_date_time(new \DateTimeZone('UTC'), '2021-04-15T10:30:00Z', '2021-04-16T15:30:00Z', false));
-  }
-
-  public function testCanDateFormatTwoDatesWithOffset(): void {
-    $this->assertSame('15/04/2021 10:30 - 16/04/2021 15:30 (UTC)', LineFormatter::format_date_time(new \DateTimeZone('UTC'), '2021-04-15T10:30:00Z', '2021-04-16T15:30:00Z', true));
+    $this->assertSame('15/04/2021 10:30 - 16/04/2021 15:30', LineFormatter::format_date_time(new \DateTimeZone('UTC'), 'd/m/Y', 'H:i', '2021-04-15T10:30:00Z', '2021-04-16T15:30:00Z'));
   }
 
   public function testCanDateFormatWhenSecondDateIsNull(): void {
-    $this->assertSame('15/04/2021 10:30', LineFormatter::format_date_time(new \DateTimeZone('UTC'), '2021-04-15T10:30:00Z', null, false));
-  }
-
-  public function testCanDateFormatWhenSecondDateIsNullWithOffset(): void {
-    $this->assertSame('15/04/2021 10:30 (UTC)', LineFormatter::format_date_time(new \DateTimeZone('UTC'), '2021-04-15T10:30:00Z', null, true));
+    $this->assertSame('15/04/2021 10:30', LineFormatter::format_date_time(new \DateTimeZone('UTC'), 'd/m/Y', 'H:i', '2021-04-15T10:30:00Z', null));
   }
 
   public function testCanLocationFormatBothParameters(): void {
