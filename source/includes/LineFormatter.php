@@ -3,16 +3,16 @@ namespace MobilizonConnector;
 
 final class LineFormatter
 {
-  public static function format_date_time(string $dateFormat, string $timeFormat, string $start, ?string $end): string {
-    $startDateTime = new \DateTimeImmutable($start);
-    $startDate = DateTimeFormatter::format($startDateTime, $dateFormat);
-    $startTime = DateTimeFormatter::format($startDateTime, $timeFormat);
+  public static function format_date_time(\DateTimeZone $timeZone, string $dateFormat, string $timeFormat, string $start, ?string $end): string {
+    $startDateTime = new LocalDateTime($start, $timeZone);
+    $startDate = LocalDateTimeFormatter::format($startDateTime, $dateFormat);
+    $startTime = LocalDateTimeFormatter::format($startDateTime, $timeFormat);
 
     $dateText = $startDate . ' ' . $startTime;
     if ($end) {
-      $endDateTime = new \DateTimeImmutable($end);
-      $endDate = DateTimeFormatter::format($endDateTime, $dateFormat);
-      $endTime = DateTimeFormatter::format($endDateTime, $timeFormat);
+      $endDateTime = new LocalDateTime($end, $timeZone);
+      $endDate = LocalDateTimeFormatter::format($endDateTime, $dateFormat);
+      $endTime = LocalDateTimeFormatter::format($endDateTime, $timeFormat);
 
       if ($startDate != $endDate) {
         $dateText .= ' - ';

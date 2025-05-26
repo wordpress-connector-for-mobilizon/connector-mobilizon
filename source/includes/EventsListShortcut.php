@@ -36,6 +36,7 @@ class EventsListShortcut {
 
       $dateFormat = SiteSettings::getDateFormat();
       $timeFormat = SiteSettings::getTimeFormat();
+      $timeZone = SiteSettings::getTimeZone();
 
       require dirname(__DIR__) . '/view/events-list.php';
     } catch (GeneralException $e) {
