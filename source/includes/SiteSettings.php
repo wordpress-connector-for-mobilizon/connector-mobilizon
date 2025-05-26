@@ -14,8 +14,4 @@ class SiteSettings {
     return get_option(self::$OPTION_NAME_TIME_FORMAT);
   }
 
-  public static function getTimeZone() {
-    return wp_timezone();
-  }
-
 }
