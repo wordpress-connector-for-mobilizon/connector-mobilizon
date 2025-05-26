@@ -10,7 +10,7 @@ export function displayEvents({ events, document, container, maxEventsCount }) {
   hideLoadingIndicator(container)
 
   const isShortOffsetNameShown =
-    window.MOBILIZON_CONNECTOR.isShortOffsetNameShown
+    window.MOBILIZON_CONNECTOR.isShortOffsetNameShown || false // TODO remove
   const locale = window.MOBILIZON_CONNECTOR.locale
   const timeZone = window.MOBILIZON_CONNECTOR.timeZone
 

@@ -9,6 +9,7 @@
 - Use date and time formats from general site settings 
 #### Deprecated
 #### Removed
+- Removed option "Display named offset"
 #### Fixed
 - Show group not found error message in block
 #### Security

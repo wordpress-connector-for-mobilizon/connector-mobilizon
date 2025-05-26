@@ -8,6 +8,7 @@ export default class Formatter {
   }
 
   static formatDate({ locale, timeZone, start, end, isShortOffsetNameShown }) {
+    // TODO also use WP general site settings
     const startDateTime = new DateTimeWrapper({
       locale,
       text: start,

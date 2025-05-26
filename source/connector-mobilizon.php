@@ -74,11 +74,11 @@ final class Mobilizon_Connector {
 
   public function enable_activation() {
     MobilizonConnector\Settings::setDefaultOptions();
+    MobilizonConnector\Settings::removeObsoleteOptionsIfNeeded();
   }
 
   private function load_settings_globally_before_script($scriptName) {
     $settings = array(
-      'isShortOffsetNameShown' => MobilizonConnector\Settings::isShortOffsetNameShown(),
       'locale' => str_replace('_', '-', get_locale()),
       'timeZone' => wp_timezone_string(),
       'url' => MobilizonConnector\Settings::getUrl()
