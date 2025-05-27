@@ -21,7 +21,6 @@ Features
 - Configure number of events to show per block, per widget and per shortcut
 - Optionally filter events by a specific public group per block, per widget and per shortcut
 - Set the URL of the Mobilizon instance in the settings
-- Toggle adding named offset in brackets after the time in the settings
 
 This plugin requests the events via Mobilizon's GraphQL API.
 
