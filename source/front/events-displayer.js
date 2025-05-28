@@ -9,11 +9,6 @@ export function clearEventsList(container) {
 export function displayEvents({ events, document, container, maxEventsCount }) {
   hideLoadingIndicator(container)
 
-  const isShortOffsetNameShown =
-    window.MOBILIZON_CONNECTOR.isShortOffsetNameShown || false // TODO remove
-  const locale = window.MOBILIZON_CONNECTOR.locale
-  const timeZone = window.MOBILIZON_CONNECTOR.timeZone
-
   const eventsCount = Math.min(maxEventsCount, events.length)
   const list = container.querySelector('ul')
   for (let i = 0; i < eventsCount; i++) {
@@ -43,11 +38,10 @@ export function displayEvents({ events, document, container, maxEventsCount }) {
     li.appendChild(br)
 
     const date = Formatter.formatDate({
-      locale,
-      start: events[i].beginsOn,
-      end: events[i].endsOn,
-      timeZone,
-      isShortOffsetNameShown,
+      startDateFormatted: events[i].startDateFormatted,
+      startTimeFormatted: events[i].startTimeFormatted,
+      endDateFormatted: events[i].endDateFormatted,
+      endTimeFormatted: events[i].endTimeFormatted,
     })
     const textnode = document.createTextNode(date)
     li.appendChild(textnode)

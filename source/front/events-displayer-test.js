@@ -51,6 +51,10 @@ test('#displayEvents one event', (t) => {
         description: 'c',
         locality: 'd',
       },
+      startDateFormatted: '15/04/2021',
+      startTimeFormatted: '10:30',
+      endDateFormatted: '15/04/2021',
+      endTimeFormatted: '15:30',
     },
   ]
   const container = t.context.container

@@ -43,11 +43,29 @@ class Api {
       } else {
         $events = GraphQlClient::get_upcoming_events($url, (int) $eventsCount);
       }
+      $events = array_map([self::class, 'addDateAndTimeFormats'], $events);
       return $events;
     } catch (GeneralException $e) {
       return new \WP_Error('events_not_loading', 'The events could not be loaded!', array('status' => 500));
     } catch (GroupNotFoundException $e) {
       return new \WP_Error('group_not_found', sprintf('The group "%s" could not be found!', $groupName), array('status' => 404));
     }
+  }
+
+  public static function addDateAndTimeFormats($event) {
+    $dateFormat = SiteSettings::getDateFormat();
+    $timeFormat = SiteSettings::getTimeFormat();
+    $timeZone = SiteSettings::getTimeZone();
+
+    $startDateTime = new LocalDateTime($event['beginsOn'], $timeZone);
+    $event['startDateFormatted'] = LocalDateTimeFormatter::format($startDateTime, $dateFormat);
+    $event['startTimeFormatted'] = LocalDateTimeFormatter::format($startDateTime, $timeFormat);
+
+    if ($event['endsOn']) {
+      $endDateTime = new LocalDateTime($event['endsOn'], $timeZone);
+      $event['endDateFormatted'] = LocalDateTimeFormatter::format($endDateTime, $dateFormat);
+      $event['endTimeFormatted'] = LocalDateTimeFormatter::format($endDateTime, $timeFormat);
+    }
+    return $event;
   }
 }

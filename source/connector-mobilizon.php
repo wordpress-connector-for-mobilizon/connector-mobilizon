@@ -79,8 +79,6 @@ final class Mobilizon_Connector {
 
   private function load_settings_globally_before_script($scriptName) {
     $settings = array(
-      'locale' => str_replace('_', '-', get_locale()),
-      'timeZone' => wp_timezone_string(),
       'url' => MobilizonConnector\Settings::getUrl()
     );
     wp_add_inline_script($scriptName, 'var MOBILIZON_CONNECTOR = ' . json_encode($settings), 'before');
