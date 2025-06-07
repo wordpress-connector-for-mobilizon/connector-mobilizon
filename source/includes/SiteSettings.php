@@ -18,8 +18,4 @@ class SiteSettings {
     return wp_timezone();
   }
 
-  public static function getTimeZoneString() {
-    return wp_timezone_string();
-  }
-
 }
