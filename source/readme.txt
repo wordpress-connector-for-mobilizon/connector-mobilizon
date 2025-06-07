@@ -59,7 +59,6 @@ You have to use their username, e.g. `@nosliensvivants`, and append the name of 
 - Use `wp_remote_get()` instead of cURL functions for downloading the images
 - Use date and time formats from general site settings
 - Update dependencies
-#### Deprecated
 #### Removed
 - Removed option "Display named offset"
 #### Fixed
