@@ -96,7 +96,7 @@ class Settings {
   public static function removeObsoleteOptionsIfNeeded() {
     $storedPluginVersion = get_option(self::$OPTION_NAME_PLUGIN_VERSION);
     if ($storedPluginVersion !== PLUGIN_VERSION) {
-      if (version_compare($storedPluginVersion, '1.5.0', '<') ) {
+      if (!$storedPluginVersion || version_compare($storedPluginVersion, '2.0.0', '<') ) {
         delete_option(self::$OPTION_NAME_IS_SHORT_OFFSET_NAME_SHOWN);
       }
       update_option(self::$OPTION_NAME_PLUGIN_VERSION, PLUGIN_VERSION);

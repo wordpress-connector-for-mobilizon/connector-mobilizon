@@ -49,6 +49,24 @@ You have to use their username, e.g. `@nosliensvivants`, and append the name of 
 
 ## Changelog
 
+### [2.0.0]
+#### Added
+- Display "Show more events" button below the events list
+- Document basic installation
+- Add settings link to action links of plugin on plugins page
+- Add donation link to meta row of plugin on plugins page
+#### Changed
+- Use `wp_remote_get()` instead of cURL functions for downloading the images
+- Use date and time formats from general site settings
+- Update dependencies
+#### Deprecated
+#### Removed
+- Removed option "Display named offset"
+#### Fixed
+- Show group not found error message in block
+#### Security
+- Escape translated strings to prevent HTML injections
+
 ### [1.4.0]
 #### Changed
 - Update dependencies

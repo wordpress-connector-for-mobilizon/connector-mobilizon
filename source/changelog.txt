@@ -1,5 +1,13 @@
 ### [Unreleased]
 #### Added
+#### Changed
+#### Deprecated
+#### Removed
+#### Fixed
+#### Security
+
+### [2.0.0]
+#### Added
 - Display "Show more events" button below the events list
 - Document basic installation
 - Add settings link to action links of plugin on plugins page
