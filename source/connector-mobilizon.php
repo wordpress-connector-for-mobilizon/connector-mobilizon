@@ -39,7 +39,7 @@ final class Mobilizon_Connector {
     add_action('init', [$this, 'register_shortcut']);
     add_action('widgets_init', [$this, 'register_widget']);
     register_activation_hook(__FILE__, [$this, 'enable_activation']);
-    add_filter('plugin_action_links_connector-mobilizon/connector-mobilizon.php', [$this, 'add_donation_link_to_plugins_page']);
+    add_filter('plugin_row_meta', [$this, 'add_donation_link_to_plugins_page'], 10, 2);
     add_filter('plugin_action_links_connector-mobilizon/connector-mobilizon.php', [$this, 'add_settings_link_to_plugins_page']);
   }
 
@@ -52,10 +52,12 @@ final class Mobilizon_Connector {
     return $instance;
   }
 
-  public function add_donation_link_to_plugins_page(array $links) {
-    $url = esc_url('<wordpress-donation-link>');
-    $settings_link = "<a href='$url'>" . esc_html__('Donate', 'connector-mobilizon') . '</a>';
-    array_unshift($links, $settings_link);
+  public function add_donation_link_to_plugins_page(array $links, string $plugin_file) {
+    if(strpos($plugin_file, basename(__FILE__))) {
+      $url = esc_url('<wordpress-donation-link>');
+      $donation_link = "<a href='$url'>" . esc_html__('Donate', 'connector-mobilizon') . '</a>';
+      array_splice($links, 2, 0, $donation_link);
+    }
     return $links;
   }
 
