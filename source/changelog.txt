@@ -7,6 +7,7 @@
 #### Changed
 - Use `wp_remote_get()` instead of cURL functions for downloading the images
 - Use date and time formats from general site settings
+- Update dependencies
 #### Deprecated
 #### Removed
 - Removed option "Display named offset"
