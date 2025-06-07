@@ -15,10 +15,10 @@ if (!defined('ABSPATH')) {
       <?php } ?>
       <a href="<?php echo esc_attr($event['url']); ?>"><?php echo esc_html($event['title']); ?></a>
       <br>
-      <?php echo esc_html(Formatter::format_date($locale, $timeZone, $event['beginsOn'], $event['endsOn'], $isShortOffsetNameShown)); ?>
+      <?php echo esc_html(LineFormatter::format_date_time($timeZone, $dateFormat, $timeFormat, $event['beginsOn'], $event['endsOn'])); ?>
       <?php if (isset($event['physicalAddress'])) { ?>
       <br>
-      <?php echo esc_html(Formatter::format_location($event['physicalAddress']['description'], $event['physicalAddress']['locality'])) ?>
+      <?php echo esc_html(LineFormatter::format_location($event['physicalAddress']['description'], $event['physicalAddress']['locality'])) ?>
       <?php } ?>
     </li>
     <?php } ?>

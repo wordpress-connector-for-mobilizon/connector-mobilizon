@@ -16,8 +16,10 @@ require_once __DIR__ . '/includes/Constants.php';
 require_once __DIR__ . '/includes/Api.php';
 require_once __DIR__ . '/includes/EventsCache.php';
 require_once __DIR__ . '/includes/Settings.php';
-require_once __DIR__ . '/includes/DateTimeWrapper.php';
-require_once __DIR__ . '/includes/Formatter.php';
+require_once __DIR__ . '/includes/SiteSettings.php';
+require_once __DIR__ . '/includes/LocalDateTime.php';
+require_once __DIR__ . '/includes/LocalDateTimeFormatter.php';
+require_once __DIR__ . '/includes/LineFormatter.php';
 require_once __DIR__ . '/includes/GraphQlClient.php';
 require_once __DIR__ . '/includes/EventsListBlock.php';
 require_once __DIR__ . '/includes/EventsListShortcut.php';
@@ -72,13 +74,11 @@ final class Mobilizon_Connector {
 
   public function enable_activation() {
     MobilizonConnector\Settings::setDefaultOptions();
+    MobilizonConnector\Settings::removeObsoleteOptionsIfNeeded();
   }
 
   private function load_settings_globally_before_script($scriptName) {
     $settings = array(
-      'isShortOffsetNameShown' => MobilizonConnector\Settings::isShortOffsetNameShown(),
-      'locale' => str_replace('_', '-', get_locale()),
-      'timeZone' => wp_timezone_string(),
       'url' => MobilizonConnector\Settings::getUrl()
     );
     wp_add_inline_script($scriptName, 'var MOBILIZON_CONNECTOR = ' . json_encode($settings), 'before');

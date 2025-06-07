@@ -1,5 +1,3 @@
-import DateTimeWrapper from './date-time-wrapper.js'
-
 export default class Formatter {
   static escapeHTML(input) {
     const div = document.createElement('div')
@@ -7,30 +5,22 @@ export default class Formatter {
     return div.innerHTML
   }
 
-  static formatDate({ locale, timeZone, start, end, isShortOffsetNameShown }) {
-    const startDateTime = new DateTimeWrapper({
-      locale,
-      text: start,
-      timeZone,
-    })
-    let dateText = startDateTime.getShortDate()
-    dateText += ' ' + startDateTime.get24Time()
-    if (!end && isShortOffsetNameShown) {
-      dateText += ' (' + startDateTime.getShortOffsetName() + ')'
-    }
-
-    if (end) {
-      const endDateTime = new DateTimeWrapper({ locale, text: end, timeZone })
-      if (!startDateTime.equalsDate(endDateTime)) {
+  static formatDate({
+    startDateFormatted,
+    startTimeFormatted,
+    endDateFormatted,
+    endTimeFormatted,
+  }) {
+    let dateText = startDateFormatted
+    dateText += ' ' + startTimeFormatted
+    if (endDateFormatted) {
+      if (startDateFormatted !== endDateFormatted) {
         dateText += ' - '
-        dateText += endDateTime.getShortDate() + ' '
+        dateText += endDateFormatted + ' '
       } else {
         dateText += ' - '
       }
-      dateText += endDateTime.get24Time()
-      if (isShortOffsetNameShown) {
-        dateText += ' (' + endDateTime.getShortOffsetName() + ')'
-      }
+      dateText += endTimeFormatted
     }
     return dateText
   }
