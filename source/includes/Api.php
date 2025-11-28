@@ -39,7 +39,13 @@ class Api {
 
     try {
       if ($groupName) {
-        $events = GraphQlClient::get_upcoming_events_by_group_name($url, (int) $eventsCount, $groupName);
+        $groupNames = [];
+        if (str_contains($groupName, ',')) {
+          $groupNames = explode(',', $groupName);
+        } else {
+          $groupNames[] = $groupName;
+        }
+        $events = GraphQlClient::get_upcoming_events_by_group_name($url, (int) $eventsCount, $groupNames);
       } else {
         $events = GraphQlClient::get_upcoming_events($url, (int) $eventsCount);
       }

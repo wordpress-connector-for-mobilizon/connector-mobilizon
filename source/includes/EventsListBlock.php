@@ -45,8 +45,20 @@ class EventsListBlock {
     try {
       $showMoreUrl = Settings::getUrl();
       if ($groupName) {
-        $events = GraphQlClient::get_upcoming_events_by_group_name($url, (int) $eventsCount, $groupName);
-        $showMoreUrl .= '/@' . $groupName . '/events';
+        $groupNames = [];
+        if (str_contains($groupName, ',')) {
+          $groupNames = explode(',', $groupName);
+        } else {
+          $groupNames[] = $groupName;
+        }
+        $events = GraphQlClient::get_upcoming_events_by_group_name($url, (int) $eventsCount, $groupNames);
+        $groups = [];
+        foreach ($groupNames as $name) {
+          $groups[] = array(
+            'name' => $name,
+            'url' => $showMoreUrl . '/@' . $name . '/events'
+          );
+        }
       } else {
         $events = GraphQlClient::get_upcoming_events($url, (int) $eventsCount);
       }

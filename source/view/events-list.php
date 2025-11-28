@@ -23,7 +23,15 @@ if (!defined('ABSPATH')) {
     </li>
     <?php } ?>
   </ul>
+  <?php if (isset($groups)) { ?>
+  <?php foreach ($groups as $group) { ?>
+  <a href="<?php echo esc_attr($group['url']); ?>" class="button" style="display:inline-block; margin-top: 20px;">
+    <?php printf(esc_html__('Show more events of %s', 'connector-mobilizon'), esc_html($group['name'])); ?>
+  </a>
+  <?php } ?>
+  <?php } else { ?>
   <a href="<?php echo esc_attr($showMoreUrl); ?>" class="button" style="display:inline-block; margin-top: 20px;">
     <?php esc_html_e('Show more events', 'connector-mobilizon'); ?>
   </a>
+  <?php } ?>
 </div>

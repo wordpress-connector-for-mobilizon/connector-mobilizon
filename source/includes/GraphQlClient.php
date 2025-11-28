@@ -77,14 +77,7 @@ final class GraphQlClient {
     return $events;
   }
 
-  public static function get_upcoming_events_by_group_name(string $url, int $limit, string $groupName): array {
-    $groupNames = [];
-    if (str_contains($groupName, ',')) {
-      $groupNames = explode(',', $groupName);
-    } else {
-      $groupNames[] = $groupName;
-    }
-
+  public static function get_upcoming_events_by_group_name(string $url, int $limit, array $groupNames): array {
     $queryParts = [];
     $variables = ['afterDatetime' => 'DateTime', 'limit' => 'Int'];
 
