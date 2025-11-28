@@ -32,7 +32,7 @@
     "@babel/eslint-parser": "7.28.5",
     "@babel/preset-env": "7.28.5",
     "@babel/preset-react": "7.28.5",
-    "@wordpress/eslint-plugin": "22.21.0",
+    "@wordpress/eslint-plugin": "22.22.0",
     "ava": "6.4.1",
     "babel-loader": "10.0.0",
     "c8": "10.1.3",
