@@ -78,10 +78,23 @@ final class GraphQlClient {
   }
 
   public static function get_upcoming_events_by_group_name(string $url, int $limit, string $groupName): array {
-    $query = <<<'GRAPHQL'
-      query ($afterDatetime: DateTime, $groupName: String!, $limit: Int) {
-        group(preferredUsername: $groupName) {
-          organizedEvents(afterDatetime: $afterDatetime, limit: $limit) {
+    $groupNames = [];
+    if (str_contains($groupName, ',')) {
+      $groupNames = explode(',', $groupName);
+    } else {
+      $groupNames[] = $groupName;
+    }
+
+    $queryParts = [];
+    $variables = ['afterDatetime' => 'DateTime', 'limit' => 'Int'];
+
+    foreach ($groupNames as $index => $groupName) {
+      $varName = "group{$index}";
+      $variables[$varName] = 'String!';
+
+      $queryParts[] = <<<GRAPHQL
+        {$varName}: group(preferredUsername: \${$varName}) {
+          organizedEvents(afterDatetime: \$afterDatetime, limit: \$limit) {
             elements {
               id,
               title,
@@ -101,21 +114,48 @@ final class GraphQlClient {
             total
           }
         }
-      }
-      GRAPHQL;
+        GRAPHQL;
+    }
+
+    $variableDefinitions = [];
+    foreach ($variables as $name => $type) {
+        $variableDefinitions[] = "\${$name}: {$type}";
+    }
+
+    $query = sprintf(
+        "query (%s) {\n%s\n}",
+        implode(', ', $variableDefinitions),
+        implode("\n", $queryParts)
+    );
 
     $afterDatetime = date(\DateTime::ISO8601);
+    $queryVariables = [
+      'afterDatetime' => $afterDatetime,
+      'limit' => $limit
+    ];
+    foreach ($groupNames as $index => $groupName) {
+      $queryVariables["group{$index}"] = $groupName;
+    }
 
-    $cachedEvents = EventsCache::get(['url' => $url, 'query' => $query, 'afterDatetime' => $afterDatetime, 'groupName' => $groupName, 'limit' => $limit]);
+    $cachedEvents = EventsCache::get(['url' => $url, 'query' => $query, 'afterDatetime' => $afterDatetime, 'groupNames' => implode(',', $groupNames), 'limit' => $limit]);
     if ($cachedEvents !== false) {
       return $cachedEvents;
     }
 
     $endpoint = $url . '/api';
-    $data = self::query($endpoint, $query, ['afterDatetime' => $afterDatetime, 'groupName' => $groupName, 'limit' => $limit]);
+    $data = self::query($endpoint, $query, $queryVariables);
     self::checkData($data);
 
-    $events = $data['data']['group']['organizedEvents']['elements'];
+    $events = [];
+    foreach ($data['data'] as $groupKey => $groupData) {
+      if ($groupData && isset($groupData['organizedEvents']['elements'])) {
+        $events = array_merge($events, $groupData['organizedEvents']['elements']);
+      }
+    }
+    usort($events, function($a, $b) {
+      return strtotime($a['beginsOn']) - strtotime($b['beginsOn']);
+    });
+    $events = array_slice($events, 0, $limit);
     
     foreach ($events as &$event) {
       if ($event['picture']) {
@@ -128,7 +168,7 @@ final class GraphQlClient {
       unset($event);
     }
 
-    EventsCache::set(['url' => $url, 'query' => $query, 'afterDatetime' => $afterDatetime, 'groupName' => $groupName, 'limit' => $limit], $events);
+    EventsCache::set(['url' => $url, 'query' => $query, 'afterDatetime' => $afterDatetime, 'groupNames' => implode(',', $groupNames), 'limit' => $limit], $events);
     return $events;
   }
 

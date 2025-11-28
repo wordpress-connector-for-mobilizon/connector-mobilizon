@@ -34,7 +34,7 @@ export default ({ attributes, setAttributes }) => {
         let url = `/wp-json/connector-mobilizon/v1/events?eventsCount=${eventsCount}`
         let showMoreUrl = window.MOBILIZON_CONNECTOR.url
         if (groupName) {
-          showMoreUrl += '/@' + groupName + '/events'
+          showMoreUrl += '/@' + groupName + '/events' // TODO adapt
           url += `&groupName=${groupName}`
         }
         container.querySelector('a').href = showMoreUrl
@@ -57,8 +57,13 @@ export default ({ attributes, setAttributes }) => {
             })
           })
           .catch((data) => {
-            const parsedData = JSON.parse(data)
-            displayErrorMessage({ data: parsedData, container })
+            let message = ''
+            try {
+              message = JSON.parse(data)
+            } catch ($e) {
+              message = 'Parsing the error message failed.'
+            }
+            displayErrorMessage({ data: message, container })
           })
       }
     }, 500)
