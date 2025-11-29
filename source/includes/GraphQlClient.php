@@ -77,7 +77,7 @@ final class GraphQlClient {
     return $events;
   }
 
-  public static function get_upcoming_events_by_group_name(string $url, int $limit, array $groupNames): array {
+  public static function get_upcoming_events_by_group_names(string $url, int $limit, array $groupNames): array {
     $queryParts = [];
     $variables = ['afterDatetime' => 'DateTime', 'limit' => 'Int'];
 
