@@ -39,7 +39,7 @@ class Api {
 
     try {
       if ($groupName) {
-        $groupNames = array_map(fn($name): string => trim($name), explode(',', $groupName));
+        $groupNames = GroupNameHelper::extractAndTrimNames($groupName);
         $events = GraphQlClient::get_upcoming_events_by_group_names($url, (int) $eventsCount, $groupNames);
       } else {
         $events = GraphQlClient::get_upcoming_events($url, (int) $eventsCount);
