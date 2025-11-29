@@ -19,7 +19,7 @@ Features
 - Display events' picture, if available, title with link, date, and location, if available
 - Cache requests' responses for 2 minutes in the database
 - Configure number of events to show per block, per widget and per shortcut
-- Optionally filter events by a specific public group per block, per widget and per shortcut
+- Optionally filter events by one or more public groups per block, per widget and per shortcut
 - Set the URL of the Mobilizon instance in the settings
 
 This plugin requests the events via Mobilizon's GraphQL API.
