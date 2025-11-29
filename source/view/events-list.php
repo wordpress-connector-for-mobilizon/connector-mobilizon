@@ -26,7 +26,10 @@ if (!defined('ABSPATH')) {
   <?php if (isset($groups)) { ?>
   <?php foreach ($groups as $group) { ?>
   <a href="<?php echo esc_attr($group['url']); ?>" class="button" style="display:inline-block; margin-top: 20px;">
-    <?php printf(esc_html__('Show more events of %s', 'connector-mobilizon'), esc_html($group['name'])); ?>
+    <?php
+    /* translators: %s: a group name */
+    printf(esc_html__('Show more events of %s', 'connector-mobilizon'), esc_html($group['name']));
+    ?>
   </a>
   <?php } ?>
   <?php } else { ?>

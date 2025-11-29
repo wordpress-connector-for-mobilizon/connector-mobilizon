@@ -165,7 +165,7 @@ export default ({ attributes, setAttributes }) => {
             style={{ display: 'inline-block', marginTop: '20px' }}
           >
             {sprintf(
-              // translators: %s: group name
+              // translators: %s: a group name
               __('Show more events of %s', '<wordpress-name>'),
               group.name,
             )}
