@@ -140,7 +140,7 @@ final class GraphQlClient {
     self::checkData($data);
 
     $events = [];
-    foreach ($data['data'] as $groupKey => $groupData) {
+    foreach ($data['data'] as $groupData) {
       if ($groupData && isset($groupData['organizedEvents']['elements'])) {
         $events = array_merge($events, $groupData['organizedEvents']['elements']);
       }
