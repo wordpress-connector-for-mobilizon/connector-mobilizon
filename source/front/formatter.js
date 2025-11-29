@@ -1,10 +1,4 @@
 export default class Formatter {
-  static escapeHTML(input) {
-    const div = document.createElement('div')
-    div.appendChild(document.createTextNode(input))
-    return div.innerHTML
-  }
-
   static formatDate({
     startDateFormatted,
     startTimeFormatted,

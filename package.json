@@ -9,7 +9,7 @@
     "build-prod": "rimraf -- build && ava && webpack --mode=production && gulp inject",
     "clean": "rimraf -- build",
     "coverage": "c8 --all --reporter=html --reporter=text --include=source/**/*.js ava",
-    "eslint": "npx eslint source/**/*.js",
+    "eslint": "npx eslint './source/**/*.js'",
     "format": "npx prettier --write .",
     "prepare": "husky",
     "test": "ava && ./vendor/bin/phpunit"

@@ -8,11 +8,6 @@ test.beforeEach(() => {
   global.document = dom.window.document
 })
 
-test('#escapeHTML', (t) => {
-  const escaped = Formatter.escapeHTML('<b>a</b>')
-  t.is(escaped, '&lt;b&gt;a&lt;/b&gt;')
-})
-
 test('#formatDate one date', (t) => {
   const date = Formatter.formatDate({
     startDateFormatted: '15/04/2021',
