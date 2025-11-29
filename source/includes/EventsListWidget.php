@@ -14,10 +14,10 @@ class EventsListWidget extends \WP_Widget {
   }
 
   public function widget($args, $options) {
-    echo $args['before_widget'];
+    echo wp_kses_post($args['before_widget']);
 
     if (!empty($options['title'])) {
-      echo $args['before_title'].apply_filters('widget_title', $options['title']).$args['after_title'];
+      echo wp_kses_post($args['before_title']).wp_kses_post(apply_filters('widget_title', $options['title'])).wp_kses_post($args['after_title']);
     }
 
     $url = Settings::getUrl();
@@ -46,7 +46,7 @@ class EventsListWidget extends \WP_Widget {
       require dirname(__DIR__) . '/view/events-list-group-not-found.php';
     }
 
-    echo $args['after_widget'];
+    echo wp_kses_post($args['after_widget']);
   }
 
   public function form($options) {

@@ -21,7 +21,7 @@ final class GraphQlClient {
 
     if ($data === false) {
       $error = error_get_last();
-      throw new \ErrorException($error['message'], $error['type']);
+      throw new \ErrorException(esc_html($error['message']), esc_html($error['type']));
     }
 
     return json_decode($data, true);
@@ -170,9 +170,9 @@ final class GraphQlClient {
       if (count($data['errors']) > 0 &&
           isset($data['errors'][0]['code']) &&
           $data['errors'][0]['code'] === 'group_not_found') {
-        throw new GroupNotFoundException(serialize($data['errors'][0]));
+        throw new GroupNotFoundException(esc_html(serialize($data['errors'][0])));
       } else {
-        throw new GeneralException(serialize($data['errors']));
+        throw new GeneralException(esc_html(serialize($data['errors'])));
       }
     }
   }

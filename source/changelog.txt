@@ -9,6 +9,7 @@
 - Revert escaping strings in blocks as React takes care of it
 #### Fixed
 #### Security
+- Add missing escapes for outputs detected by Plugin Check
 
 ### [2.0.0]
 #### Added
