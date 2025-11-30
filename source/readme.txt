@@ -37,17 +37,30 @@ After the installation, you can adapt the URL of the Mobilizon instance whose ev
 
 Shortcut format with limiting the number of events to show to 3 for example: `[<wordpress-name>-events-list events-count=3]`
 
-Optionally, you can only show the events of a specific group by indicatings its name: `[<wordpress-name>-events-list events-count=3 group-name="mygroup"]`
+Optionally, you can only show the events of one or more groups by indicatings their names: `[<wordpress-name>-events-list events-count=3 group-name="mygroup"]`
+Multiple group names have to be separated by comma: `[<wordpress-name>-events-list events-count=3 group-name="mygroup1,mygroup2,mygroup3"]`
 You have to use their username, e.g. `@nosliensvivants`, and append the name of their instance if they use a different one, e.g. `@yaam_berlin@mobilize.berlin`.
 
 ## Screenshots
-1. Events list
-2. General settings
-3. Widget creation
-4. Shortcut creation
-5. Gutenberg block in editor
+1. List of 3 events
+2. List of 4 events of one group
+3. Gutenberg block in editor
+4. Widget creation
+5. Shortcut creation
+6. General settings
 
 ## Changelog
+
+### [2.1.0]
+#### Added
+- Allow to filter by multiple group names
+#### Changed
+- Confirm compatibility with WordPress 6.9
+- Update dependencies
+#### Removed
+- Revert escaping strings in blocks as React takes care of it
+#### Security
+- Add missing output escapes detected by Plugin Check
 
 ### [2.0.0]
 #### Added
