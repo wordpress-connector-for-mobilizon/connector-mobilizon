@@ -137,7 +137,7 @@ export default ({ attributes, setAttributes }) => {
           />
           <p className="components-base-control__help">
             {__(
-              'Use comma-separated values for multiple groups.',
+              'Use comma-separated names for multiple groups.',
               '<wordpress-name>',
             )}
           </p>
