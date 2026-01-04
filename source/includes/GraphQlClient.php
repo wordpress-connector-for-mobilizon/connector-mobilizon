@@ -121,7 +121,7 @@ final class GraphQlClient {
         implode("\n", $queryParts)
     );
 
-    $afterDatetime = date(\DateTime::ISO8601);
+    $afterDatetime = gmdate(\DateTime::ATOM);
     $queryVariables = [
       'afterDatetime' => $afterDatetime,
       'limit' => $limit
