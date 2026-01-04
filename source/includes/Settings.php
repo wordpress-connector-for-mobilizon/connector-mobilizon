@@ -1,6 +1,11 @@
 <?php
 namespace MobilizonConnector;
 
+// Exit if this file is called directly.
+if (!defined('ABSPATH')) {
+  exit;
+}
+
 class Settings {
 
   private static $DEFAULT_OPTION_URL = 'https://mobilizon.fr';

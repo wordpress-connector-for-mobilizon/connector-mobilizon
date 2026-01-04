@@ -1,6 +1,11 @@
 <?php
 namespace MobilizonConnector;
 
+// Exit if this file is called directly.
+if (!defined('ABSPATH')) {
+  exit;
+}
+
 final class GraphQlClient {
 
   public static function query(string $endpoint, string $query, array $variables = [], ?string $token = null): array

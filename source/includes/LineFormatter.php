@@ -1,6 +1,11 @@
 <?php
 namespace MobilizonConnector;
 
+// Exit if this file is called directly.
+if (!defined('ABSPATH')) {
+  exit;
+}
+
 final class LineFormatter
 {
   public static function format_date_time(\DateTimeZone $timeZone, string $dateFormat, string $timeFormat, string $start, ?string $end): string {

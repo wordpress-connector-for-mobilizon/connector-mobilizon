@@ -1,6 +1,11 @@
 <?php
 namespace MobilizonConnector;
 
+// Exit if this file is called directly.
+if (!defined('ABSPATH')) {
+  exit;
+}
+
 class Api {
   public static function init() {
     add_action('rest_api_init', 'MobilizonConnector\Api::init_api');

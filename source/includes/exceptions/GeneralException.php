@@ -1,6 +1,11 @@
 <?php
 namespace MobilizonConnector;
 
+// Exit if this file is called directly.
+if (!defined('ABSPATH')) {
+  exit;
+}
+
 class GeneralException extends \Exception {
   public function __construct($message, $code = 0, Throwable $previous = null) {
     parent::__construct($message, $code, $previous);

@@ -1,6 +1,11 @@
 <?php
 namespace MobilizonConnector;
 
+// Exit if this file is called directly.
+if (!defined('ABSPATH')) {
+  exit;
+}
+
 final class GroupNameHelper {
   public static function extractAndTrimNames(string $groupName) {
     return array_map(fn($name): string => trim($name), explode(',', $groupName));

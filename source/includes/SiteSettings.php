@@ -1,6 +1,11 @@
 <?php
 namespace MobilizonConnector;
 
+// Exit if this file is called directly.
+if (!defined('ABSPATH')) {
+  exit;
+}
+
 class SiteSettings {
 
   private static $OPTION_NAME_DATE_FORMAT = 'date_format';
