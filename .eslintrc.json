@@ -54,5 +54,12 @@
       "error",
       "never"
     ]
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js"]
+      }
+    }
   }
 }
