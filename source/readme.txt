@@ -61,6 +61,15 @@ You have to use their username, e.g. `@nosliensvivants`, and append the name of 
 
 ## Changelog
 
+### [2.2.0]
+#### Added
+- Add wrappers and class names following the BEM naming convention for easier CSS formatting
+#### Changed
+- Update dependencies
+- Switch from `date()` to `gmdate()` and to non-obsolete ATOM date format
+#### Security
+- Exit also object-oriented files when called directly
+
 ### [2.1.0]
 #### Added
 - Allow to filter by multiple group names

@@ -1,12 +1,17 @@
 ### [Unreleased]
 #### Added
+#### Changed
+#### Deprecated
+#### Removed
+#### Fixed
+#### Security
+
+### [2.2.0]
+#### Added
 - Add wrappers and class names following the BEM naming convention for easier CSS formatting
 #### Changed
 - Update dependencies
 - Switch from `date()` to `gmdate()` and to non-obsolete ATOM date format
-#### Deprecated
-#### Removed
-#### Fixed
 #### Security
 - Exit also object-oriented files when called directly
 
