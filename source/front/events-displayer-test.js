@@ -60,13 +60,20 @@ test('#displayEvents one event', (t) => {
   const container = t.context.container
   displayEvents({ events, document, container, maxEventsCount: 2 })
   const list = container.querySelector('ul')
-  t.is(list.children[0].childNodes[0].tagName, 'A')
-  t.is(list.children[0].childNodes[0].getAttribute('href'), 'b')
-  t.is(list.children[0].childNodes[0].childNodes[0].nodeValue, 'a')
-  t.is(list.children[0].childNodes[1].tagName, 'BR')
-  t.is(list.children[0].childNodes[2].nodeValue, '15/04/2021 10:30 - 15:30')
-  t.is(list.children[0].childNodes[3].tagName, 'BR')
-  t.is(list.children[0].childNodes[4].nodeValue, 'c, d')
+  t.is(list.children[0].childNodes[0].tagName, 'DIV')
+  t.is(list.children[0].childNodes[0].childNodes[0].tagName, 'A')
+  t.is(list.children[0].childNodes[0].childNodes[0].getAttribute('href'), 'b')
+  t.is(
+    list.children[0].childNodes[0].childNodes[0].childNodes[0].nodeValue,
+    'a',
+  )
+  t.is(list.children[0].childNodes[1].tagName, 'DIV')
+  t.is(
+    list.children[0].childNodes[1].childNodes[0].nodeValue,
+    '15/04/2021 10:30 - 15:30',
+  )
+  t.is(list.children[0].childNodes[2].tagName, 'DIV')
+  t.is(list.children[0].childNodes[2].childNodes[0].nodeValue, 'c, d')
 })
 
 test('#displayErrorMessage no list entries shown', (t) => {

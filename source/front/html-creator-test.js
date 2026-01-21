@@ -1,7 +1,7 @@
 import test from 'ava'
 import { JSDOM } from 'jsdom'
 
-import { createAnchorElement } from './html-creator.js'
+import { createAnchorElement, createContainerElement } from './html-creator.js'
 
 test.beforeEach(() => {
   const dom = new JSDOM()
@@ -13,4 +13,10 @@ test('#createAnchorElement usual parameters', (t) => {
   t.is(a.tagName, 'A')
   t.is(a.innerHTML, 'a')
   t.is(a.getAttribute('href'), 'b')
+})
+
+test('#createContainerElement creates element', (t) => {
+  const c = createContainerElement({ document, className: 'a' })
+  t.is(c.tagName, 'DIV')
+  t.is(c.className, 'a')
 })

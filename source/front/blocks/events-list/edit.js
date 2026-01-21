@@ -55,6 +55,7 @@ export default ({ attributes, setAttributes }) => {
         const data = await fetchEvents(eventsCount, groupName)
         const events = JSON.parse(data)
         displayEvents({
+          blockClassName: NAME + '_events-list',
           events,
           document,
           container,
@@ -155,32 +156,34 @@ export default ({ attributes, setAttributes }) => {
         {__('Loading...', '<wordpress-name>')}
       </div>
       <ul style={{ listStyleType: 'none', paddingLeft: 0 }}></ul>
-      {groups.length ? (
-        groups.map((group) => (
+      <div className={NAME + '_events-list__more-section'}>
+        {groups.length ? (
+          groups.map((group) => (
+            <a
+              key={group.name}
+              href={group.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ display: 'inline-block', marginTop: '20px' }}
+            >
+              {sprintf(
+                // translators: %s: a group name
+                __('Show more events of %s', '<wordpress-name>'),
+                group.name,
+              )}
+            </a>
+          ))
+        ) : (
           <a
-            key={group.name}
-            href={group.url}
+            href={showMoreUrl}
             target="_blank"
             rel="noopener noreferrer"
             style={{ display: 'inline-block', marginTop: '20px' }}
           >
-            {sprintf(
-              // translators: %s: a group name
-              __('Show more events of %s', '<wordpress-name>'),
-              group.name,
-            )}
+            {__('Show more events', '<wordpress-name>')}
           </a>
-        ))
-      ) : (
-        <a
-          href={showMoreUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{ display: 'inline-block', marginTop: '20px' }}
-        >
-          {__('Show more events', '<wordpress-name>')}
-        </a>
-      )}
+        )}
+      </div>
     </div>,
   ]
 }

@@ -1,50 +1,72 @@
 import Formatter from './formatter.js'
-import { createAnchorElement, createImageElement } from './html-creator.js'
+import {
+  createAnchorElement,
+  createContainerElement,
+  createImageElement,
+} from './html-creator.js'
 
 export function clearEventsList(container) {
   const list = container.querySelector('ul')
   list.replaceChildren()
 }
 
-export function displayEvents({ events, document, container, maxEventsCount }) {
+export function displayEvents({
+  blockClassName,
+  events,
+  document,
+  container,
+  maxEventsCount,
+}) {
   hideLoadingIndicator(container)
 
   const eventsCount = Math.min(maxEventsCount, events.length)
   const list = container.querySelector('ul')
+  list.className = blockClassName + '__list'
   for (let i = 0; i < eventsCount; i++) {
     const li = document.createElement('li')
+    li.className = blockClassName + '__event'
     li.style.lineHeight = '150%'
     li.style.marginTop = '20px'
 
     if (events[i].picture) {
-      const img = createImageElement({
+      const pictureContainer = createContainerElement({
+        document,
+        className: blockClassName + '__picture',
+      })
+      const picture = createImageElement({
         document,
         alt: events[i].picture.alt ? events[i].picture.alt : '',
         src: events[i].picture.base64 ? events[i].picture.base64 : '',
       })
-      img.style.display = 'block'
-      img.style.maxWidth = '100%'
-      li.appendChild(img)
+      pictureContainer.appendChild(picture)
+      li.appendChild(pictureContainer)
     }
 
-    const a = createAnchorElement({
+    const titleContainer = createContainerElement({
+      document,
+      className: blockClassName + '__title',
+    })
+    const title = createAnchorElement({
       document,
       text: events[i].title,
       url: events[i].url,
     })
-    li.appendChild(a)
+    titleContainer.appendChild(title)
+    li.appendChild(titleContainer)
 
-    const br = document.createElement('br')
-    li.appendChild(br)
-
+    const dateContainer = createContainerElement({
+      document,
+      className: blockClassName + '__date',
+    })
     const date = Formatter.formatDate({
       startDateFormatted: events[i].startDateFormatted,
       startTimeFormatted: events[i].startTimeFormatted,
       endDateFormatted: events[i].endDateFormatted,
       endTimeFormatted: events[i].endTimeFormatted,
     })
-    const textnode = document.createTextNode(date)
-    li.appendChild(textnode)
+    const dateTextNode = document.createTextNode(date)
+    dateContainer.appendChild(dateTextNode)
+    li.appendChild(dateContainer)
 
     if (events[i].physicalAddress) {
       const location = Formatter.formatLocation({
@@ -52,11 +74,13 @@ export function displayEvents({ events, document, container, maxEventsCount }) {
         locality: events[i].physicalAddress.locality,
       })
       if (location) {
-        const brBeforeLocation = document.createElement('br')
-        li.appendChild(brBeforeLocation)
-
-        const textnodeLocation = document.createTextNode(location)
-        li.appendChild(textnodeLocation)
+        const locationContainer = createContainerElement({
+          document,
+          className: blockClassName + '__location',
+        })
+        const locationTextNode = document.createTextNode(location)
+        locationContainer.appendChild(locationTextNode)
+        li.appendChild(locationContainer)
       }
     }
 

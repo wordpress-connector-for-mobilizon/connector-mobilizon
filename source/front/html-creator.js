@@ -6,6 +6,12 @@ export function createAnchorElement({ document, text, url }) {
   return a
 }
 
+export function createContainerElement({ document, className }) {
+  const div = document.createElement('div')
+  div.className = className
+  return div
+}
+
 export function createImageElement({ document, alt, src }) {
   const img = document.createElement('img')
   img.setAttribute('alt', alt)

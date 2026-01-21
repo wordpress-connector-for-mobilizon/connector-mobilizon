@@ -33,6 +33,16 @@ In both cases, you then need to click the corresponding "Install now" button.
 
 After the installation, you can adapt the URL of the Mobilizon instance whose events you want to list on the plugin's settings' page.
 
+### Custom styling
+You can change the appearance of this plugin completely by adding your own CSS code.
+
+The BEM naming convention is used, which results in the following class names:
+- `connector-mobilizon_events-list` is used at the root container element.
+- `connector-mobilizon_events-list--error` is added to the root container element if an error message is displayed instead of events.
+- The child elements have class names with a name appended. For example, `connector-mobilizon_events-list__picture` is used for the picture element.
+
+Use the developer tools of your browser to check all the names.
+
 ### Shortcut usage
 
 Shortcut format with limiting the number of events to show to 3 for example: `[<wordpress-name>-events-list events-count=3]`

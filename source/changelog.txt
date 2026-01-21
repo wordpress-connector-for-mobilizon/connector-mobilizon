@@ -1,5 +1,6 @@
 ### [Unreleased]
 #### Added
+- Add wrappers and class names following the BEM naming convention for easier CSS formatting
 #### Changed
 #### Deprecated
 #### Removed
