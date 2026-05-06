@@ -27,6 +27,8 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
+      # Workaround: Install this version first due to Cannot find module 'promise-retry' error.
+      - run: npm install -g npm@~11.10.0
       - name: Upgrade NPM
         run: npm install -g npm
       - run: npm ci --ignore-scripts
