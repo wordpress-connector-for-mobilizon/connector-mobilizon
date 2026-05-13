@@ -1,11 +1,15 @@
 import { defineConfig } from 'eslint/config'
 import ava from 'eslint-plugin-ava'
 import wordpress from '@wordpress/eslint-plugin'
+import babelParser from '@babel/eslint-parser'
 
 export default defineConfig([
   ...wordpress.configs['recommended-with-formatting'],
   ...ava.configs.recommended,
   {
+    languageOptions: {
+      parser: babelParser,
+    },
     rules: {
       'array-bracket-spacing': ['error', 'never'],
       'computed-property-spacing': ['error', 'never'],
