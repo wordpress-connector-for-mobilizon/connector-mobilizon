@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 const { dest, src } = require('gulp')
 
 const replace = require('gulp-replace')

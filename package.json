@@ -3,7 +3,6 @@
   "version": "2.3.0-next",
   "description": "Display Mobilizon events in WordPress.",
   "private": true,
-  "type": "module",
   "scripts": {
     "build-dev": "webpack --mode=development && gulp inject",
     "build-prod": "rimraf -- build && ava && webpack --mode=production && gulp inject",
@@ -28,19 +27,17 @@
     "luxon": "3.7.2"
   },
   "devDependencies": {
-    "@babel/core": "7.29.7",
-    "@babel/eslint-parser": "7.29.7",
-    "@babel/preset-env": "7.29.7",
-    "@babel/preset-react": "7.29.7",
-    "@wordpress/eslint-plugin": "24.5.0",
+    "@babel/core": "8.0.0-rc.6",
+    "@babel/eslint-parser": "8.0.0-rc.6",
+    "@babel/preset-env": "8.0.0-rc.6",
+    "@babel/preset-react": "8.0.0-rc.6",
+    "@wordpress/eslint-plugin": "25.3.0",
     "ava": "8.0.1",
     "babel-loader": "10.1.1",
     "c8": "11.0.0",
     "copy-webpack-plugin": "14.0.0",
-    "eslint": "8.57.1",
-    "eslint-plugin-ava": "14.0.0",
-    "eslint-plugin-jsx": "0.1.0",
-    "eslint-plugin-react": "7.37.5",
+    "eslint": "10.4.1",
+    "eslint-plugin-ava": "17.0.0",
     "esm": "3.2.25",
     "gulp": "5.0.1",
     "gulp-replace": "1.1.4",
@@ -66,5 +63,14 @@
   "lint-staged": {
     "source/**/*.js": "eslint",
     "**/*": "prettier --write --ignore-unknown"
+  },
+  "overrides": {
+    "@babel/core": "8.0.0-rc.6",
+    "@wordpress/babel-preset-default": {
+      "@babel/core": "8.0.0-rc.6",
+      "@babel/preset-env": "$@babel/preset-env",
+      "@babel/preset-typescript": "8.0.0-rc.6",
+      "@babel/plugin-syntax-import-attributes": "8.0.0-rc.1"
+    }
   }
 }

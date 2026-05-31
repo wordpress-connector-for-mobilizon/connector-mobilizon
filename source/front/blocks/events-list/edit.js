@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-/* eslint-disable @wordpress/i18n-ellipsis */
 import {
   clearEventsList,
   displayErrorMessage,
@@ -65,7 +63,7 @@ export default ({ attributes, setAttributes }) => {
         let message = ''
         try {
           message = JSON.parse(error)
-        } catch ($e) {
+        } catch {
           message = 'Parsing the error message failed.'
         }
         displayErrorMessage({ data: message, container })
@@ -153,7 +151,7 @@ export default ({ attributes, setAttributes }) => {
         {__('The group could not be found!', '<wordpress-name>')}
       </div>
       <div className="loading-indicator" style={{ display: 'none' }}>
-        {__('Loading...', '<wordpress-name>')}
+        {__('Loading…', '<wordpress-name>')}
       </div>
       <ul style={{ listStyleType: 'none', paddingLeft: 0 }}></ul>
       <div className={NAME + '_events-list__more-section'}>
