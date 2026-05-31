@@ -61,6 +61,11 @@ You have to use their username, e.g. `@nosliensvivants`, and append the name of 
 
 ## Changelog
 
+### [2.3.0]
+#### Changed
+- Confirm compatibility with WordPress 7.0
+- Update dependencies
+
 ### [2.2.0]
 #### Added
 - Add wrappers and class names following the BEM naming convention for easier CSS formatting
