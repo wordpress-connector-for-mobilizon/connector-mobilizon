@@ -27,17 +27,17 @@
     "luxon": "3.7.2"
   },
   "devDependencies": {
-    "@babel/core": "8.0.0-rc.5",
-    "@babel/eslint-parser": "8.0.0-rc.5",
-    "@babel/preset-env": "8.0.0-rc.5",
-    "@babel/preset-react": "8.0.0-rc.5",
-    "@wordpress/eslint-plugin": "25.1.0",
+    "@babel/core": "8.0.0-rc.6",
+    "@babel/eslint-parser": "8.0.0-rc.6",
+    "@babel/preset-env": "8.0.0-rc.6",
+    "@babel/preset-react": "8.0.0-rc.6",
+    "@wordpress/eslint-plugin": "25.3.0",
     "ava": "8.0.1",
     "babel-loader": "10.1.1",
     "c8": "11.0.0",
     "copy-webpack-plugin": "14.0.0",
-    "eslint": "10.3.0",
-    "eslint-plugin-ava": "^16.0.1",
+    "eslint": "10.4.1",
+    "eslint-plugin-ava": "17.0.0",
     "esm": "3.2.25",
     "gulp": "5.0.1",
     "gulp-replace": "1.1.4",
@@ -65,11 +65,11 @@
     "**/*": "prettier --write --ignore-unknown"
   },
   "overrides": {
-    "@babel/core": "8.0.0-rc.5",
+    "@babel/core": "8.0.0-rc.6",
     "@wordpress/babel-preset-default": {
-      "@babel/core": "8.0.0-rc.5",
+      "@babel/core": "8.0.0-rc.6",
       "@babel/preset-env": "$@babel/preset-env",
-      "@babel/preset-typescript": "8.0.0-rc.5",
+      "@babel/preset-typescript": "8.0.0-rc.6",
       "@babel/plugin-syntax-import-attributes": "8.0.0-rc.1"
     }
   }
