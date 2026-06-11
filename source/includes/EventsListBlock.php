@@ -30,7 +30,7 @@ class EventsListBlock {
           'type' => 'number',
           'default' => 3,
         ],
-        'groupUsername' => [
+        'groupName' => [
           'type' => 'string',
         ],
       ],
@@ -43,7 +43,6 @@ class EventsListBlock {
   public static function render($block_attributes, $content) {
     $url = Settings::getUrl();
     $eventsCount = $block_attributes['eventsCount'];
-    // Fallback on previous name.
     $groupUsername = isset($block_attributes['groupName']) ? $block_attributes['groupName'] : '';
     $classNamePrefix = NAME;
 
