@@ -82,7 +82,7 @@ final class GraphQlClient {
     return $events;
   }
 
-  public static function get_upcoming_events_by_group_names(string $url, int $limit, array $groupNames): array {
+  public static function get_upcoming_events_and_group_names(string $url, int $limit, array $groupNames): array {
     $queryParts = [];
     $variables = ['afterDatetime' => 'DateTime', 'limit' => 'Int'];
 
@@ -137,9 +137,9 @@ final class GraphQlClient {
       $queryVariables["group{$index}"] = $groupName;
     }
 
-    $cachedEvents = EventsCache::get(['url' => $url, 'query' => $query, 'afterDatetime' => $afterDatetime, 'groupNames' => implode(',', $groupNames), 'limit' => $limit]);
-    if ($cachedEvents !== false) {
-      return $cachedEvents;
+    $cachedResults = EventsCache::get(['url' => $url, 'query' => $query, 'afterDatetime' => $afterDatetime, 'groupNames' => implode(',', $groupNames), 'limit' => $limit]);
+    if ($cachedResults !== false) {
+      return $cachedResults;
     }
 
     $endpoint = $url . '/api';

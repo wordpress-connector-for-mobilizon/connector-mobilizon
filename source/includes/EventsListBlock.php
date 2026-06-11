@@ -51,7 +51,7 @@ class EventsListBlock {
       $showMoreUrl = Settings::getUrl();
       if ($groupName) {
         $groupNames = GroupNameHelper::extractAndTrimNames($groupName);
-        $result = GraphQlClient::get_upcoming_events_by_group_names($url, (int) $eventsCount, $groupNames);
+        $result = GraphQlClient::get_upcoming_events_and_group_names($url, (int) $eventsCount, $groupNames);
         $events = $result['events'];
         $groups = GroupNameHelper::convertToGroupsObject($groupNames, $showMoreUrl, $result['groups']);
       } else {
