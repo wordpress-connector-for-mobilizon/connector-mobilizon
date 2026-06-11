@@ -1,6 +1,7 @@
 ### [Unreleased]
 #### Added
 #### Changed
+- Display group name instead of username on show more button
 #### Deprecated
 #### Removed
 #### Fixed
