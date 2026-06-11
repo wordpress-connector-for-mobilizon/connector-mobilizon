@@ -45,12 +45,14 @@ class Api {
     try {
       if ($groupName) {
         $groupNames = GroupNameHelper::extractAndTrimNames($groupName);
-        $events = GraphQlClient::get_upcoming_events_by_group_names($url, (int) $eventsCount, $groupNames);
+        $result = GraphQlClient::get_upcoming_events_by_group_names($url, (int) $eventsCount, $groupNames);
+        $events = array_map([self::class, 'addDateAndTimeFormats'], $result['events']);
+        return ['events' => $events, 'groups' => $result['groups']];
       } else {
         $events = GraphQlClient::get_upcoming_events($url, (int) $eventsCount);
+        $events = array_map([self::class, 'addDateAndTimeFormats'], $events);
+        return ['events' => $events, 'groups' => (object)[]];
       }
-      $events = array_map([self::class, 'addDateAndTimeFormats'], $events);
-      return $events;
     } catch (GeneralException $e) {
       return new \WP_Error('events_not_loading', 'The events could not be loaded!', array('status' => 500));
     } catch (GroupNotFoundException $e) {

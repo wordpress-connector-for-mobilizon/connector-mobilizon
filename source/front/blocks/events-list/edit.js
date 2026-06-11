@@ -39,24 +39,26 @@ export default ({ attributes, setAttributes }) => {
       clearEventsList(container)
       showLoadingIndicator(container)
 
-      if (groupName) {
-        const groupNames = groupName.split(',').map((name) => name.trim())
-        const updatedGroups = groupNames.map((name) => ({
-          name,
-          url: `${window.MOBILIZON_CONNECTOR.url}/@${name}/events`,
-        }))
-        setGroups(updatedGroups)
-      } else {
+      if (!groupName) {
         setGroups([])
       }
       setShowMoreUrl(window.MOBILIZON_CONNECTOR.url)
 
       try {
         const data = await fetchEvents(eventsCount, groupName)
-        const events = JSON.parse(data)
+        const parsed = JSON.parse(data)
+        if (groupName) {
+          const groupNames = groupName.split(',').map((name) => name.trim())
+          const updatedGroups = groupNames.map((name) => ({
+            name:
+              parsed.groups && parsed.groups[name] ? parsed.groups[name] : name,
+            url: `${window.MOBILIZON_CONNECTOR.url}/@${name}/events`,
+          }))
+          setGroups(updatedGroups)
+        }
         displayEvents({
           blockClassName: NAME + '_events-list',
-          events,
+          events: parsed.events,
           document,
           container,
           maxEventsCount: eventsCount,
@@ -160,7 +162,7 @@ export default ({ attributes, setAttributes }) => {
         {groups.length ? (
           groups.map((group) => (
             <a
-              key={group.name}
+              key={group.url}
               href={group.url}
               target="_blank"
               rel="noopener noreferrer"
