@@ -84,7 +84,7 @@ export default ({ attributes, setAttributes }) => {
   async function fetchEvents(eventsCount, groupUsername) {
     let url = `/wp-json/connector-mobilizon/v1/events?eventsCount=${eventsCount}`
     if (groupUsername) {
-      url += `&groupUsername=${groupUsername}`
+      url += `&groupName=${groupUsername}`
     }
     const response = await fetch(url)
     if (!response.ok) {
