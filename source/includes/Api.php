@@ -25,7 +25,7 @@ class Api {
               return is_numeric($param) && $param > 0;
             }
           ],
-          'groupUsername' => [
+          'groupName' => [
             'validate_callback' => function($param, $request, $key) {
               return !is_numeric($param);
             }
@@ -38,7 +38,7 @@ class Api {
 
   public static function get_events($request) {
     $eventsCount = $request['eventsCount'];
-    $groupUsername = isset($request['groupUsername']) ? $request['groupUsername'] : '';
+    $groupUsername = isset($request['groupName']) ? $request['groupName'] : '';
 
     $url = Settings::getUrl();
 
