@@ -82,7 +82,7 @@ final class GraphQlClient {
     return $events;
   }
 
-  public static function get_upcoming_events_by_group_names(string $url, int $limit, array $groupNames): array {
+  public static function get_upcoming_events_and_group_names(string $url, int $limit, array $groupNames): array {
     $queryParts = [];
     $variables = ['afterDatetime' => 'DateTime', 'limit' => 'Int'];
 
@@ -92,6 +92,8 @@ final class GraphQlClient {
 
       $queryParts[] = <<<GRAPHQL
         {$varName}: group(preferredUsername: \${$varName}) {
+          preferredUsername,
+          name,
           organizedEvents(afterDatetime: \$afterDatetime, limit: \$limit) {
             elements {
               id,
@@ -135,9 +137,9 @@ final class GraphQlClient {
       $queryVariables["group{$index}"] = $groupName;
     }
 
-    $cachedEvents = EventsCache::get(['url' => $url, 'query' => $query, 'afterDatetime' => $afterDatetime, 'groupNames' => implode(',', $groupNames), 'limit' => $limit]);
-    if ($cachedEvents !== false) {
-      return $cachedEvents;
+    $cachedResults = EventsCache::get(['url' => $url, 'query' => $query, 'afterDatetime' => $afterDatetime, 'groupNames' => implode(',', $groupNames), 'limit' => $limit]);
+    if ($cachedResults !== false) {
+      return $cachedResults;
     }
 
     $endpoint = $url . '/api';
@@ -145,16 +147,22 @@ final class GraphQlClient {
     self::checkData($data);
 
     $events = [];
+    $groups = [];
     foreach ($data['data'] as $groupData) {
-      if ($groupData && isset($groupData['organizedEvents']['elements'])) {
-        $events = array_merge($events, $groupData['organizedEvents']['elements']);
+      if ($groupData) {
+        if (isset($groupData['preferredUsername'])) {
+          $groups[$groupData['preferredUsername']] = $groupData['name'];
+        }
+        if (isset($groupData['organizedEvents']['elements'])) {
+          $events = array_merge($events, $groupData['organizedEvents']['elements']);
+        }
       }
     }
     usort($events, function($a, $b) {
       return strtotime($a['beginsOn']) - strtotime($b['beginsOn']);
     });
     $events = array_slice($events, 0, $limit);
-    
+
     foreach ($events as &$event) {
       if ($event['picture']) {
         $picture_response = self::download_image($event['picture']['url']);
@@ -166,8 +174,9 @@ final class GraphQlClient {
       unset($event);
     }
 
-    EventsCache::set(['url' => $url, 'query' => $query, 'afterDatetime' => $afterDatetime, 'groupNames' => implode(',', $groupNames), 'limit' => $limit], $events);
-    return $events;
+    $result = ['events' => $events, 'groups' => $groups];
+    EventsCache::set(['url' => $url, 'query' => $query, 'afterDatetime' => $afterDatetime, 'groupNames' => implode(',', $groupNames), 'limit' => $limit], $result);
+    return $result;
   }
 
   private static function checkData($data) {

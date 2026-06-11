@@ -34,8 +34,9 @@ class EventsListWidget extends \WP_Widget {
       $showMoreUrl = Settings::getUrl();
       if ($groupName) {
         $groupNames = GroupNameHelper::extractAndTrimNames($groupName);
-        $events = GraphQlClient::get_upcoming_events_by_group_names($url, (int) $eventsCount, $groupNames);
-        $groups = GroupNameHelper::convertToGroupsObject($groupNames, $showMoreUrl);
+        $result = GraphQlClient::get_upcoming_events_and_group_names($url, (int) $eventsCount, $groupNames);
+        $events = $result['events'];
+        $groups = GroupNameHelper::convertToGroupsObject($groupNames, $showMoreUrl, $result['groups']);
       } else {
         $events = GraphQlClient::get_upcoming_events($url, (int) $eventsCount);
       }

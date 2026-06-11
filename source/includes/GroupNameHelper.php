@@ -11,12 +11,12 @@ final class GroupNameHelper {
     return array_map(fn($name): string => trim($name), explode(',', $groupName));
   }
 
-  public static function convertToGroupsObject(array $groupNames, string $showMoreUrl) {
+  public static function convertToGroupsObject(array $groupNames, string $showMoreUrl, array $nameMap = []) {
     $groups = [];
-    foreach ($groupNames as $name) {
+    foreach ($groupNames as $handle) {
       $groups[] = array(
-        'name' => $name,
-        'url' => $showMoreUrl . '/@' . $name . '/events'
+        'name' => !empty($nameMap[$handle]) ? $nameMap[$handle] : $handle,
+        'url' => $showMoreUrl . '/@' . $handle . '/events'
       );
     }
     return $groups;
