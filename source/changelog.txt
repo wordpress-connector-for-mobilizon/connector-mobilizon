@@ -6,7 +6,7 @@
 #### Deprecated
 #### Removed
 #### Fixed
-- Clarify in forms that group username is used
+- Clarify that group usernames are used in group filter
 #### Security
 
 ### [2.3.0]
