@@ -61,6 +61,13 @@ You have to use their username, e.g. `@nosliensvivants`, and append the name of 
 
 ## Changelog
 
+### [2.4.0]
+#### Changed
+- Display group name instead of username on show more button
+- Update dependencies
+#### Fixed
+- Clarify that group usernames are used in group filter
+
 ### [2.3.0]
 #### Changed
 - Confirm compatibility with WordPress 7.0

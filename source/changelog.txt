@@ -1,13 +1,17 @@
 ### [Unreleased]
 #### Added
 #### Changed
-- Update dependencies
-- Display group name instead of username on show more button
 #### Deprecated
 #### Removed
 #### Fixed
-- Clarify that group usernames are used in group filter
 #### Security
+
+### [2.4.0]
+#### Changed
+- Display group name instead of username on show more button
+- Update dependencies
+#### Fixed
+- Clarify that group usernames are used in group filter
 
 ### [2.3.0]
 #### Changed
