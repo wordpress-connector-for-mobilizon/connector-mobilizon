@@ -8,24 +8,30 @@ if (!defined('ABSPATH')) {
 
 final class LineFormatter
 {
-  public static function format_date_time(\DateTimeZone $timeZone, string $dateFormat, string $timeFormat, string $start, ?string $end): string {
+  public static function format_date_time(\DateTimeZone $timeZone, string $dateFormat, string $timeFormat, string $start, ?string $end, bool $showStartTime = true, bool $showEndTime = true): string {
     $startDateTime = new LocalDateTime($start, $timeZone);
     $startDate = LocalDateTimeFormatter::format($startDateTime, $dateFormat);
     $startTime = LocalDateTimeFormatter::format($startDateTime, $timeFormat);
 
-    $dateText = $startDate . ' ' . $startTime;
+    $dateText = $startDate;
+    if ($showStartTime) {
+      $dateText .= ' ' . $startTime;
+    }
     if ($end) {
       $endDateTime = new LocalDateTime($end, $timeZone);
       $endDate = LocalDateTimeFormatter::format($endDateTime, $dateFormat);
       $endTime = LocalDateTimeFormatter::format($endDateTime, $timeFormat);
 
+      $endPieces = [];
       if ($startDate != $endDate) {
-        $dateText .= ' - ';
-        $dateText .= $endDate . ' ';
-      } else {
-        $dateText .= ' - ';
+        $endPieces[] = $endDate;
       }
-      $dateText .= $endTime;
+      if ($showEndTime) {
+        $endPieces[] = $endTime;
+      }
+      if ($endPieces) {
+        $dateText .= ' - ' . implode(' ', $endPieces);
+      }
     }
     return $dateText;
   }

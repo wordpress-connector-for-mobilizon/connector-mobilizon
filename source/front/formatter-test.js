@@ -38,6 +38,51 @@ test('#formatDate second date is null', (t) => {
   t.is(date, '15/04/2021 10:30')
 })
 
+test('#formatDate start time is hidden', (t) => {
+  const date = Formatter.formatDate({
+    startDateFormatted: '15/04/2021',
+    startTimeFormatted: '10:30',
+    endDateFormatted: '15/04/2021',
+    endTimeFormatted: '15:30',
+    showStartTime: false,
+  })
+  t.is(date, '15/04/2021 - 15:30')
+})
+
+test('#formatDate end time is hidden same day', (t) => {
+  const date = Formatter.formatDate({
+    startDateFormatted: '15/04/2021',
+    startTimeFormatted: '10:30',
+    endDateFormatted: '15/04/2021',
+    endTimeFormatted: '15:30',
+    showEndTime: false,
+  })
+  t.is(date, '15/04/2021 10:30')
+})
+
+test('#formatDate end time is hidden across days', (t) => {
+  const date = Formatter.formatDate({
+    startDateFormatted: '15/04/2021',
+    startTimeFormatted: '10:30',
+    endDateFormatted: '16/04/2021',
+    endTimeFormatted: '15:30',
+    showEndTime: false,
+  })
+  t.is(date, '15/04/2021 10:30 - 16/04/2021')
+})
+
+test('#formatDate both times are hidden', (t) => {
+  const date = Formatter.formatDate({
+    startDateFormatted: '15/04/2021',
+    startTimeFormatted: '10:30',
+    endDateFormatted: '15/04/2021',
+    endTimeFormatted: '15:30',
+    showStartTime: false,
+    showEndTime: false,
+  })
+  t.is(date, '15/04/2021')
+})
+
 test('#formatLocation both parameters', (t) => {
   const location = Formatter.formatLocation({ description: 'a', locality: 'b' })
   t.is(location, 'a, b')

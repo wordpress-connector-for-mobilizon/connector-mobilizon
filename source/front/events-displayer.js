@@ -58,11 +58,14 @@ export function displayEvents({
       document,
       className: blockClassName + '__date',
     })
+    const opts = events[i].options || {}
     const date = Formatter.formatDate({
       startDateFormatted: events[i].startDateFormatted,
       startTimeFormatted: events[i].startTimeFormatted,
       endDateFormatted: events[i].endDateFormatted,
       endTimeFormatted: events[i].endTimeFormatted,
+      showStartTime: opts.showStartTime !== false,
+      showEndTime: opts.showEndTime !== false,
     })
     const dateTextNode = document.createTextNode(date)
     dateContainer.appendChild(dateTextNode)
