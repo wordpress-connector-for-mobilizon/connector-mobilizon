@@ -18,3 +18,7 @@ if (!defined('ABSPATH')) {
   <label for="<?php echo esc_attr($this->get_field_id('groupUsername')); ?>"><?php esc_html_e('Group username (optional, comma-separated for multiple)', 'connector-mobilizon'); ?>:</label>
   <input class="widefat" id="<?php echo esc_attr($this->get_field_id('groupUsername')); ?>" name="<?php echo esc_attr($this->get_field_name('groupUsername')); ?>" type="text" value="<?php echo esc_attr($groupUsername); ?>">
 </p>
+<p>
+  <input id="<?php echo esc_attr($this->get_field_id('showParticipateButton')); ?>" name="<?php echo esc_attr($this->get_field_name('showParticipateButton')); ?>" type="checkbox" value="1" <?php checked($showParticipateButton); ?>>
+  <label for="<?php echo esc_attr($this->get_field_id('showParticipateButton')); ?>"><?php esc_html_e('Show a "Participate" button', 'connector-mobilizon'); ?></label>
+</p>
