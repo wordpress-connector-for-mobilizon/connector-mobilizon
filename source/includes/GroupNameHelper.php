@@ -7,13 +7,13 @@ if (!defined('ABSPATH')) {
 }
 
 final class GroupNameHelper {
-  public static function extractAndTrimNames(string $groupName) {
-    return array_map(fn($name): string => trim($name), explode(',', $groupName));
+  public static function extractAndTrimNames(string $groupUsername) {
+    return array_map(fn($name): string => trim($name), explode(',', $groupUsername));
   }
 
-  public static function convertToGroupsObject(array $groupNames, string $showMoreUrl, array $nameMap = []) {
+  public static function convertToGroupsObject(array $groupUsernames, string $showMoreUrl, array $nameMap = []) {
     $groups = [];
-    foreach ($groupNames as $handle) {
+    foreach ($groupUsernames as $handle) {
       $groups[] = array(
         'name' => !empty($nameMap[$handle]) ? $nameMap[$handle] : $handle,
         'url' => $showMoreUrl . '/@' . $handle . '/events'

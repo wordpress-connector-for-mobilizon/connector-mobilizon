@@ -43,17 +43,17 @@ class EventsListBlock {
   public static function render($block_attributes, $content) {
     $url = Settings::getUrl();
     $eventsCount = $block_attributes['eventsCount'];
-    $groupName = isset($block_attributes['groupName']) ? $block_attributes['groupName'] : '';
+    $groupUsername = isset($block_attributes['groupName']) ? $block_attributes['groupName'] : '';
     $classNamePrefix = NAME;
 
     ob_start();
     try {
       $showMoreUrl = Settings::getUrl();
-      if ($groupName) {
-        $groupNames = GroupNameHelper::extractAndTrimNames($groupName);
-        $result = GraphQlClient::get_upcoming_events_and_group_names($url, (int) $eventsCount, $groupNames);
+      if ($groupUsername) {
+        $groupUsernames = GroupNameHelper::extractAndTrimNames($groupUsername);
+        $result = GraphQlClient::get_upcoming_events_and_group_names($url, (int) $eventsCount, $groupUsernames);
         $events = $result['events'];
-        $groups = GroupNameHelper::convertToGroupsObject($groupNames, $showMoreUrl, $result['groups']);
+        $groups = GroupNameHelper::convertToGroupsObject($groupUsernames, $showMoreUrl, $result['groups']);
       } else {
         $events = GraphQlClient::get_upcoming_events($url, (int) $eventsCount);
       }

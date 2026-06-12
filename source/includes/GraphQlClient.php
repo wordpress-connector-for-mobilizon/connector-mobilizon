@@ -82,11 +82,11 @@ final class GraphQlClient {
     return $events;
   }
 
-  public static function get_upcoming_events_and_group_names(string $url, int $limit, array $groupNames): array {
+  public static function get_upcoming_events_and_group_names(string $url, int $limit, array $groupUsernames): array {
     $queryParts = [];
     $variables = ['afterDatetime' => 'DateTime', 'limit' => 'Int'];
 
-    foreach ($groupNames as $index => $groupName) {
+    foreach ($groupUsernames as $index => $groupUsername) {
       $varName = "group{$index}";
       $variables[$varName] = 'String!';
 
@@ -133,11 +133,11 @@ final class GraphQlClient {
       'afterDatetime' => $afterDatetime,
       'limit' => $limit
     ];
-    foreach ($groupNames as $index => $groupName) {
-      $queryVariables["group{$index}"] = $groupName;
+    foreach ($groupUsernames as $index => $groupUsername) {
+      $queryVariables["group{$index}"] = $groupUsername;
     }
 
-    $cachedResults = EventsCache::get(['url' => $url, 'query' => $query, 'afterDatetime' => $afterDatetime, 'groupNames' => implode(',', $groupNames), 'limit' => $limit]);
+    $cachedResults = EventsCache::get(['url' => $url, 'query' => $query, 'afterDatetime' => $afterDatetime, 'groupUsernames' => implode(',', $groupUsernames), 'limit' => $limit]);
     if ($cachedResults !== false) {
       return $cachedResults;
     }
@@ -175,7 +175,7 @@ final class GraphQlClient {
     }
 
     $result = ['events' => $events, 'groups' => $groups];
-    EventsCache::set(['url' => $url, 'query' => $query, 'afterDatetime' => $afterDatetime, 'groupNames' => implode(',', $groupNames), 'limit' => $limit], $result);
+    EventsCache::set(['url' => $url, 'query' => $query, 'afterDatetime' => $afterDatetime, 'groupUsernames' => implode(',', $groupUsernames), 'limit' => $limit], $result);
     return $result;
   }
 

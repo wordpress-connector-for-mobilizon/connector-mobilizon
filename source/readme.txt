@@ -47,8 +47,8 @@ Use the developer tools of your browser to check all the names.
 
 Shortcut format with limiting the number of events to show to 3 for example: `[<wordpress-name>-events-list events-count=3]`
 
-Optionally, you can only show the events of one or more groups by indicatings their names: `[<wordpress-name>-events-list events-count=3 group-name="mygroup"]`
-Multiple group names have to be separated by comma: `[<wordpress-name>-events-list events-count=3 group-name="mygroup1,mygroup2,mygroup3"]`
+Optionally, you can only show the events of one or more groups by indicatings their usernames: `[<wordpress-name>-events-list events-count=3 group-name="mygroup"]`
+Multiple group usernames have to be separated by comma: `[<wordpress-name>-events-list events-count=3 group-name="mygroup1,mygroup2,mygroup3"]`
 You have to use their username, e.g. `@nosliensvivants`, and append the name of their instance if they use a different one, e.g. `@yaam_berlin@mobilize.berlin`.
 
 ## Screenshots

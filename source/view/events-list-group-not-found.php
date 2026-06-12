@@ -9,6 +9,6 @@ if (!defined('ABSPATH')) {
 <div class="<?php echo esc_attr($classNamePrefix); ?>_events-list <?php echo esc_attr($classNamePrefix); ?>_events-list--error">
   <?php
   /* translators: %s: a group name */
-  echo esc_html(sprintf(__('The group "%s" could not be found!', 'connector-mobilizon'), $groupName));
+  echo esc_html(sprintf(__('The group "%s" could not be found!', 'connector-mobilizon'), $groupUsername));
   ?>
 </div>
