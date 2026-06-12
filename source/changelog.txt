@@ -1,12 +1,12 @@
 ### [Unreleased]
 #### Added
 #### Changed
-- Rename group name to group username
 - Update dependencies
 - Display group name instead of username on show more button
 #### Deprecated
 #### Removed
 #### Fixed
+- Clarify in forms that group username is used
 #### Security
 
 ### [2.3.0]
