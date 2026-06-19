@@ -28,6 +28,7 @@ class EventsListWidget extends \WP_Widget {
     $url = Settings::getUrl();
     $eventsCount = $options['eventsCount'];
     $groupUsername = isset($options['groupName']) ? $options['groupName'] : '';
+    $showParticipateButton = !empty($options['showParticipateButton']);
     $classNamePrefix = NAME;
 
     try {
@@ -59,6 +60,7 @@ class EventsListWidget extends \WP_Widget {
     $title = !empty($options['title']) ? $options['title'] : esc_html__('Events', 'connector-mobilizon');
     $eventsCount = !empty($options['eventsCount']) ? $options['eventsCount'] : DEFAULT_EVENTS_COUNT;
     $groupUsername = !empty($options['groupUsername']) ? $options['groupUsername'] : '';
+    $showParticipateButton = !empty($options['showParticipateButton']);
     
     require dirname(__DIR__) . '/view/events-list-widget/form.php';
   }
@@ -71,6 +73,7 @@ class EventsListWidget extends \WP_Widget {
     $options['title'] = !empty($new_options['title']) ? sanitize_text_field($new_options['title']) : '';
     $options['eventsCount'] = !empty($new_options['eventsCount']) ? sanitize_text_field($new_options['eventsCount']) : 5;
     $options['groupUsername'] = !empty($new_options['groupUsername']) ? sanitize_text_field($new_options['groupUsername']) : '';
+    $options['showParticipateButton'] = !empty($new_options['showParticipateButton']);
     return $options;
   }
 }

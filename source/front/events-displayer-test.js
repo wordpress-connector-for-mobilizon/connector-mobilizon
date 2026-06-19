@@ -76,6 +76,100 @@ test('#displayEvents one event', (t) => {
   t.is(list.children[0].childNodes[2].childNodes[0].nodeValue, 'c, d')
 })
 
+test('#displayEvents participate button shown when option enabled and url set', (t) => {
+  const events = [
+    {
+      title: 'a',
+      url: 'b',
+      beginsOn: '2021-04-15T10:30:00Z',
+      endsOn: '2021-04-15T15:30:00Z',
+      externalParticipationUrl: 'https://example.com/participate',
+      startDateFormatted: '15/04/2021',
+      startTimeFormatted: '10:30',
+      endDateFormatted: '15/04/2021',
+      endTimeFormatted: '15:30',
+    },
+  ]
+  const container = t.context.container
+  displayEvents({
+    events,
+    document,
+    container,
+    maxEventsCount: 2,
+    showParticipateButton: true,
+    participateLabel: 'Participate',
+  })
+  const list = container.querySelector('ul')
+  const li = list.children[0]
+  const participateContainer = li.lastChild
+  t.is(participateContainer.tagName, 'DIV')
+  const participateLink = participateContainer.firstChild
+  t.is(participateLink.tagName, 'A')
+  t.is(participateLink.getAttribute('href'), 'https://example.com/participate')
+  t.is(participateLink.getAttribute('target'), '_blank')
+  t.is(participateLink.getAttribute('rel'), 'noopener')
+  t.is(participateLink.className, 'button')
+  t.is(participateLink.innerHTML, 'Participate')
+})
+
+test('#displayEvents participate button not shown when option disabled', (t) => {
+  const events = [
+    {
+      title: 'a',
+      url: 'b',
+      beginsOn: '2021-04-15T10:30:00Z',
+      endsOn: '2021-04-15T15:30:00Z',
+      externalParticipationUrl: 'https://example.com/participate',
+      startDateFormatted: '15/04/2021',
+      startTimeFormatted: '10:30',
+      endDateFormatted: '15/04/2021',
+      endTimeFormatted: '15:30',
+    },
+  ]
+  const container = t.context.container
+  displayEvents({
+    events,
+    document,
+    container,
+    maxEventsCount: 2,
+    showParticipateButton: false,
+    participateLabel: 'Participate',
+  })
+  const list = container.querySelector('ul')
+  const li = list.children[0]
+  t.is(
+    li.querySelectorAll('a[href="https://example.com/participate"]').length,
+    0,
+  )
+})
+
+test('#displayEvents participate button not shown when url absent', (t) => {
+  const events = [
+    {
+      title: 'a',
+      url: 'b',
+      beginsOn: '2021-04-15T10:30:00Z',
+      endsOn: '2021-04-15T15:30:00Z',
+      startDateFormatted: '15/04/2021',
+      startTimeFormatted: '10:30',
+      endDateFormatted: '15/04/2021',
+      endTimeFormatted: '15:30',
+    },
+  ]
+  const container = t.context.container
+  displayEvents({
+    events,
+    document,
+    container,
+    maxEventsCount: 2,
+    showParticipateButton: true,
+    participateLabel: 'Participate',
+  })
+  const list = container.querySelector('ul')
+  const li = list.children[0]
+  t.is(li.querySelectorAll('.button').length, 0)
+})
+
 test('#displayErrorMessage no list entries shown', (t) => {
   const container = t.context.container
   displayErrorMessage({ data: '', container })

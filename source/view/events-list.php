@@ -26,6 +26,13 @@ if (!defined('ABSPATH')) {
         <?php echo esc_html(LineFormatter::format_location($event['physicalAddress']['description'], $event['physicalAddress']['locality'])) ?>
       </div>
       <?php } ?>
+      <?php if (!empty($showParticipateButton) && !empty($event['externalParticipationUrl'])) { ?>
+      <div class="<?php echo esc_attr($classNamePrefix); ?>_events-list__participate">
+        <a href="<?php echo esc_url($event['externalParticipationUrl']); ?>" class="button" target="_blank" rel="noopener" style="display:inline-block; margin-top: 10px;">
+          <?php esc_html_e('Participate', 'connector-mobilizon'); ?>
+        </a>
+      </div>
+      <?php } ?>
     </li>
     <?php } ?>
   </ul>

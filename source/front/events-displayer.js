@@ -16,6 +16,8 @@ export function displayEvents({
   document,
   container,
   maxEventsCount,
+  showParticipateButton,
+  participateLabel,
 }) {
   hideLoadingIndicator(container)
 
@@ -82,6 +84,22 @@ export function displayEvents({
         locationContainer.appendChild(locationTextNode)
         li.appendChild(locationContainer)
       }
+    }
+
+    if (showParticipateButton && events[i].externalParticipationUrl) {
+      const participateContainer = createContainerElement({
+        document,
+        className: blockClassName + '__participate',
+      })
+      const participateLink = createAnchorElement({
+        document,
+        text: participateLabel,
+        url: events[i].externalParticipationUrl,
+        className: 'button',
+        rel: 'noopener',
+      })
+      participateContainer.appendChild(participateLink)
+      li.appendChild(participateContainer)
     }
 
     list.appendChild(li)

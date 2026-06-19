@@ -9,7 +9,7 @@ import {
 } from '../../events-displayer.js'
 
 const { InspectorControls, useBlockProps } = wp.blockEditor
-const { Panel, PanelBody } = wp.components
+const { Panel, PanelBody, ToggleControl } = wp.components
 const { useEffect, useRef, useState } = wp.element
 const { __, sprintf } = wp.i18n
 
@@ -25,7 +25,7 @@ export default ({ attributes, setAttributes }) => {
     className: NAME + '_events-list',
   })
 
-  function reloadEventList(eventsCount, groupUsername) {
+  function reloadEventList(eventsCount, groupUsername, showParticipateButton) {
     if (timerRef.current) {
       clearTimeout(timerRef.current)
     }
@@ -64,6 +64,8 @@ export default ({ attributes, setAttributes }) => {
           document,
           container,
           maxEventsCount: eventsCount,
+          showParticipateButton,
+          participateLabel: __('Participate', '<wordpress-name>'),
         })
       } catch (error) {
         let message = ''
@@ -78,7 +80,11 @@ export default ({ attributes, setAttributes }) => {
   }
 
   useEffect(() => {
-    reloadEventList(attributes.eventsCount, attributes.groupName)
+    reloadEventList(
+      attributes.eventsCount,
+      attributes.groupName,
+      attributes.showParticipateButton,
+    )
   }, [])
 
   async function fetchEvents(eventsCount, groupUsername) {
@@ -100,13 +106,26 @@ export default ({ attributes, setAttributes }) => {
       newValue = 1
     }
     setAttributes({ eventsCount: newValue })
-    reloadEventList(newValue, attributes.groupName)
+    reloadEventList(
+      newValue,
+      attributes.groupName,
+      attributes.showParticipateButton,
+    )
   }
 
   function updateGroupUsername(event) {
     const newValue = event.target.value
     setAttributes({ groupName: newValue })
-    reloadEventList(attributes.eventsCount, newValue)
+    reloadEventList(
+      attributes.eventsCount,
+      newValue,
+      attributes.showParticipateButton,
+    )
+  }
+
+  function updateShowParticipateButton(newValue) {
+    setAttributes({ showParticipateButton: newValue })
+    reloadEventList(attributes.eventsCount, attributes.groupName, newValue)
   }
 
   return [
@@ -146,6 +165,11 @@ export default ({ attributes, setAttributes }) => {
               '<wordpress-name>',
             )}
           </p>
+          <ToggleControl
+            label={__('Show a "Participate" button', '<wordpress-name>')}
+            checked={attributes.showParticipateButton}
+            onChange={updateShowParticipateButton}
+          />
         </PanelBody>
       </Panel>
     </InspectorControls>,

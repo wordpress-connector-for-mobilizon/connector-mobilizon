@@ -21,12 +21,14 @@ class EventsListShortcut {
       array(
         'events-count' => DEFAULT_EVENTS_COUNT,
         'group-name' => '',
+        'show-participate-button' => 'false',
       ), $atts
     );
 
     $url = Settings::getUrl();
     $eventsCount = $atts_with_overriden_defaults['events-count'];
     $groupUsername = $atts_with_overriden_defaults['group-name'];
+    $showParticipateButton = filter_var($atts_with_overriden_defaults['show-participate-button'], FILTER_VALIDATE_BOOLEAN);
     $classNamePrefix = NAME;
 
     ob_start();

@@ -42,6 +42,7 @@ final class GraphQlClient {
             url,
             beginsOn,
             endsOn,
+            externalParticipationUrl,
             physicalAddress {
               description,
               locality
@@ -101,6 +102,7 @@ final class GraphQlClient {
               url,
               beginsOn,
               endsOn,
+              externalParticipationUrl,
               physicalAddress {
                 description,
                 locality

@@ -1,7 +1,13 @@
-export function createAnchorElement({ document, text, url }) {
+export function createAnchorElement({ document, text, url, className, rel }) {
   const a = document.createElement('a')
   a.setAttribute('href', url)
   a.setAttribute('target', '_blank')
+  if (rel) {
+    a.setAttribute('rel', rel)
+  }
+  if (className) {
+    a.className = className
+  }
   a.innerHTML = text
   return a
 }

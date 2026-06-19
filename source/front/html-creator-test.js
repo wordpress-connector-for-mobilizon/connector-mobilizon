@@ -13,6 +13,23 @@ test('#createAnchorElement usual parameters', (t) => {
   t.is(a.tagName, 'A')
   t.is(a.innerHTML, 'a')
   t.is(a.getAttribute('href'), 'b')
+  t.is(a.getAttribute('rel'), null)
+  t.is(a.className, '')
+})
+
+test('#createAnchorElement with className and rel', (t) => {
+  const a = createAnchorElement({
+    document,
+    text: 'c',
+    url: 'd',
+    className: 'button',
+    rel: 'noopener',
+  })
+  t.is(a.tagName, 'A')
+  t.is(a.innerHTML, 'c')
+  t.is(a.getAttribute('href'), 'd')
+  t.is(a.getAttribute('rel'), 'noopener')
+  t.is(a.className, 'button')
 })
 
 test('#createContainerElement creates element', (t) => {

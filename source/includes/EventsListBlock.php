@@ -33,6 +33,10 @@ class EventsListBlock {
         'groupName' => [
           'type' => 'string',
         ],
+        'showParticipateButton' => [
+          'type' => 'boolean',
+          'default' => false,
+        ],
       ],
       'editor_script' => $scriptName,
       'render_callback' => 'MobilizonConnector\EventsListBlock::render',
@@ -44,6 +48,7 @@ class EventsListBlock {
     $url = Settings::getUrl();
     $eventsCount = $block_attributes['eventsCount'];
     $groupUsername = isset($block_attributes['groupName']) ? $block_attributes['groupName'] : '';
+    $showParticipateButton = !empty($block_attributes['showParticipateButton']);
     $classNamePrefix = NAME;
 
     ob_start();
