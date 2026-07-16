@@ -1,6 +1,6 @@
 ### [Unreleased]
 #### Added
-- Respect Mobilizon's `showStartTime` and `showEndTime` event options: when an organizer marks an event as date-only, the time portion is no longer displayed in any of the plugin's display methods (block, shortcode, widget)
+- Respect Mobilizon's start and end time display options
 #### Changed
 
 - Update dependencies
