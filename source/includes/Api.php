@@ -38,23 +38,25 @@ class Api {
 
   public static function get_events($request) {
     $eventsCount = $request['eventsCount'];
-    $groupName = isset($request['groupName']) ? $request['groupName'] : '';
+    $groupUsername = isset($request['groupName']) ? $request['groupName'] : '';
 
     $url = Settings::getUrl();
 
     try {
-      if ($groupName) {
-        $groupNames = GroupNameHelper::extractAndTrimNames($groupName);
-        $events = GraphQlClient::get_upcoming_events_by_group_names($url, (int) $eventsCount, $groupNames);
+      if ($groupUsername) {
+        $groupUsernames = GroupNameHelper::extractAndTrimNames($groupUsername);
+        $result = GraphQlClient::get_upcoming_events_and_group_names($url, (int) $eventsCount, $groupUsernames);
+        $events = array_map([self::class, 'addDateAndTimeFormats'], $result['events']);
+        return ['events' => $events, 'groups' => $result['groups']];
       } else {
         $events = GraphQlClient::get_upcoming_events($url, (int) $eventsCount);
+        $events = array_map([self::class, 'addDateAndTimeFormats'], $events);
+        return ['events' => $events, 'groups' => (object)[]];
       }
-      $events = array_map([self::class, 'addDateAndTimeFormats'], $events);
-      return $events;
     } catch (GeneralException $e) {
-      return new \WP_Error('events_not_loading', 'The events could not be loaded!', array('status' => 500));
+      return new \WP_Error('events_not_loading', 'The events could not be loaded!', ['status' => 500]);
     } catch (GroupNotFoundException $e) {
-      return new \WP_Error('group_not_found', sprintf('The group "%s" could not be found!', $groupName), array('status' => 404));
+      return new \WP_Error('group_not_found', sprintf('The group "%s" could not be found!', $groupUsername), ['status' => 404]);
     }
   }
 

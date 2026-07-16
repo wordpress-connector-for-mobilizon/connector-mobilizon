@@ -12,9 +12,9 @@ class EventsListWidget extends \WP_Widget {
     parent::__construct(
       NAME . '-events-list',
       NICE_NAME . ' ' . esc_html__('Events List', 'connector-mobilizon'),
-      array(
+      [
         'description' => esc_html__('A list of the upcoming events of the connected Mobilizon instance.', 'connector-mobilizon'),
-      ),
+      ],
     );
   }
 
@@ -27,15 +27,16 @@ class EventsListWidget extends \WP_Widget {
 
     $url = Settings::getUrl();
     $eventsCount = $options['eventsCount'];
-    $groupName = isset($options['groupName']) ? $options['groupName'] : '';
+    $groupUsername = isset($options['groupName']) ? $options['groupName'] : '';
     $classNamePrefix = NAME;
 
     try {
       $showMoreUrl = Settings::getUrl();
-      if ($groupName) {
-        $groupNames = GroupNameHelper::extractAndTrimNames($groupName);
-        $events = GraphQlClient::get_upcoming_events_by_group_names($url, (int) $eventsCount, $groupNames);
-        $groups = GroupNameHelper::convertToGroupsObject($groupNames, $showMoreUrl);
+      if ($groupUsername) {
+        $groupUsernames = GroupNameHelper::extractAndTrimNames($groupUsername);
+        $result = GraphQlClient::get_upcoming_events_and_group_names($url, (int) $eventsCount, $groupUsernames);
+        $events = $result['events'];
+        $groups = GroupNameHelper::convertToGroupsObject($groupUsernames, $showMoreUrl, $result['groups']);
       } else {
         $events = GraphQlClient::get_upcoming_events($url, (int) $eventsCount);
       }
@@ -57,7 +58,7 @@ class EventsListWidget extends \WP_Widget {
   public function form($options) {
     $title = !empty($options['title']) ? $options['title'] : esc_html__('Events', 'connector-mobilizon');
     $eventsCount = !empty($options['eventsCount']) ? $options['eventsCount'] : DEFAULT_EVENTS_COUNT;
-    $groupName = !empty($options['groupName']) ? $options['groupName'] : '';
+    $groupUsername = !empty($options['groupUsername']) ? $options['groupUsername'] : '';
     
     require dirname(__DIR__) . '/view/events-list-widget/form.php';
   }
@@ -66,10 +67,10 @@ class EventsListWidget extends \WP_Widget {
     if (!current_user_can('edit_theme_options')) {
       return;
     }
-    $options = array();
+    $options = [];
     $options['title'] = !empty($new_options['title']) ? sanitize_text_field($new_options['title']) : '';
     $options['eventsCount'] = !empty($new_options['eventsCount']) ? sanitize_text_field($new_options['eventsCount']) : 5;
-    $options['groupName'] = !empty($new_options['groupName']) ? sanitize_text_field($new_options['groupName']) : '';
+    $options['groupUsername'] = !empty($new_options['groupUsername']) ? sanitize_text_field($new_options['groupUsername']) : '';
     return $options;
   }
 }

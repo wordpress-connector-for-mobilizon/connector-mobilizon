@@ -6,19 +6,43 @@ use PHPUnit\Framework\TestCase;
 
 final class GroupNameHelperTest extends TestCase
 {
-  public function test_extractAndTrimNames_handleOneName(): void {
-    $this->assertSame(array('a'), GroupNameHelper::extractAndTrimNames('a'));
+  public function testExtractAndTrimNamesHandleOneName(): void {
+    $this->assertSame(['a'], GroupNameHelper::extractAndTrimNames('a'));
   }
 
-  public function test_extractAndTrimNames_handleTwoNames(): void {
-    $this->assertSame(array('a', 'b'), GroupNameHelper::extractAndTrimNames('a,b'));
+  public function testExtractAndTrimNamesHandleTwoNames(): void {
+    $this->assertSame(['a', 'b'], GroupNameHelper::extractAndTrimNames('a,b'));
   }
   
-  public function test_extractAndTrimNames_handleTwoNamesWithSpaces(): void {
-    $this->assertSame(array('a', 'b'), GroupNameHelper::extractAndTrimNames(' a , b '));
+  public function testExtractAndTrimNamesHandleTwoNamesWithSpaces(): void {
+    $this->assertSame(['a', 'b'], GroupNameHelper::extractAndTrimNames(' a , b '));
   }
   
-  public function test_convertToGroupsObject_handleTwoNamesWithSpaces(): void {
-    $this->assertSame(array(array('name' => 'a', 'url' => 'c/@a/events'), array('name' => 'b', 'url' => 'c/@b/events')), GroupNameHelper::convertToGroupsObject(array('a', 'b'), 'c'));
+  public function testConvertToGroupsObjectHandleTwoNamesWithSpaces(): void {
+    $this->assertSame(
+      [['name' => 'a', 'url' => 'c/@a/events'], ['name' => 'b', 'url' => 'c/@b/events']],
+      GroupNameHelper::convertToGroupsObject(['a', 'b'], 'c')
+    );
+  }
+
+  public function testConvertToGroupsObjectUsesDisplayNameFromMap(): void {
+    $this->assertSame(
+      [['name' => 'Group A', 'url' => 'c/@a/events']],
+      GroupNameHelper::convertToGroupsObject(['a'], 'c', ['a' => 'Group A'])
+    );
+  }
+
+  public function testConvertToGroupsObjectFallsBackToHandleWhenMapValueEmpty(): void {
+    $this->assertSame(
+      [['name' => 'a', 'url' => 'c/@a/events']],
+      GroupNameHelper::convertToGroupsObject(['a'], 'c', ['a' => ''])
+    );
+  }
+
+  public function testConvertToGroupsObjectFallsBackToHandleWhenKeyMissing(): void {
+    $this->assertSame(
+      [['name' => 'a', 'url' => 'c/@a/events']],
+      GroupNameHelper::convertToGroupsObject(['a'], 'c', ['b' => 'Group B'])
+    );
   }
 }

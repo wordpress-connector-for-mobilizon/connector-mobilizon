@@ -6,10 +6,10 @@ if (!defined('ABSPATH')) {
   exit;
 }
 
-class EventsListShortcut {
+class EventsListShortcode {
   
   public static function init() {
-    add_shortcode(NAME . '-events-list', 'MobilizonConnector\EventsListShortcut::inflate');
+    add_shortcode(NAME . '-events-list', 'MobilizonConnector\EventsListShortcode::inflate');
   }
 
   public static function inflate($atts = [], $content = null) {
@@ -18,24 +18,25 @@ class EventsListShortcut {
  
     // Override default attributes with user attributes.
     $atts_with_overriden_defaults = shortcode_atts(
-      array(
+      [
         'events-count' => DEFAULT_EVENTS_COUNT,
         'group-name' => '',
-      ), $atts
+      ], $atts
     );
 
     $url = Settings::getUrl();
     $eventsCount = $atts_with_overriden_defaults['events-count'];
-    $groupName = $atts_with_overriden_defaults['group-name'];
+    $groupUsername = $atts_with_overriden_defaults['group-name'];
     $classNamePrefix = NAME;
 
     ob_start();
     try {
       $showMoreUrl = Settings::getUrl();
-      if ($groupName) {
-        $groupNames = GroupNameHelper::extractAndTrimNames($groupName);
-        $events = GraphQlClient::get_upcoming_events_by_group_names($url, (int) $eventsCount, $groupNames);
-        $groups = GroupNameHelper::convertToGroupsObject($groupNames, $showMoreUrl);
+      if ($groupUsername) {
+        $groupUsernames = GroupNameHelper::extractAndTrimNames($groupUsername);
+        $result = GraphQlClient::get_upcoming_events_and_group_names($url, (int) $eventsCount, $groupUsernames);
+        $events = $result['events'];
+        $groups = GroupNameHelper::convertToGroupsObject($groupUsernames, $showMoreUrl, $result['groups']);
       } else {
         $events = GraphQlClient::get_upcoming_events($url, (int) $eventsCount);
       }

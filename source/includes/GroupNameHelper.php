@@ -7,17 +7,17 @@ if (!defined('ABSPATH')) {
 }
 
 final class GroupNameHelper {
-  public static function extractAndTrimNames(string $groupName) {
-    return array_map(fn($name): string => trim($name), explode(',', $groupName));
+  public static function extractAndTrimNames(string $groupUsername) {
+    return array_map(fn($name): string => trim($name), explode(',', $groupUsername));
   }
 
-  public static function convertToGroupsObject(array $groupNames, string $showMoreUrl) {
+  public static function convertToGroupsObject(array $groupUsernames, string $showMoreUrl, array $nameMap = []) {
     $groups = [];
-    foreach ($groupNames as $name) {
-      $groups[] = array(
-        'name' => $name,
-        'url' => $showMoreUrl . '/@' . $name . '/events'
-      );
+    foreach ($groupUsernames as $handle) {
+      $groups[] = [
+        'name' => !empty($nameMap[$handle]) ? $nameMap[$handle] : $handle,
+        'url' => $showMoreUrl . '/@' . $handle . '/events'
+      ];
     }
     return $groups;
   }

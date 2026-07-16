@@ -82,16 +82,18 @@ final class GraphQlClient {
     return $events;
   }
 
-  public static function get_upcoming_events_by_group_names(string $url, int $limit, array $groupNames): array {
+  public static function get_upcoming_events_and_group_names(string $url, int $limit, array $groupUsernames): array {
     $queryParts = [];
     $variables = ['afterDatetime' => 'DateTime', 'limit' => 'Int'];
 
-    foreach ($groupNames as $index => $groupName) {
+    foreach ($groupUsernames as $index => $groupUsername) {
       $varName = "group{$index}";
       $variables[$varName] = 'String!';
 
       $queryParts[] = <<<GRAPHQL
         {$varName}: group(preferredUsername: \${$varName}) {
+          preferredUsername,
+          name,
           organizedEvents(afterDatetime: \$afterDatetime, limit: \$limit) {
             elements {
               id,
@@ -131,13 +133,13 @@ final class GraphQlClient {
       'afterDatetime' => $afterDatetime,
       'limit' => $limit
     ];
-    foreach ($groupNames as $index => $groupName) {
-      $queryVariables["group{$index}"] = $groupName;
+    foreach ($groupUsernames as $index => $groupUsername) {
+      $queryVariables["group{$index}"] = $groupUsername;
     }
 
-    $cachedEvents = EventsCache::get(['url' => $url, 'query' => $query, 'afterDatetime' => $afterDatetime, 'groupNames' => implode(',', $groupNames), 'limit' => $limit]);
-    if ($cachedEvents !== false) {
-      return $cachedEvents;
+    $cachedResults = EventsCache::get(['url' => $url, 'query' => $query, 'afterDatetime' => $afterDatetime, 'groupUsernames' => implode(',', $groupUsernames), 'limit' => $limit]);
+    if ($cachedResults !== false) {
+      return $cachedResults;
     }
 
     $endpoint = $url . '/api';
@@ -145,16 +147,22 @@ final class GraphQlClient {
     self::checkData($data);
 
     $events = [];
+    $groups = [];
     foreach ($data['data'] as $groupData) {
-      if ($groupData && isset($groupData['organizedEvents']['elements'])) {
-        $events = array_merge($events, $groupData['organizedEvents']['elements']);
+      if ($groupData) {
+        if (isset($groupData['preferredUsername'])) {
+          $groups[$groupData['preferredUsername']] = $groupData['name'];
+        }
+        if (isset($groupData['organizedEvents']['elements'])) {
+          $events = array_merge($events, $groupData['organizedEvents']['elements']);
+        }
       }
     }
     usort($events, function($a, $b) {
       return strtotime($a['beginsOn']) - strtotime($b['beginsOn']);
     });
     $events = array_slice($events, 0, $limit);
-    
+
     foreach ($events as &$event) {
       if ($event['picture']) {
         $picture_response = self::download_image($event['picture']['url']);
@@ -166,8 +174,9 @@ final class GraphQlClient {
       unset($event);
     }
 
-    EventsCache::set(['url' => $url, 'query' => $query, 'afterDatetime' => $afterDatetime, 'groupNames' => implode(',', $groupNames), 'limit' => $limit], $events);
-    return $events;
+    $result = ['events' => $events, 'groups' => $groups];
+    EventsCache::set(['url' => $url, 'query' => $query, 'afterDatetime' => $afterDatetime, 'groupUsernames' => implode(',', $groupUsernames), 'limit' => $limit], $result);
+    return $result;
   }
 
   private static function checkData($data) {
@@ -184,7 +193,20 @@ final class GraphQlClient {
 
   private static function download_image($url) {
     $response = wp_remote_get($url);
-    $image_data = $response['body'];
-    return $image_data;
+    
+    if (is_wp_error($response)) {
+      return false;
+    }
+		
+    if (!is_array($response) || !isset($response['body'])) {
+      return false;
+    }
+		
+    $status_code = wp_remote_retrieve_response_code($response);
+    if (!is_int($status_code) || $status_code < 200 || $status_code >= 300) {
+      return false;
+    }
+
+    return $response['body'];
   }
 }

@@ -23,7 +23,7 @@ export default ({ attributes, setAttributes }) => {
     className: NAME + '_events-list',
   })
 
-  function reloadEventList(eventsCount, groupName) {
+  function reloadEventList(eventsCount, groupUsername) {
     if (timerRef.current) {
       clearTimeout(timerRef.current)
     }
@@ -37,24 +37,28 @@ export default ({ attributes, setAttributes }) => {
       clearEventsList(container)
       showLoadingIndicator(container)
 
-      if (groupName) {
-        const groupNames = groupName.split(',').map((name) => name.trim())
-        const updatedGroups = groupNames.map((name) => ({
-          name,
-          url: `${window.MOBILIZON_CONNECTOR.url}/@${name}/events`,
-        }))
-        setGroups(updatedGroups)
-      } else {
+      if (!groupUsername) {
         setGroups([])
       }
       setShowMoreUrl(window.MOBILIZON_CONNECTOR.url)
 
       try {
-        const data = await fetchEvents(eventsCount, groupName)
-        const events = JSON.parse(data)
+        const data = await fetchEvents(eventsCount, groupUsername)
+        const parsed = JSON.parse(data)
+        if (groupUsername) {
+          const groupUsernames = groupUsername
+            .split(',')
+            .map((name) => name.trim())
+          const updatedGroups = groupUsernames.map((name) => ({
+            name:
+              parsed.groups && parsed.groups[name] ? parsed.groups[name] : name,
+            url: `${window.MOBILIZON_CONNECTOR.url}/@${name}/events`,
+          }))
+          setGroups(updatedGroups)
+        }
         displayEvents({
           blockClassName: NAME + '_events-list',
-          events,
+          events: parsed.events,
           document,
           container,
           maxEventsCount: eventsCount,
@@ -75,10 +79,10 @@ export default ({ attributes, setAttributes }) => {
     reloadEventList(attributes.eventsCount, attributes.groupName)
   }, [])
 
-  async function fetchEvents(eventsCount, groupName) {
+  async function fetchEvents(eventsCount, groupUsername) {
     let url = `/wp-json/connector-mobilizon/v1/events?eventsCount=${eventsCount}`
-    if (groupName) {
-      url += `&groupName=${groupName}`
+    if (groupUsername) {
+      url += `&groupName=${groupUsername}`
     }
     const response = await fetch(url)
     if (!response.ok) {
@@ -97,7 +101,7 @@ export default ({ attributes, setAttributes }) => {
     reloadEventList(newValue, attributes.groupName)
   }
 
-  function updateGroupName(event) {
+  function updateGroupUsername(event) {
     const newValue = event.target.value
     setAttributes({ groupName: newValue })
     reloadEventList(attributes.eventsCount, newValue)
@@ -122,21 +126,21 @@ export default ({ attributes, setAttributes }) => {
           />
           <label
             className="components-base-control__label"
-            htmlFor={NAME + '_group-name'}
+            htmlFor={NAME + '_group-username'}
             style={{ paddingTop: '24px' }}
           >
-            {__('Group name (optional)', '<wordpress-name>')}
+            {__('Group username (optional)', '<wordpress-name>')}
           </label>
           <input
             className="components-text-control__input"
             type="text"
             value={attributes.groupName}
-            onChange={updateGroupName}
-            id={NAME + '_group-name'}
+            onChange={updateGroupUsername}
+            id={NAME + '_group-username'}
           />
           <p className="components-base-control__help">
             {__(
-              'Use comma-separated names for multiple groups.',
+              'Use comma-separated usernames for multiple groups.',
               '<wordpress-name>',
             )}
           </p>
@@ -158,7 +162,7 @@ export default ({ attributes, setAttributes }) => {
         {groups.length ? (
           groups.map((group) => (
             <a
-              key={group.name}
+              key={group.url}
               href={group.url}
               target="_blank"
               rel="noopener noreferrer"
