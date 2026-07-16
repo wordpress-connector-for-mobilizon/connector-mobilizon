@@ -201,7 +201,20 @@ final class GraphQlClient {
 
   private static function download_image($url) {
     $response = wp_remote_get($url);
-    $image_data = $response['body'];
-    return $image_data;
+    
+    if (is_wp_error($response)) {
+      return false;
+    }
+		
+    if (!is_array($response) || !isset($response['body'])) {
+      return false;
+    }
+		
+    $status_code = wp_remote_retrieve_response_code($response);
+    if (!is_int($status_code) || $status_code < 200 || $status_code >= 300) {
+      return false;
+    }
+
+    return $response['body'];
   }
 }

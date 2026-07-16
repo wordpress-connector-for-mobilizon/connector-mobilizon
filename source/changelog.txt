@@ -2,9 +2,15 @@
 #### Added
 - Respect Mobilizon's `showStartTime` and `showEndTime` event options: when an organizer marks an event as date-only, the time portion is no longer displayed in any of the plugin's display methods (block, shortcode, widget)
 #### Changed
+
+- Update dependencies
+
 #### Deprecated
 #### Removed
 #### Fixed
+
+- Use correct WordPress terminology shortcode
+
 #### Security
 
 ### [2.4.0]
@@ -137,7 +143,7 @@
 - Show loading indicator during request
 #### Changed
 - Set list style type to none and left padding to zero for all occurences
-- Move shortcut usage description into installation section in `readme.txt`
+- Move shortcode usage description into installation section in `readme.txt`
 - Update dependencies
 
 ### [0.9.1] - 2020-05-19

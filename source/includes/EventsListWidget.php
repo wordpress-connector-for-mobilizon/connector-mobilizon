@@ -12,9 +12,9 @@ class EventsListWidget extends \WP_Widget {
     parent::__construct(
       NAME . '-events-list',
       NICE_NAME . ' ' . esc_html__('Events List', 'connector-mobilizon'),
-      array(
+      [
         'description' => esc_html__('A list of the upcoming events of the connected Mobilizon instance.', 'connector-mobilizon'),
-      ),
+      ],
     );
   }
 
@@ -67,7 +67,7 @@ class EventsListWidget extends \WP_Widget {
     if (!current_user_can('edit_theme_options')) {
       return;
     }
-    $options = array();
+    $options = [];
     $options['title'] = !empty($new_options['title']) ? sanitize_text_field($new_options['title']) : '';
     $options['eventsCount'] = !empty($new_options['eventsCount']) ? sanitize_text_field($new_options['eventsCount']) : 5;
     $options['groupUsername'] = !empty($new_options['groupUsername']) ? sanitize_text_field($new_options['groupUsername']) : '';
