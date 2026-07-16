@@ -1,5 +1,6 @@
 ### [Unreleased]
 #### Added
+- Respect Mobilizon's start and end time display options
 #### Changed
 
 - Update dependencies

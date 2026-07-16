@@ -50,6 +50,10 @@ final class GraphQlClient {
               alt,
               contentType,
               url
+            },
+            options {
+              showStartTime,
+              showEndTime
             }
           },
           total
@@ -109,6 +113,10 @@ final class GraphQlClient {
                 alt,
                 contentType,
                 url
+              },
+              options {
+                showStartTime,
+                showEndTime
               }
             },
             total

@@ -19,7 +19,7 @@ if (!defined('ABSPATH')) {
         <a href="<?php echo esc_attr($event['url']); ?>"><?php echo esc_html($event['title']); ?></a>
       </div>
       <div class="<?php echo esc_attr($classNamePrefix); ?>_events-list__date">
-        <?php echo esc_html(LineFormatter::format_date_time($timeZone, $dateFormat, $timeFormat, $event['beginsOn'], $event['endsOn'])); ?>
+        <?php echo esc_html(LineFormatter::format_date_time($timeZone, $dateFormat, $timeFormat, $event['beginsOn'], $event['endsOn'], $event['options']['showStartTime'] ?? true, $event['options']['showEndTime'] ?? true)); ?>
       </div>
       <?php if (isset($event['physicalAddress'])) { ?>
       <div class="<?php echo esc_attr($classNamePrefix); ?>_events-list__location">

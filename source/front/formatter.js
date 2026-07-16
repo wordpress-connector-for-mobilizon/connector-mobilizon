@@ -4,17 +4,24 @@ export default class Formatter {
     startTimeFormatted,
     endDateFormatted,
     endTimeFormatted,
+    showStartTime = true,
+    showEndTime = true,
   }) {
     let dateText = startDateFormatted
-    dateText += ' ' + startTimeFormatted
+    if (showStartTime) {
+      dateText += ' ' + startTimeFormatted
+    }
     if (endDateFormatted) {
+      const endPieces = []
       if (startDateFormatted !== endDateFormatted) {
-        dateText += ' - '
-        dateText += endDateFormatted + ' '
-      } else {
-        dateText += ' - '
+        endPieces.push(endDateFormatted)
       }
-      dateText += endTimeFormatted
+      if (showEndTime) {
+        endPieces.push(endTimeFormatted)
+      }
+      if (endPieces.length) {
+        dateText += ' - ' + endPieces.join(' ')
+      }
     }
     return dateText
   }
