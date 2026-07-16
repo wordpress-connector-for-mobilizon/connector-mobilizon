@@ -81,9 +81,9 @@ final class Mobilizon_Connector {
   }
 
   private function load_settings_globally_before_script($scriptName) {
-    $settings = array(
+    $settings = [
       'url' => MobilizonConnector\Settings::getUrl()
-    );
+    ];
     wp_add_inline_script($scriptName, 'var MOBILIZON_CONNECTOR = ' . json_encode($settings), 'before');
   }
 

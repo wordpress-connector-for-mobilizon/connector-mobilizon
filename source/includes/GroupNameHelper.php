@@ -14,10 +14,10 @@ final class GroupNameHelper {
   public static function convertToGroupsObject(array $groupUsernames, string $showMoreUrl, array $nameMap = []) {
     $groups = [];
     foreach ($groupUsernames as $handle) {
-      $groups[] = array(
+      $groups[] = [
         'name' => !empty($nameMap[$handle]) ? $nameMap[$handle] : $handle,
         'url' => $showMoreUrl . '/@' . $handle . '/events'
-      );
+      ];
     }
     return $groups;
   }

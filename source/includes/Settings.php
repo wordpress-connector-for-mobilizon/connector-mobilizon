@@ -42,9 +42,9 @@ class Settings {
       'MobilizonConnector\Settings::output_field_url',
       self::$PAGE_NAME,
       self::$SETTINGS_SECTION_NAME,
-      array(
+      [
         'label_for' => self::$SETTING_FIELD_NAME_URL
-      )
+      ]
     );
   }
 

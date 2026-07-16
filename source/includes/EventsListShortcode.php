@@ -18,10 +18,10 @@ class EventsListShortcode {
  
     // Override default attributes with user attributes.
     $atts_with_overriden_defaults = shortcode_atts(
-      array(
+      [
         'events-count' => DEFAULT_EVENTS_COUNT,
         'group-name' => '',
-      ), $atts
+      ], $atts
     );
 
     $url = Settings::getUrl();
