@@ -6,10 +6,10 @@ if (!defined('ABSPATH')) {
   exit;
 }
 
-class EventsListShortcut {
+class EventsListShortcode {
   
   public static function init() {
-    add_shortcode(NAME . '-events-list', 'MobilizonConnector\EventsListShortcut::inflate');
+    add_shortcode(NAME . '-events-list', 'MobilizonConnector\EventsListShortcode::inflate');
   }
 
   public static function inflate($atts = [], $content = null) {

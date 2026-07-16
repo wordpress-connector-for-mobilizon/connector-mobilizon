@@ -23,7 +23,7 @@ require_once __DIR__ . '/includes/LocalDateTimeFormatter.php';
 require_once __DIR__ . '/includes/LineFormatter.php';
 require_once __DIR__ . '/includes/GraphQlClient.php';
 require_once __DIR__ . '/includes/EventsListBlock.php';
-require_once __DIR__ . '/includes/EventsListShortcut.php';
+require_once __DIR__ . '/includes/EventsListShortcode.php';
 require_once __DIR__ . '/includes/EventsListWidget.php';
 
 // Exit if this file is called directly.
@@ -37,7 +37,7 @@ final class Mobilizon_Connector {
     add_action('init', [$this, 'register_api']);
     add_action('init', [$this, 'register_blocks']);
     add_action('init', [$this, 'register_settings'], 1); // required for register_blocks
-    add_action('init', [$this, 'register_shortcut']);
+    add_action('init', [$this, 'register_shortcode']);
     add_action('widgets_init', [$this, 'register_widget']);
     register_activation_hook(__FILE__, [$this, 'enable_activation']);
     add_filter('plugin_row_meta', [$this, 'add_donation_link_to_plugins_page'], 10, 2);
@@ -100,8 +100,8 @@ final class Mobilizon_Connector {
     MobilizonConnector\Settings::init();
   }
 
-  public function register_shortcut() {
-    MobilizonConnector\EventsListShortcut::init();
+  public function register_shortcode() {
+    MobilizonConnector\EventsListShortcode::init();
   }
 
   public function register_widget() {

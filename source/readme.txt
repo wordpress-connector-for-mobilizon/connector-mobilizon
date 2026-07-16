@@ -15,11 +15,11 @@ License: <wordpress-license>
 <wordpress-nice-name> allows you to display the upcoming events of [Mobilizon](https://joinmobilizon.org/), which is a federated event listing platform, on your WordPress website.
 
 Features
-- Display events as Gutenberg block, as widget and as shortcut
+- Display events as Gutenberg block, as widget and as shortcode
 - Display events' picture, if available, title with link, date, and location, if available
 - Cache requests' responses for 2 minutes in the database
-- Configure number of events to show per block, per widget and per shortcut
-- Optionally filter events by one or more public groups per block, per widget and per shortcut
+- Configure number of events to show per block, per widget and per shortcode
+- Optionally filter events by one or more public groups per block, per widget and per shortcode
 - Set the URL of the Mobilizon instance in the settings
 
 This plugin requests the events via Mobilizon's GraphQL API.
@@ -43,9 +43,9 @@ The BEM naming convention is used, which results in the following class names:
 
 Use the developer tools of your browser to check all the names.
 
-### Shortcut usage
+### Shortcode usage
 
-Shortcut format with limiting the number of events to show to 3 for example: `[<wordpress-name>-events-list events-count=3]`
+Shortcode format with limiting the number of events to show to 3 for example: `[<wordpress-name>-events-list events-count=3]`
 
 Optionally, you can only show the events of one or more groups by indicatings their usernames: `[<wordpress-name>-events-list events-count=3 group-name="mygroup"]`
 Multiple group usernames have to be separated by comma: `[<wordpress-name>-events-list events-count=3 group-name="mygroup1,mygroup2,mygroup3"]`
@@ -56,7 +56,7 @@ You have to use their username, e.g. `@nosliensvivants`, and append the name of 
 2. List of 4 events of one group
 3. Gutenberg block in editor
 4. Widget creation
-5. Shortcut creation
+5. Shortcode creation
 6. General settings
 
 ## Changelog
@@ -191,7 +191,7 @@ You have to use their username, e.g. `@nosliensvivants`, and append the name of 
 - Show loading indicator during request
 #### Changed
 - Set list style type to none and left padding to zero for all occurences
-- Move shortcut usage description into installation section in `readme.txt`
+- Move shortcode usage description into installation section in `readme.txt`
 - Update dependencies
 
 ### [0.9.1] - 2020-05-19
