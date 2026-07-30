@@ -60,7 +60,7 @@
   "additionalDetails": {
     "niceName": "Connector for Mobilizon",
     "phpMinimumVersion": 7.4,
-    "wordpressMinimumVersion": 5.6,
+    "wordpressMinimumVersion": 6.3,
     "wordpressTestedUpToVersion": "7.0"
   },
   "lint-staged": {
