@@ -2,17 +2,13 @@
 #### Added
 - Respect Mobilizon's start and end time display options
 #### Changed
-
-- Update dependencies
 - Make the events list block compatible with Block API version 3 for iframe editor compatibility, requiring WordPress 6.3 as new minimum
-
 #### Deprecated
 #### Removed
 #### Fixed
-
 - Use correct WordPress terminology shortcode
-
 #### Security
+- Update dependencies
 
 ### [2.4.0]
 #### Changed
