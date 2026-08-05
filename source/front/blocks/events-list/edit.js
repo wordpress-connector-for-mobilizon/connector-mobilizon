@@ -21,8 +21,10 @@ export default ({ attributes, setAttributes }) => {
 
   const timerRef = useRef(null)
 
+  const containerRef = useRef(null)
   const blockProps = useBlockProps({
     className: NAME + '_events-list',
+    ref: containerRef,
   })
 
   function reloadEventList(eventsCount, groupUsername) {
@@ -30,7 +32,7 @@ export default ({ attributes, setAttributes }) => {
       clearTimeout(timerRef.current)
     }
     timerRef.current = setTimeout(async () => {
-      const container = document.getElementById(blockProps.id)
+      const container = containerRef.current
       if (!container) {
         return
       }
@@ -61,7 +63,7 @@ export default ({ attributes, setAttributes }) => {
         displayEvents({
           blockClassName: NAME + '_events-list',
           events: parsed.events,
-          document,
+          document: container.ownerDocument,
           container,
           maxEventsCount: eventsCount,
         })

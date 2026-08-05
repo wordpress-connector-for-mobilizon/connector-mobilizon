@@ -17,7 +17,7 @@ class EventsListBlock {
         'wp-i18n'
       ], '<wordpress-version>', ['in_footer' => true]);
     register_block_type(NAME . '/events-list', [
-      'api_version' => 2,
+      'api_version' => 3,
       'title' => esc_html__('Events List', 'connector-mobilizon'),
       'description' =>  esc_html__('A list of the upcoming events of the connected Mobilizon instance.', 'connector-mobilizon'),
       'category' => 'widgets',
