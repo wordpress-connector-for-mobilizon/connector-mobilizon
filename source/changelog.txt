@@ -9,7 +9,7 @@
 #### Fixed
 - Use correct WordPress terminology shortcode
 #### Security
-- Update dependencies
+- Upgrade dependencies
 
 ### [2.4.0]
 #### Changed
