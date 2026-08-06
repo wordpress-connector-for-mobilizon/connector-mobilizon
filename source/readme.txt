@@ -22,7 +22,7 @@ Features
 - Optionally filter events by one or more public groups per block, per widget and per shortcode
 - Set the URL of the Mobilizon instance in the settings
 
-This plugin requests the events via Mobilizon's GraphQL API.
+This plugin requests the events via Mobilizon's GraphQL API and respects the events' start and end time display options.
 
 The source code is available on [Github](https://github.com/dwaxweiler/connector-mobilizon).
 
