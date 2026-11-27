@@ -23,10 +23,6 @@
     "url": "https://paypal.me/dwaxweiler"
   },
   "license": "Apache-2.0",
-  "dependencies": {
-    "graphql": "17.1.0",
-    "luxon": "3.7.2"
-  },
   "devDependencies": {
     "@babel/core": "7.29.13",
     "@babel/eslint-parser": "7.29.13",
