@@ -14,13 +14,7 @@ class EventsListBlock {
     wp_register_script(
       $scriptName,
       plugins_url(NAME . '/front/block-events-loader.js'),
-      array_unique(array_merge($asset['dependencies'], [
-        'wp-block-editor',
-        'wp-blocks',
-        'wp-components',
-        'wp-element',
-        'wp-i18n',
-      ])),
+      $asset['dependencies'],
       '<wordpress-version>',
       ['in_footer' => true]
     );

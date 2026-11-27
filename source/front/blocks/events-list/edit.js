@@ -6,12 +6,25 @@ import {
   showLoadingIndicator,
 } from '../../events-displayer.js'
 
-const { InspectorControls, useBlockProps } = wp.blockEditor
-const { Panel, PanelBody } = wp.components
-const { useCallback, useEffect, useRef, useState } = wp.element
-const { __, sprintf } = wp.i18n
+import { InspectorControls, useBlockProps } from '@wordpress/block-editor'
+import { Panel, PanelBody } from '@wordpress/components'
+import { useCallback, useEffect, useRef, useState } from '@wordpress/element'
+import { __, sprintf } from '@wordpress/i18n'
 
 const NAME = '<wordpress-name>'
+
+async function fetchEvents(eventsCount, groupUsername) {
+  let url = `/wp-json/connector-mobilizon/v1/events?eventsCount=${eventsCount}`
+  if (groupUsername) {
+    url += `&groupName=${groupUsername}`
+  }
+  const response = await fetch(url)
+  if (!response.ok) {
+    const data = await response.text()
+    throw new Error(data)
+  }
+  return response.text()
+}
 
 export default ({ attributes, setAttributes }) => {
   const [groups, setGroups] = useState([])
@@ -81,32 +94,17 @@ export default ({ attributes, setAttributes }) => {
     reloadEventList(attributes.eventsCount, attributes.groupName)
   }, [reloadEventList, attributes.eventsCount, attributes.groupName])
 
-  async function fetchEvents(eventsCount, groupUsername) {
-    let url = `/wp-json/connector-mobilizon/v1/events?eventsCount=${eventsCount}`
-    if (groupUsername) {
-      url += `&groupName=${groupUsername}`
-    }
-    const response = await fetch(url)
-    if (!response.ok) {
-      const data = await response.text()
-      throw new Error(data)
-    }
-    return response.text()
-  }
-
   function updateEventsCount(event) {
     let newValue = Number(event.target.value)
     if (newValue < 1) {
       newValue = 1
     }
     setAttributes({ eventsCount: newValue })
-    reloadEventList(newValue, attributes.groupName)
   }
 
   function updateGroupUsername(event) {
     const newValue = event.target.value
     setAttributes({ groupName: newValue })
-    reloadEventList(attributes.eventsCount, newValue)
   }
 
   return [
