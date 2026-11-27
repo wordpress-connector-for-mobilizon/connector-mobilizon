@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-/* eslint-disable @wordpress/i18n-ellipsis */
 import {
   clearEventsList,
   displayErrorMessage,
@@ -8,12 +6,25 @@ import {
   showLoadingIndicator,
 } from '../../events-displayer.js'
 
-const { InspectorControls, useBlockProps } = wp.blockEditor
-const { Panel, PanelBody } = wp.components
-const { useEffect, useRef, useState } = wp.element
-const { __, sprintf } = wp.i18n
+import { InspectorControls, useBlockProps } from '@wordpress/block-editor'
+import { Panel, PanelBody } from '@wordpress/components'
+import { useCallback, useEffect, useRef, useState } from '@wordpress/element'
+import { __, sprintf } from '@wordpress/i18n'
 
 const NAME = '<wordpress-name>'
+
+async function fetchEvents(eventsCount, groupUsername) {
+  let url = `/wp-json/connector-mobilizon/v1/events?eventsCount=${eventsCount}`
+  if (groupUsername) {
+    url += `&groupName=${groupUsername}`
+  }
+  const response = await fetch(url)
+  if (!response.ok) {
+    const data = await response.text()
+    throw new Error(data)
+  }
+  return response.text()
+}
 
 export default ({ attributes, setAttributes }) => {
   const [groups, setGroups] = useState([])
@@ -27,7 +38,7 @@ export default ({ attributes, setAttributes }) => {
     ref: containerRef,
   })
 
-  function reloadEventList(eventsCount, groupUsername) {
+  const reloadEventList = useCallback((eventsCount, groupUsername) => {
     if (timerRef.current) {
       clearTimeout(timerRef.current)
     }
@@ -71,30 +82,17 @@ export default ({ attributes, setAttributes }) => {
         let message = ''
         try {
           message = JSON.parse(error)
-        } catch ($e) {
+        } catch {
           message = 'Parsing the error message failed.'
         }
         displayErrorMessage({ data: message, container })
       }
     }, 500)
-  }
+  }, [])
 
   useEffect(() => {
     reloadEventList(attributes.eventsCount, attributes.groupName)
-  }, [])
-
-  async function fetchEvents(eventsCount, groupUsername) {
-    let url = `/wp-json/connector-mobilizon/v1/events?eventsCount=${eventsCount}`
-    if (groupUsername) {
-      url += `&groupName=${groupUsername}`
-    }
-    const response = await fetch(url)
-    if (!response.ok) {
-      const data = await response.text()
-      throw new Error(data)
-    }
-    return response.text()
-  }
+  }, [reloadEventList, attributes.eventsCount, attributes.groupName])
 
   function updateEventsCount(event) {
     let newValue = Number(event.target.value)
@@ -102,13 +100,11 @@ export default ({ attributes, setAttributes }) => {
       newValue = 1
     }
     setAttributes({ eventsCount: newValue })
-    reloadEventList(newValue, attributes.groupName)
   }
 
   function updateGroupUsername(event) {
     const newValue = event.target.value
     setAttributes({ groupName: newValue })
-    reloadEventList(attributes.eventsCount, newValue)
   }
 
   return [
@@ -159,7 +155,7 @@ export default ({ attributes, setAttributes }) => {
         {__('The group could not be found!', '<wordpress-name>')}
       </div>
       <div className="loading-indicator" style={{ display: 'none' }}>
-        {__('Loading...', '<wordpress-name>')}
+        {__('Loading…', '<wordpress-name>')}
       </div>
       <ul style={{ listStyleType: 'none', paddingLeft: 0 }}></ul>
       <div className={NAME + '_events-list__more-section'}>

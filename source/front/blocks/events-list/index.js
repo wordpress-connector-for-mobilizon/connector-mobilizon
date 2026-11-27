@@ -1,6 +1,6 @@
 import edit from './edit.js'
 
-const { registerBlockType } = wp.blocks
+import { registerBlockType } from '@wordpress/blocks'
 
 const NAME = '<wordpress-name>'
 

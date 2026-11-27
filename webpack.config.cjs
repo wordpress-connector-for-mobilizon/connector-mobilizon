@@ -1,7 +1,8 @@
-/* eslint-disable no-undef */
+/*  no-undef */
 const path = require('path')
 
 const CopyPlugin = require('copy-webpack-plugin')
+const DependencyExtractionWebpackPlugin = require('@wordpress/dependency-extraction-webpack-plugin')
 
 const FOLDER_SOURCE = './source'
 
@@ -20,14 +21,12 @@ module.exports = {
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
-          options: {
-            presets: [['@babel/preset-env', { targets: 'defaults' }]],
-          },
         },
       },
     ],
   },
   plugins: [
+    new DependencyExtractionWebpackPlugin(),
     new CopyPlugin({
       patterns: [
         {

@@ -10,12 +10,14 @@ class EventsListBlock {
 
   public static function initAndReturnScriptName(): string {
     $scriptName = NAME . '-block-starter';
-    wp_register_script($scriptName, plugins_url(NAME . '/front/block-events-loader.js'), [
-        'wp-block-editor',
-        'wp-blocks',
-        'wp-components',
-        'wp-i18n'
-      ], '<wordpress-version>', ['in_footer' => true]);
+    $asset = include dirname(__DIR__) . '/front/block-events-loader.asset.php';
+    wp_register_script(
+      $scriptName,
+      plugins_url(NAME . '/front/block-events-loader.js'),
+      $asset['dependencies'],
+      '<wordpress-version>',
+      ['in_footer' => true]
+    );
     register_block_type(NAME . '/events-list', [
       'api_version' => 3,
       'title' => esc_html__('Events List', 'connector-mobilizon'),
