@@ -30,8 +30,6 @@
   "devDependencies": {
     "@babel/core": "7.29.13",
     "@babel/eslint-parser": "7.29.13",
-    "@babel/preset-env": "7.29.14",
-    "@babel/preset-react": "7.29.7",
     "@wordpress/babel-preset-default": "10.2.0",
     "@wordpress/eslint-plugin": "28.2.0",
     "ava": "8.5.0",

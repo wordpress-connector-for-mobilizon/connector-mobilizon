@@ -8,7 +8,7 @@ import {
 
 const { InspectorControls, useBlockProps } = wp.blockEditor
 const { Panel, PanelBody } = wp.components
-const { useCallback, useEffect, useRef, useState } = wp.element
+const { useEffect, useRef, useState } = wp.element
 const { __, sprintf } = wp.i18n
 
 const NAME = '<wordpress-name>'
@@ -25,7 +25,7 @@ export default ({ attributes, setAttributes }) => {
     ref: containerRef,
   })
 
-  const reloadEventList = useCallback((eventsCount, groupUsername) => {
+  function reloadEventList(eventsCount, groupUsername) {
     if (timerRef.current) {
       clearTimeout(timerRef.current)
     }
@@ -75,11 +75,11 @@ export default ({ attributes, setAttributes }) => {
         displayErrorMessage({ data: message, container })
       }
     }, 500)
-  }, [])
+  }
 
   useEffect(() => {
     reloadEventList(attributes.eventsCount, attributes.groupName)
-  }, [reloadEventList, attributes.eventsCount, attributes.groupName])
+  }, [])
 
   async function fetchEvents(eventsCount, groupUsername) {
     let url = `/wp-json/connector-mobilizon/v1/events?eventsCount=${eventsCount}`
