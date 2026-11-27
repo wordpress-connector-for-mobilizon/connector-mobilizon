@@ -27,7 +27,7 @@ class EventsListWidget extends \WP_Widget {
 
     $url = Settings::getUrl();
     $eventsCount = $options['eventsCount'];
-    $groupUsername = isset($options['groupName']) ? $options['groupName'] : '';
+    $groupUsername = isset($options['groupUsername']) ? $options['groupUsername'] : '';
     $classNamePrefix = NAME;
 
     try {

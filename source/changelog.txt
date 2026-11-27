@@ -6,6 +6,7 @@
 #### Deprecated
 #### Removed
 #### Fixed
+- Fix group username filter not working on widgets
 #### Security
 
 ### [2.5.0]
