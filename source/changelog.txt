@@ -2,6 +2,7 @@
 #### Added
 #### Changed
 - Confirm compatibility with WordPress 7.2
+- Upgrade dependencies
 #### Deprecated
 #### Removed
 #### Fixed
