@@ -31,6 +31,7 @@
     "@babel/core": "7.29.13",
     "@babel/eslint-parser": "7.29.13",
     "@wordpress/babel-preset-default": "10.2.0",
+    "@wordpress/dependency-extraction-webpack-plugin": "7.2.0",
     "@wordpress/eslint-plugin": "28.2.0",
     "ava": "8.5.0",
     "babel-loader": "10.1.1",

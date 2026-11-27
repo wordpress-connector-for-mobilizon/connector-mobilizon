@@ -2,6 +2,7 @@
 const path = require('path')
 
 const CopyPlugin = require('copy-webpack-plugin')
+const DependencyExtractionWebpackPlugin = require('@wordpress/dependency-extraction-webpack-plugin')
 
 const FOLDER_SOURCE = './source'
 
@@ -25,6 +26,7 @@ module.exports = {
     ],
   },
   plugins: [
+    new DependencyExtractionWebpackPlugin(),
     new CopyPlugin({
       patterns: [
         {
