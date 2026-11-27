@@ -22,7 +22,7 @@ Features
 - Optionally filter events by one or more public groups per block, per widget and per shortcode
 - Set the URL of the Mobilizon instance in the settings
 
-This plugin requests the events via Mobilizon's GraphQL API.
+This plugin requests the events via Mobilizon's GraphQL API and respects the events' start and end time display options.
 
 The source code is available on [Github](https://github.com/dwaxweiler/connector-mobilizon).
 
@@ -60,6 +60,18 @@ You have to use their username, e.g. `@nosliensvivants`, and append the name of 
 6. General settings
 
 ## Changelog
+
+### [2.5.0]
+#### Added
+- Respect Mobilizon's start and end time display options
+#### Changed
+- Confirm compatibility with WordPress 7.1
+- Make the events list block compatible with Block API version 3 for iframe editor compatibility, requiring WordPress 6.3 as new minimum
+#### Fixed
+- Use correct WordPress terminology shortcode
+#### Security
+- Upgrade dependencies
+- Prevent XSS injections in block editor via malicious event titles
 
 ### [2.4.0]
 #### Changed

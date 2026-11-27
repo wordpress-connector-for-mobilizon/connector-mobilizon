@@ -8,7 +8,7 @@ import {
 
 const { InspectorControls, useBlockProps } = wp.blockEditor
 const { Panel, PanelBody } = wp.components
-const { useEffect, useRef, useState } = wp.element
+const { useCallback, useEffect, useRef, useState } = wp.element
 const { __, sprintf } = wp.i18n
 
 const NAME = '<wordpress-name>'
@@ -19,16 +19,18 @@ export default ({ attributes, setAttributes }) => {
 
   const timerRef = useRef(null)
 
+  const containerRef = useRef(null)
   const blockProps = useBlockProps({
     className: NAME + '_events-list',
+    ref: containerRef,
   })
 
-  function reloadEventList(eventsCount, groupUsername) {
+  const reloadEventList = useCallback((eventsCount, groupUsername) => {
     if (timerRef.current) {
       clearTimeout(timerRef.current)
     }
     timerRef.current = setTimeout(async () => {
-      const container = document.getElementById(blockProps.id)
+      const container = containerRef.current
       if (!container) {
         return
       }
@@ -59,7 +61,7 @@ export default ({ attributes, setAttributes }) => {
         displayEvents({
           blockClassName: NAME + '_events-list',
           events: parsed.events,
-          document,
+          document: container.ownerDocument,
           container,
           maxEventsCount: eventsCount,
         })
@@ -73,11 +75,11 @@ export default ({ attributes, setAttributes }) => {
         displayErrorMessage({ data: message, container })
       }
     }, 500)
-  }
+  }, [])
 
   useEffect(() => {
     reloadEventList(attributes.eventsCount, attributes.groupName)
-  }, [])
+  }, [reloadEventList, attributes.eventsCount, attributes.groupName])
 
   async function fetchEvents(eventsCount, groupUsername) {
     let url = `/wp-json/connector-mobilizon/v1/events?eventsCount=${eventsCount}`

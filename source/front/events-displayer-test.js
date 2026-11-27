@@ -76,6 +76,33 @@ test('#displayEvents one event', (t) => {
   t.is(list.children[0].childNodes[2].childNodes[0].nodeValue, 'c, d')
 })
 
+test('#displayEvents one event with times hidden via options', (t) => {
+  const events = [
+    {
+      title: 'a',
+      url: 'b',
+      beginsOn: '2021-04-15T10:30:00Z',
+      endsOn: '2021-04-15T15:30:00Z',
+      physicalAddress: {
+        description: 'c',
+        locality: 'd',
+      },
+      startDateFormatted: '15/04/2021',
+      startTimeFormatted: '10:30',
+      endDateFormatted: '15/04/2021',
+      endTimeFormatted: '15:30',
+      options: {
+        showStartTime: false,
+        showEndTime: false,
+      },
+    },
+  ]
+  const container = t.context.container
+  displayEvents({ events, document, container, maxEventsCount: 2 })
+  const list = container.querySelector('ul')
+  t.is(list.children[0].childNodes[1].childNodes[0].nodeValue, '15/04/2021')
+})
+
 test('#displayErrorMessage no list entries shown', (t) => {
   const container = t.context.container
   displayErrorMessage({ data: '', container })

@@ -36,6 +36,22 @@ final class LineFormatterTest extends TestCase
     $this->assertSame('15/04/2021 10:30', LineFormatter::format_date_time(new \DateTimeZone('UTC'), 'd/m/Y', 'H:i', '2021-04-15T10:30:00Z', null));
   }
 
+  public function testCanDateFormatWhenStartTimeIsHidden(): void {
+    $this->assertSame('15/04/2021 - 15:30', LineFormatter::format_date_time(new \DateTimeZone('UTC'), 'd/m/Y', 'H:i', '2021-04-15T10:30:00Z', '2021-04-15T15:30:00Z', false, true));
+  }
+
+  public function testCanDateFormatWhenEndTimeIsHiddenSameDay(): void {
+    $this->assertSame('15/04/2021 10:30', LineFormatter::format_date_time(new \DateTimeZone('UTC'), 'd/m/Y', 'H:i', '2021-04-15T10:30:00Z', '2021-04-15T15:30:00Z', true, false));
+  }
+
+  public function testCanDateFormatWhenEndTimeIsHiddenAcrossDays(): void {
+    $this->assertSame('15/04/2021 10:30 - 16/04/2021', LineFormatter::format_date_time(new \DateTimeZone('UTC'), 'd/m/Y', 'H:i', '2021-04-15T10:30:00Z', '2021-04-16T15:30:00Z', true, false));
+  }
+
+  public function testCanDateFormatWhenBothTimesAreHidden(): void {
+    $this->assertSame('15/04/2021', LineFormatter::format_date_time(new \DateTimeZone('UTC'), 'd/m/Y', 'H:i', '2021-04-15T10:30:00Z', '2021-04-15T15:30:00Z', false, false));
+  }
+
   public function testCanLocationFormatBothParameters(): void {
     $this->assertSame('a, b', LineFormatter::format_location('a', 'b'));
   }

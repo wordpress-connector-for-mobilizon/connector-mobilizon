@@ -5,7 +5,7 @@ import babelParser from '@babel/eslint-parser'
 
 export default defineConfig([
   ...wordpress.configs['recommended-with-formatting'],
-  ...ava.configs.recommended,
+  ava.configs['flat/recommended'] ?? ava.configs.recommended,
   {
     languageOptions: {
       parser: babelParser,

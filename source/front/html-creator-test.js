@@ -15,6 +15,15 @@ test('#createAnchorElement usual parameters', (t) => {
   t.is(a.getAttribute('href'), 'b')
 })
 
+test('#createAnchorElement escapes HTML tags in text', (t) => {
+  const a = createAnchorElement({
+    document,
+    text: '<img src=x onerror=alert(1)>',
+    url: 'b',
+  })
+  t.is(a.innerHTML, '&lt;img src=x onerror=alert(1)&gt;')
+})
+
 test('#createContainerElement creates element', (t) => {
   const c = createContainerElement({ document, className: 'a' })
   t.is(c.tagName, 'DIV')
