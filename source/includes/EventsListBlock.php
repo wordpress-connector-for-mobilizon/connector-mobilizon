@@ -10,7 +10,7 @@ class EventsListBlock {
 
   public static function initAndReturnScriptName(): string {
     $scriptName = NAME . '-block-starter';
-    $asset = include plugin_dir_path(__FILE__) . 'front/block-events-loader.asset.php';
+    $asset = include dirname(__DIR__) . '/front/block-events-loader.asset.php';
     wp_register_script(
       $scriptName,
       plugins_url(NAME . '/front/block-events-loader.js'),
