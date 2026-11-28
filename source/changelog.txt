@@ -5,12 +5,12 @@
 - Upgrade dependencies
 - Respect WordPress HTTP settings by switching to `wp_remote_post()` for GraphQL requests
 - Harden direct file access check
-- Reduce number of calls to get URL from settings
+- Reduce number of calls to load URL from settings
 #### Deprecated
 #### Removed
-#### Fixed
-- Fix group username filter not working on widgets
 - Remove HTML escaping from exception constructors
+#### Fixed
+- Fix group username filter on widgets
 - Fix showing group not found error message in editor
 #### Security
 
