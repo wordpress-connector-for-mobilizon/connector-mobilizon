@@ -10,6 +10,11 @@
  * License:           <wordpress-license>
  */
 
+// Exit if this file is called directly.
+if (!defined('ABSPATH')) {
+  exit;
+}
+
 require_once __DIR__ . '/includes/exceptions/GeneralException.php';
 require_once __DIR__ . '/includes/exceptions/GroupNotFoundException.php';
 require_once __DIR__ . '/includes/Constants.php';
@@ -25,11 +30,6 @@ require_once __DIR__ . '/includes/GraphQlClient.php';
 require_once __DIR__ . '/includes/EventsListBlock.php';
 require_once __DIR__ . '/includes/EventsListShortcode.php';
 require_once __DIR__ . '/includes/EventsListWidget.php';
-
-// Exit if this file is called directly.
-if (!defined('ABSPATH')) {
-  exit;
-}
 
 final class Mobilizon_Connector {
 

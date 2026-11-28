@@ -4,6 +4,7 @@
 - Confirm compatibility with WordPress 7.2
 - Upgrade dependencies
 - Respect WordPress HTTP settings by switching to `wp_remote_post()` for GraphQL requests
+- Harden direct file access check
 #### Deprecated
 #### Removed
 #### Fixed
