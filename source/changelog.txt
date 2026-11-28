@@ -11,6 +11,7 @@
 #### Fixed
 - Fix group username filter not working on widgets
 - Remove HTML escaping from exception constructors
+- Fix showing group not found error message in editor
 #### Security
 
 ### [2.5.0]

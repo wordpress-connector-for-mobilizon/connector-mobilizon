@@ -21,7 +21,7 @@ async function fetchEvents(eventsCount, groupUsername) {
   const response = await fetch(url)
   if (!response.ok) {
     const data = await response.text()
-    throw new Error(data)
+    throw data
   }
   return response.text()
 }
