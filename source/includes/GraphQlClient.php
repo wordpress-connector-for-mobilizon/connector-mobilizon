@@ -201,9 +201,9 @@ final class GraphQlClient {
       if (count($data['errors']) > 0 &&
           isset($data['errors'][0]['code']) &&
           $data['errors'][0]['code'] === 'group_not_found') {
-        throw new GroupNotFoundException(esc_html(serialize($data['errors'][0])));
+        throw new GroupNotFoundException(serialize($data['errors'][0]));
       } else {
-        throw new GeneralException(esc_html(serialize($data['errors'])));
+        throw new GeneralException(serialize($data['errors']));
       }
     }
   }
