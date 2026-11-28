@@ -10,26 +10,35 @@ final class GraphQlClient {
 
   public static function query(string $endpoint, string $query, array $variables = [], ?string $token = null): array
   {
-    $headers = ['Content-Type: application/json'];
+    $headers = ['Content-Type' => 'application/json'];
     if ($token !== null) {
-        $headers[] = "Authorization: bearer $token";
+        $headers[] = $headers['Authorization'] = 'bearer ' . $token;
     }
 
-    $context = stream_context_create([
-        'http' => [
-            'method' => 'POST',
-            'header' => $headers,
-            'content' => json_encode(['query' => $query, 'variables' => $variables]),
-        ]
-      ]);
-    $data = @file_get_contents($endpoint, false, $context);
+    $response = wp_remote_post($endpoint, [
+        'headers' => $headers,
+        'body'    => wp_json_encode(['query' => $query, 'variables' => $variables]),
+    ]);
 
-    if ($data === false) {
-      $error = error_get_last();
-      throw new \ErrorException(esc_html($error['message']), esc_html($error['type']));
+    if (is_wp_error($response)) {
+        throw new \ErrorException($response->get_error_message());
     }
 
-    return json_decode($data, true);
+    $code = wp_remote_retrieve_response_code($response);
+    $body = wp_remote_retrieve_body($response);
+
+    if ($code < 200 || $code >= 300) {
+        throw new \ErrorException(
+            sprintf('GraphQL request failed with HTTP code %d: %s', $code, $body)
+        );
+    }
+
+    $data = json_decode($body, true);
+    if (!is_array($data)) {
+        throw new \ErrorException('Invalid JSON response from GraphQL endpoint.');
+    }
+
+    return $data;
   }
 
   public static function get_upcoming_events(string $url, int $limit): array {
