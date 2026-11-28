@@ -31,12 +31,11 @@ class EventsListShortcode {
 
     ob_start();
     try {
-      $showMoreUrl = Settings::getUrl();
       if ($groupUsername) {
         $groupUsernames = GroupNameHelper::extractAndTrimNames($groupUsername);
         $result = GraphQlClient::get_upcoming_events_and_group_names($url, (int) $eventsCount, $groupUsernames);
         $events = $result['events'];
-        $groups = GroupNameHelper::convertToGroupsObject($groupUsernames, $showMoreUrl, $result['groups']);
+        $groups = GroupNameHelper::convertToGroupsObject($groupUsernames, $url, $result['groups']);
       } else {
         $events = GraphQlClient::get_upcoming_events($url, (int) $eventsCount);
       }

@@ -5,6 +5,7 @@
 - Upgrade dependencies
 - Respect WordPress HTTP settings by switching to `wp_remote_post()` for GraphQL requests
 - Harden direct file access check
+- Reduce number of calls to get URL from settings
 #### Deprecated
 #### Removed
 #### Fixed

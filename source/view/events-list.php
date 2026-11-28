@@ -40,7 +40,7 @@ if (!defined('ABSPATH')) {
     </a>
     <?php } ?>
     <?php } else { ?>
-    <a href="<?php echo esc_attr($showMoreUrl); ?>" class="button" style="display:inline-block; margin-top: 20px;">
+    <a href="<?php echo esc_attr($url); ?>" class="button" style="display:inline-block; margin-top: 20px;">
       <?php esc_html_e('Show more events', 'connector-mobilizon'); ?>
     </a>
     <?php } ?>
