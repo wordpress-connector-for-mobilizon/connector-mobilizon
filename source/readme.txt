@@ -61,6 +61,19 @@ You have to use their username, e.g. `@nosliensvivants`, and append the name of 
 
 ## Changelog
 
+### [2.6.0]
+#### Changed
+- Confirm compatibility with WordPress 7.2
+- Upgrade dependencies
+- Respect WordPress HTTP settings by switching to `wp_remote_post()` for GraphQL requests
+- Harden direct file access check
+- Reduce number of calls to load URL from settings
+#### Removed
+- Remove HTML escaping from exception constructors
+#### Fixed
+- Fix group username filter on widgets
+- Fix showing group not found error message in editor
+
 ### [2.5.0]
 #### Added
 - Respect Mobilizon's start and end time display options
